@@ -652,16 +652,16 @@ code, pre, kbd { font-family: var(--f-mono); }
 /* ============================================================
    Mapping table
    ============================================================ */
-.dtql-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.dtql-table th, .dtql-table td {
+.tugql-table, .dtql-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.tugql-table th, .tugql-table td, .dtql-table th, .dtql-table td {
   border: 1px solid var(--border-default);
   padding: 8px 12px; text-align: left; vertical-align: top;
 }
-.dtql-table th { background: var(--canvas-subtle); font-weight: 600; }
-.dtql-table code {
+.tugql-table th, .dtql-table th { background: var(--canvas-subtle); font-weight: 600; }
+.tugql-table code, .dtql-table code {
   background: rgba(101,109,118,.16); padding: .12em .4em; border-radius: 4px; font-size: 12px;
 }
-.dtql-table-wrap { overflow-x: auto; border-radius: var(--radius-2); }
+.tugql-table-wrap, .dtql-table-wrap { overflow-x: auto; border-radius: var(--radius-2); }
 
 /* ============================================================
    CLOSING

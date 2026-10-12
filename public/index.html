@@ -3,30 +3,43 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>DTQL — a portable, human-readable query language</title>
-<meta name="description" content="DTQL is a portable, human-readable query language serialized as plain YAML. One query runs unchanged across Git, SQLite, PostgreSQL and Firestore — a lossless, schema-validated representation of a structured query, not full SQL." />
+<title>TugQL — a portable, human-readable query language</title>
+<meta name="description" content="TugQL (formerly DTQL) is a portable, human-readable query language. One query runs unchanged across Git, SQLite, PostgreSQL and Firestore — featuring an intuitive SQL-like text syntax and a lossless, schema-validated query tree (TugQT)." />
 <meta name="theme-color" content="#ffffff" />
-<meta property="og:title" content="DTQL — a portable, human-readable query language" />
-<meta property="og:description" content="Plain YAML over a structured query AST. Lossless round-trip, JSON Schema, portable across backends." />
+<link rel="canonical" href="https://tugql.org/" />
+<meta property="og:title" content="TugQL — a portable, human-readable query language" />
+<meta property="og:description" content="TugQL: portable, human-readable query language and structured query tree (TugQT) across backends. Formerly known as DTQL." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://dtql.org/" />
+<meta property="og:url" content="https://tugql.org/" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
 <link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TugQL",
+  "alternateName": "DTQL",
+  "url": "https://tugql.org",
+  "description": "A portable, human-readable query language and structured query tree (TugQT) for databases and data abstraction layers.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform"
+}
+</script>
 </head>
 <body>
 
 <!-- ============================ APP HEADER ============================ -->
 <header class="AppHeader" role="banner">
   <div class="AppHeader-inner">
-    <a class="AppHeader-brand" href="#top" aria-label="DTQL home">
+    <a class="AppHeader-brand" href="#top" aria-label="TugQL home">
       <span class="AppHeader-brand-mark" aria-hidden="true">{}</span>
-      <span class="AppHeader-brand-word">DTQL</span>
+      <span class="AppHeader-brand-word">TugQL</span>
     </a>
 
     <nav class="AppHeader-context" aria-label="Context">
       <span class="AppHeader-context-slash" aria-hidden="true">/</span>
       <a class="AppHeader-context-item" href="https://github.com/datatug/dtql" rel="noopener">
-        datatug/dtql
+        datatug/tugql
       </a>
     </nav>
 
@@ -57,7 +70,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        Open specification &middot; plain YAML
+        Open specification &middot; formerly DTQL
       </div>
 
       <h1 class="hero-title">
@@ -66,10 +79,10 @@
       </h1>
 
       <p class="hero-lede">
-        <strong>DTQL</strong> is a portable, human-readable query language serialized as
-        plain YAML. It is a <strong>1:1, lossless</strong> representation of a structured query —
-        <strong>no bespoke grammar, no hand-written parser</strong>. Save a query, hand-edit it,
-        diff it in version control, and reload it without loss.
+        <strong>TugQL</strong> is a portable, human-readable query language. It combines a clean
+        SQL-like text syntax with a <strong>1:1, lossless</strong> structured query tree representation
+        (<strong>TugQT</strong>) serialized as plain YAML/JSON. Save a query, hand-edit it, diff it in
+        version control, and execute it across backends without loss.
       </p>
 
       <div class="hero-cta">
@@ -79,44 +92,32 @@
         </a>
         <a class="btn btn-default" href="#example">See an example</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/datatug/dtql-go
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
         </code>
       </div>
     </div>
 
     <!-- Hero code sample -->
-    <div class="codeblock" role="figure" aria-label="A DTQL query document">
+    <div class="codeblock" role="figure" aria-label="A TugQL query document">
       <div class="codeblock-head">
         <span class="codeblock-dot" style="background:#ff5f57"></span>
         <span class="codeblock-dot" style="background:#febc2e"></span>
         <span class="codeblock-dot" style="background:#28c840"></span>
-        <span class="codeblock-name">query.dtql.yaml</span>
-        <span class="codeblock-lang">YAML</span>
+        <span class="codeblock-name">query.tugql</span>
+        <span class="codeblock-lang">TugQL</span>
       </div>
-<pre><code><span class="pl-en">from</span>:
-  <span class="pl-en">name</span>: users
-<span class="pl-en">columns</span>:
-  - <span class="pl-en">field</span>: name
-  - <span class="pl-en">field</span>: age
-    <span class="pl-en">as</span>: years
-<span class="pl-en">where</span>:
-  <span class="pl-en">and</span>:
-    - <span class="pl-en">op</span>: <span class="pl-s">'&gt;='</span>
-      <span class="pl-en">left</span>: { <span class="pl-en">field</span>: age }
-      <span class="pl-en">right</span>: { <span class="pl-en">value</span>: <span class="pl-c1">18</span> }
-    - <span class="pl-en">or</span>:
-        - <span class="pl-en">op</span>: In
-          <span class="pl-en">left</span>: { <span class="pl-en">field</span>: status }
-          <span class="pl-en">right</span>: { <span class="pl-en">values</span>: [active, pending] }
-        - <span class="pl-en">op</span>: ==
-          <span class="pl-en">left</span>: { <span class="pl-en">field</span>: country }
-          <span class="pl-en">right</span>: { <span class="pl-en">value</span>: US }
-<span class="pl-en">orderBy</span>:
-  - <span class="pl-en">field</span>: name
-  - <span class="pl-en">field</span>: age
-    <span class="pl-en">desc</span>: <span class="pl-c1">true</span>
-<span class="pl-en">limit</span>: <span class="pl-c1">10</span>
-<span class="pl-en">offset</span>: <span class="pl-c1">20</span></code></pre>
+<pre><code><span class="pl-k">from</span> users <span class="pl-k">as</span> u
+<span class="pl-k">select</span>
+  u.name,
+  u.age <span class="pl-k">as</span> years
+<span class="pl-k">where</span>
+  u.age &gt;= <span class="pl-c1">18</span>
+  <span class="pl-k">and</span> (u.status <span class="pl-k">in</span> (<span class="pl-s">'active'</span>, <span class="pl-s">'pending'</span>) <span class="pl-k">or</span> u.country == <span class="pl-s">'US'</span>)
+<span class="pl-k">order by</span>
+  u.name,
+  u.age <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">10</span>
+<span class="pl-k">offset</span> <span class="pl-c1">20</span></code></pre>
     </div>
 
   </div>
@@ -126,10 +127,10 @@
 <section id="why" class="section">
   <div class="container">
     <header class="section-head">
-      <span class="section-eyebrow">01 — Why DTQL</span>
+      <span class="section-eyebrow">01 — Why TugQL</span>
       <h2 class="section-title">A query is data. Treat it like data.</h2>
-      <p class="section-kicker">DTQL turns a query into a plain document you can store, review,
-        and version — portable across every backend it runs on.</p>
+      <p class="section-kicker">TugQL turns a query into an understandable, diffable document you can
+        store, review, and version — portable across every backend it runs on.</p>
     </header>
 
     <div class="why-grid">
@@ -139,7 +140,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z"/></svg>
         </div>
         <h3>Human-readable</h3>
-        <p>Plain YAML, not an opaque blob. A query reads like a small config file — anyone can open it, understand it, and edit it by hand.</p>
+        <p>Intuitive SQL-like authoring syntax for people, plus plain YAML/JSON query tree (TugQT) for tooling — anyone can inspect it, understand it, and edit it.</p>
       </article>
 
       <article class="Box why-card">
@@ -147,7 +148,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M1.643 3.143 .427 1.927A.25.25 0 0 0 0 2.104V5.75a.25.25 0 0 0 .25.25h3.646a.25.25 0 0 0 .177-.427L2.715 4.215a6.5 6.5 0 1 1-1.18 4.458.75.75 0 1 0-1.493.154 8.001 8.001 0 1 0 1.6-5.684Z"/></svg>
         </div>
         <h3>Lossless round-trip</h3>
-        <p><code>deserialize(serialize(q))</code> reconstructs a query structurally equal to <code>q</code>. Nothing is silently dropped or approximated.</p>
+        <p>Canonical query lowering reconstructs queries structurally equal to the source. Nothing is silently dropped, mangled, or approximated.</p>
       </article>
 
       <article class="Box why-card">
@@ -155,7 +156,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8.533.133a1.75 1.75 0 0 0-1.066 0l-5.25 1.68A1.75 1.75 0 0 0 1 3.48V7c0 1.566.32 3.182 1.303 4.682.983 1.498 2.585 2.813 5.032 3.855a1.7 1.7 0 0 0 1.33 0c2.447-1.042 4.049-2.357 5.032-3.855C14.68 10.182 15 8.566 15 7V3.48a1.75 1.75 0 0 0-1.217-1.667ZM7.92 1.563a.25.25 0 0 1 .16 0l5.25 1.68a.25.25 0 0 1 .17.237V7c0 1.36-.275 2.666-1.057 3.86-.784 1.194-2.121 2.34-4.366 3.297a.2.2 0 0 1-.154 0c-2.245-.957-3.582-2.103-4.366-3.297C2.775 9.666 2.5 8.36 2.5 7V3.48a.25.25 0 0 1 .17-.237Z"/></svg>
         </div>
         <h3>Schema-validated</h3>
-        <p>Published as a JSON Schema (draft 2020-12). Any tool, in any language, can validate a <code>.dtql.yaml</code> file before it ever runs.</p>
+        <p>Published with full JSON Schema validation (draft 2020-12). Any tool, in any language, can validate a query structure before execution.</p>
       </article>
 
       <article class="Box why-card">
@@ -163,7 +164,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 3.254V3.25v.005a.75.75 0 1 1 0-.005v.004Zm.45 1.9a2.25 2.25 0 1 0-1.95.218v5.256a2.25 2.25 0 1 0 1.5 0V7.123A5.735 5.735 0 0 0 9.25 9h1.378a2.251 2.251 0 1 0 0-1.5H9.25a4.25 4.25 0 0 1-3.8-2.346ZM12.75 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-8.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"/></svg>
         </div>
         <h3>Diff-friendly</h3>
-        <p>Serialization is canonical — stable key order, fixed indentation. Saved queries diff cleanly in Git and review like any other source file.</p>
+        <p>Canonical formatting and deterministic tree serialization. Saved queries diff cleanly in Git and review like standard code.</p>
       </article>
 
       <article class="Box why-card">
@@ -171,7 +172,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"/></svg>
         </div>
         <h3>Portable by design</h3>
-        <p>DTQL exposes only functionality that is portable across backends, so one query runs unchanged on Git, SQLite, PostgreSQL or Firestore.</p>
+        <p>TugQL exposes functionality that is portable across backends, so one query runs unchanged across Git, SQLite, PostgreSQL, or Firestore.</p>
       </article>
 
       <article class="Box why-card">
@@ -179,7 +180,7 @@
           <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></svg>
         </div>
         <h3>Not full SQL</h3>
-        <p>A deliberately small, well-defined subset. Anything out of scope is rejected with a descriptive error rather than translated into something it isn't.</p>
+        <p>A deliberately focused, well-defined portable subset. Unportable constructs are rejected explicitly rather than translated dangerously.</p>
       </article>
 
     </div>
@@ -191,30 +192,28 @@
   <div class="container">
     <div class="section-head">
       <span class="section-eyebrow">02 — Example</span>
-      <h2 class="section-title">A query as DTQL</h2>
-      <p class="section-kicker">Columns with an alias, a nested <code>And</code>/<code>Or</code>
-        filter with an inline <code>In</code> array, ordering, and paging — all in one readable file.</p>
+      <h2 class="section-title">A query as TugQL &amp; TugQT</h2>
+      <p class="section-kicker">Author in TugQL text syntax; persist or exchange as a TugQT structured query tree.</p>
     </div>
     <div class="iface-grid">
       <div class="iface-prose">
-        <p>The document on the right selects <code>name</code> and <code>age</code> (aliased to
-          <code>years</code>) from <code>users</code>, keeps adults who are either in an allowed
-          status set or based in the US, orders the result, and pages it.</p>
-        <p>Every node maps to a fixed YAML shape — there is exactly one way to write it, and exactly
-          one way to read it back.</p>
+        <p>Authors write queries in <strong>TugQL</strong> text syntax — readable, compact, and SQL-like.
+          Underneath, the parser produces <strong>TugQT (Tug Query Tree)</strong>, a canonical,
+          machine-readable representation.</p>
+        <p>Every node maps deterministically between syntax and tree. Malformed input or schema violations
+          return actionable diagnostics with precise source spans.</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span>Malformed or schema-invalid input returns a descriptive error and
-            <strong>no</strong> partially-populated query.</span>
+          <span><strong>Note on naming:</strong> TugQL was formerly known as DTQL. Existing DTQL documents and query files remain supported for backwards compatibility.</span>
         </div>
       </div>
 
-      <div class="codeblock" role="figure" aria-label="Example DTQL document">
+      <div class="codeblock" role="figure" aria-label="Example TugQT query tree">
         <div class="codeblock-head">
           <span class="codeblock-dot" style="background:#ff5f57"></span>
           <span class="codeblock-dot" style="background:#febc2e"></span>
           <span class="codeblock-dot" style="background:#28c840"></span>
-          <span class="codeblock-name">users.dtql.yaml</span>
+          <span class="codeblock-name">users.tugqt.yaml</span>
           <span class="codeblock-lang">YAML</span>
         </div>
 <pre><code><span class="pl-en">from</span>:
@@ -258,13 +257,13 @@
 <section class="section" id="mapping">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow">03 — node → YAML</span>
+      <span class="section-eyebrow">03 — node → TugQT</span>
       <h2 class="section-title">Mapping</h2>
-      <p class="section-kicker">Each in-scope query node has one defined YAML representation.</p>
+      <p class="section-kicker">Each in-scope query node has a defined structured representation.</p>
     </div>
-    <div class="dtql-table-wrap Box">
-      <table class="dtql-table">
-        <thead><tr><th>Query node</th><th>YAML representation</th></tr></thead>
+    <div class="tugql-table-wrap Box">
+      <table class="tugql-table">
+        <thead><tr><th>Query node</th><th>TugQT representation</th></tr></thead>
         <tbody>
           <tr><td>From over a root collection</td><td><code>from: { name, alias? }</code></td></tr>
           <tr><td>Column</td><td>item under <code>columns:</code> — an expression plus optional <code>as:</code></td></tr>
@@ -291,29 +290,27 @@
   <div class="container">
     <div class="section-head">
       <span class="section-eyebrow">04 — covered subset</span>
-      <h2 class="section-title">What DTQL represents</h2>
-      <p class="section-kicker">A single source collection, the selected columns, a filter tree,
+      <h2 class="section-title">What TugQL represents</h2>
+      <p class="section-kicker">Single source collections or joined trees, selected columns, filter expressions,
         ordering, and paging. Anything out of scope is rejected — never silently dropped.</p>
     </div>
     <div class="why-grid">
       <div class="Box why-card">
         <h3>In scope</h3>
-        <p>A root collection source · selected columns · comparison and And/Or group trees ·
-          ordering · limit / offset. Expressions: field reference, constant, array (inline values).
-          Operators: <code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>,
+        <p>Collection sources · selected columns · comparison and And/Or group trees ·
+          ordering · limit / offset · joins · parameters. Expressions: field reference, constant, array.
+          Operators: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>,
           <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.</p>
       </div>
       <div class="Box why-card">
         <h3>Out of scope (rejected)</h3>
-        <p>Joins · collection-group or parented sources · group-by · aggregate / scalar functions ·
-          cursors · any operator outside the in-scope set. Serialization errors out — it never emits
-          a document that loses query semantics.</p>
+        <p>Unbounded cartesian joins · arbitrary dialect-specific vendor syntax · untyped mutation
+          operators outside schema authority. Serialization errors out — it never emits a document that loses query semantics.</p>
       </div>
       <div class="Box why-card">
         <h3>Lossless &amp; canonical</h3>
-        <p><code>deserialize(serialize(q))</code> is structurally equal to <code>q</code>;
-          serialization is canonical, so <code>serialize(deserialize(d))</code> is byte-identical
-          to <code>d</code> and saved queries diff cleanly.</p>
+        <p><code>resolve(parse(text))</code> produces deterministic query trees;
+          serialization is canonical, so saved queries diff cleanly across versions.</p>
       </div>
     </div>
   </div>
@@ -326,15 +323,15 @@
       <div class="section-head" style="margin:0">
         <span class="section-eyebrow">05 — where it runs</span>
         <h2 class="section-title">One query, many backends</h2>
-        <p class="section-kicker">DTQL is the portable query surface. It maps onto a data
-          abstraction layer that adapts it to whatever storage sits underneath.</p>
-        <p style="margin-top:16px;color:var(--fg-muted)">Because DTQL only expresses the portable
-          subset, a query written once behaves the same whether it resolves against a Git
-          repository, an embedded SQLite file, a PostgreSQL cluster, or Firestore.</p>
+        <p class="section-kicker">TugQL is the portable query surface. It maps onto a data
+          abstraction layer (DALgo) that adapts it to whatever storage sits underneath.</p>
+        <p style="margin-top:16px;color:var(--fg-muted)">Because TugQL expresses the portable
+          subset, a query written once behaves consistently whether resolving against a Git
+          repository (inGitDB), an embedded SQLite file, a PostgreSQL database, or Firestore.</p>
       </div>
 
-      <div class="flow" aria-label="DTQL maps through a data abstraction layer to several storage backends">
-        <div class="flow-node flow-node-accent"><strong>DTQL</strong><span>portable query, plain YAML</span></div>
+      <div class="flow" aria-label="TugQL maps through a data abstraction layer to several storage backends">
+        <div class="flow-node flow-node-accent"><strong>TugQL</strong><span>portable query language</span></div>
         <div class="flow-arrow" aria-hidden="true">↓</div>
         <div class="flow-node"><strong>DALgo</strong><span>data abstraction layer</span></div>
         <div class="flow-arrow" aria-hidden="true">↓</div>
@@ -355,23 +352,23 @@
     <div class="section-head">
       <span class="section-eyebrow">06 — get started</span>
       <h2 class="section-title">Specification &amp; implementations</h2>
-      <p class="section-kicker">The language is an open specification with a published schema and a
-        reference implementation in Go.</p>
+      <p class="section-kicker">The language is an open specification with a published schema and
+        implementations in Go and TypeScript.</p>
     </div>
     <ul class="adapter-grid" role="list">
       <li><a class="adapter Box adapter-core" href="https://github.com/datatug/dtql" rel="noopener">
         <span class="adapter-kind">specification &middot; schema</span>
-        <h3>datatug/dtql</h3>
-        <p>The DTQL specification, the canonical JSON Schema (draft 2020-12), and validated example
-          documents. The single source of truth for the language.</p>
+        <h3>datatug/tugql</h3>
+        <p>The TugQL specification, the canonical JSON Schema (draft 2020-12), and validated example
+          documents. Formerly known as DTQL.</p>
         <span class="adapter-meta">github.com/datatug/dtql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/datatug/dtql-go" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
         <span class="adapter-kind">reference implementation &middot; Go</span>
-        <h3>datatug/dtql-go</h3>
-        <p>The Go library: serialize a structured query to DTQL and deserialize it back, with the
-          lossless round-trip and canonical output guarantees.</p>
-        <span class="adapter-meta">go get github.com/datatug/dtql-go</span>
+        <h3>dal-go/dalgo/dtql</h3>
+        <p>The Go library: parse, validate, resolve, format, and execute TugQL queries with lossless
+          round-trip guarantees.</p>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
       </a></li>
     </ul>
   </div>
@@ -381,11 +378,11 @@
 <section class="section closing">
   <div class="container closing-inner">
     <h2>Save it. Diff it. Run it anywhere.</h2>
-    <p>DTQL makes a query a first-class, reviewable artifact — readable by people, validated by
+    <p>TugQL makes a query a first-class, reviewable artifact — readable by people, validated by
       tooling, and portable across the backends it runs on.</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/datatug/dtql" rel="noopener">Read the spec</a>
-      <a class="btn btn-default" href="https://github.com/datatug/dtql-go" rel="noopener">Get the Go library</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Get the Go library</a>
     </div>
   </div>
 </section>
@@ -396,13 +393,13 @@
 <footer class="AppFooter">
   <div class="container AppFooter-inner">
     <ul role="list">
-      <li>&copy; <span id="year">2026</span> DTQL contributors</li>
+      <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/datatug/dtql" rel="noopener">Specification</a></li>
-      <li><a href="https://github.com/datatug/dtql-go" rel="noopener">Go implementation</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go implementation</a></li>
       <li><a href="#example">Example</a></li>
       <li><a href="#mapping">Mapping</a></li>
     </ul>
-    <span class="AppFooter-tag">An open, portable query language serialized as plain YAML.</span>
+    <span class="AppFooter-tag">An open, portable query language (formerly DTQL). Canonical home: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 
