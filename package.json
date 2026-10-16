@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types --test test/redirects.test.mjs"
+    "test": "node --test test/site-config.test.mjs"
   }
 }

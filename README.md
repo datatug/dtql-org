@@ -10,7 +10,6 @@ Source code for **[tugql.org](https://tugql.org)** (formerly **dtql.org**) — d
 
 ## Architecture & Deployment
 
-The site is served by Cloudflare Workers with static assets in `public/`.
-- Edge worker at `src/index.ts` automatically redirects all requests from `dtql.org` and `www.dtql.org` to `https://tugql.org$path$query` via HTTP 301.
-- `public/_redirects` provides fallback rules.
+The site is served by an assets-only Cloudflare Worker with static assets in `public/`.
+- No Worker script: requests are served by free static assets. Zone Redirect Rules (not code) 301 `dtql.org`, `www.dtql.org` and `www.tugql.org` to `https://tugql.org$path$query`.
 - Canonical metadata, sitemap, and robots.txt all reference `https://tugql.org`.
