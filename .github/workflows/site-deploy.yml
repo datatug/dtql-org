@@ -7,7 +7,6 @@ on:
       - '.github/workflows/site-deploy.yml'
       - 'wrangler.jsonc'
       - 'public/**'
-      - 'src/**'
       - 'test/**'
       - 'package.json'
   pull_request:
@@ -15,7 +14,6 @@ on:
       - '.github/workflows/site-deploy.yml'
       - 'wrangler.jsonc'
       - 'public/**'
-      - 'src/**'
       - 'test/**'
       - 'package.json'
   workflow_dispatch:
@@ -42,17 +40,15 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '24.20.0'
-      - name: Test canonical host redirects
+      - name: Test assets-only site config
         run: npm test
-      - name: Compile redirect Worker without publishing
+      - name: Validate assets-only deployment without publishing
         run: npm exec --yes --package=wrangler@4.120.1 -- wrangler deploy --dry-run --outdir "$RUNNER_TEMP/worker"
       - name: Package deployment output
         run: |
           test -s public/index.html
           mkdir -p "$RUNNER_TEMP/deployment"
           cp -R public wrangler.jsonc "$RUNNER_TEMP/deployment/"
-          cp -R "$RUNNER_TEMP/worker" "$RUNNER_TEMP/deployment/worker"
-          test -s "$RUNNER_TEMP/deployment/worker/index.js"
           printf '%s\n' "$GITHUB_SHA" > "$RUNNER_TEMP/deployment/REVISION"
           tar -czf "$RUNNER_TEMP/site.tar.gz" -C "$RUNNER_TEMP/deployment" .
           (cd "$RUNNER_TEMP" && sha256sum site.tar.gz > site.tar.gz.sha256)
@@ -112,4 +108,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo '::error::Missing CLOUDFLARE_API_TOKEN'; exit 1; }
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo '::error::Missing CLOUDFLARE_ACCOUNT_ID'; exit 1; }
-          npm exec --yes --package=wrangler@4.120.1 -- wrangler deploy worker/index.js --config wrangler.jsonc --no-bundle
+          npm exec --yes --package=wrangler@4.120.1 -- wrangler deploy --config wrangler.jsonc
