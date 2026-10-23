@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — un langage de requête portable et lisible par les humains",
+    "description": "TugQL (anciennement DTQL) est un langage de requête portable et lisible par les humains. Une même requête s’exécute sans modification sur Git, SQLite, PostgreSQL et Firestore — syntaxe textuelle type SQL et arbre de requêtes sans perte (TugQT).",
+    "ogDescription": "TugQL : langage de requête portable et lisible avec arbre structuré (TugQT) multi-moteurs. Anciennement DTQL.",
+    "jsonLdDescription": "Un langage de requête portable et lisible par les humains avec arbre de requêtes structuré (TugQT) pour bases de données et couches d’abstraction."
+  },
+  "nav": {
+    "why": "Pourquoi",
+    "example": "Exemple",
+    "mapping": "Correspondance",
+    "scope": "Périmètre",
+    "stack": "Stack",
+    "implementations": "Implémentations",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Spécification ouverte · anciennement DTQL",
+    "titleLine1": "Des requêtes faciles à",
+    "titleAccent": "lire, comparer",
+    "titleLine2": " et fiables.",
+    "lede": "<strong>TugQL</strong> est un langage de requête portable et lisible par les humains. Il associe une syntaxe textuelle épurée inspirée du SQL à une représentation arborescente structurée <strong>1:1 et sans perte</strong> (<strong>TugQT</strong>) sérialisée en YAML/JSON brut. Enregistrez une requête, modifiez-la à la main, comparez ses versions dans Git et exécutez-la sur plusieurs moteurs sans aucune perte.",
+    "readSpec": "Lire la spécification",
+    "seeExample": "Voir un exemple",
+    "codeSampleAria": "Un document de requête TugQL"
+  },
+  "why": {
+    "eyebrow": "01 — Pourquoi TugQL",
+    "title": "Une requête est une donnée. Traitez-la comme telle.",
+    "kicker": "TugQL transforme une requête en un document clair et diffable que vous pouvez stocker, réviser et versionner — portable sur tous vos backends.",
+    "cards": [
+      {
+        "title": "Lisible par les humains",
+        "body": "Syntaxe de rédaction intuitive type SQL pour les développeurs, plus arbre de requêtes YAML/JSON (TugQT) pour l’outillage : accessible à tous pour inspection et modification."
+      },
+      {
+        "title": "Aller-retour sans perte",
+        "body": "La simplification canonique reconstruit des requêtes structurellement identiques à la source. Rien n’est abandonné ou déformé silencieusement."
+      },
+      {
+        "title": "Validé par schéma",
+        "body": "Publié avec validation JSON Schema intégrale (draft 2020-12). N’importe quel outil, dans n’importe quel langage, peut valider la structure d’une requête."
+      },
+      {
+        "title": "Idéal pour les diffs",
+        "body": "Formatage canonique et sérialisation arborescente déterministe. Les requêtes enregistrées produisent des diffs nets dans Git et se relisent comme du code classique."
+      },
+      {
+        "title": "Portable par conception",
+        "body": "TugQL expose des fonctionnalités universellement portables : une requête écrite une fois s’exécute à l’identique sur Git, SQLite, PostgreSQL ou Firestore."
+      },
+      {
+        "title": "Pas tout SQL",
+        "body": "Un sous-ensemble portable volontairement ciblé et rigoureusement défini. Les constructions non portables sont explicitement rejetées plutôt que mal traduites."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Exemple",
+    "title": "Une requête en TugQL &amp; TugQT",
+    "kicker": "Rédigez en syntaxe textuelle TugQL ; conservez ou échangez sous forme d’arbre de requêtes structuré TugQT.",
+    "p1": "Les auteurs rédigent les requêtes dans la syntaxe textuelle <strong>TugQL</strong> — claire, compacte et proche du SQL. En sous-main, l’analyseur génère <strong>TugQT (Tug Query Tree)</strong>, une représentation canonique lisible par machine.",
+    "p2": "Chaque nœud correspond de façon déterministe entre la syntaxe et l’arbre. Les erreurs de saisie ou de schéma renvoient des diagnostics exploitables avec localisation exacte.",
+    "noteTitle": "Précision sur le nom :",
+    "noteText": "TugQL était auparavant nommé DTQL. Les documents et fichiers de requête DTQL existants restent pris en charge pour assurer la rétrocompatibilité.",
+    "codeSampleAria": "Exemple d’arbre de requêtes TugQT"
+  },
+  "mapping": {
+    "eyebrow": "03 — nœud → TugQT",
+    "title": "Correspondance",
+    "kicker": "Chaque nœud de requête couvert dispose d’une représentation structurée définie.",
+    "thNode": "Nœud de requête",
+    "thRep": "Représentation TugQT",
+    "rows": [
+      {
+        "node": "From sur une collection racine",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "Colonne",
+        "rep": "élément sous <code>columns:</code> — expression avec <code>as:</code> optionnel"
+      },
+      {
+        "node": "Comparaison",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "Condition de groupe (And)",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "Condition de groupe (Or)",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "Expression d’ordre",
+        "rep": "élément sous <code>orderBy:</code> — expression avec <code>desc: true</code> optionnel"
+      },
+      {
+        "node": "Référence de champ",
+        "rep": "<code>{ field: &lt;nom&gt; }</code>"
+      },
+      {
+        "node": "Constante",
+        "rep": "<code>{ value: &lt;scalaire&gt; }</code>"
+      },
+      {
+        "node": "Tableau",
+        "rep": "<code>{ values: [ &lt;scalaire&gt;, … ] }</code>"
+      },
+      {
+        "node": "Opérateur",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limite / Décalage",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "Une expression définit <strong>exactement un</strong> parmi <code>field</code>, <code>value</code> ou <code>values</code>, ce qui distingue une référence de champ, une constante ou un tableau."
+  },
+  "scope": {
+    "eyebrow": "04 — périmètre couvert",
+    "title": "Ce que représente TugQL",
+    "kicker": "Collections simples ou jointures, colonnes sélectionnées, expressions de filtrage, tri et pagination. Tout ce qui sort du périmètre est rejeté — jamais ignoré en silence.",
+    "inScopeTitle": "Dans le périmètre",
+    "inScopeBody": "Sources de collections · colonnes sélectionnées · arbres de comparaison et groupes And/Or · tri · limit / offset · jointures · paramètres. Expressions : référence de champ, constante, tableau. Opérateurs : <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "Hors périmètre (rejeté)",
+    "outScopeBody": "Jointures cartésiennes non bornées · syntaxe spécifique à un éditeur · opérateurs de mutation non typés hors schéma. La sérialisation échoue plutôt que de perdre la sémantique de la requête.",
+    "losslessTitle": "Sans perte &amp; canonique",
+    "losslessBody": "<code>resolve(parse(text))</code> produit des arbres déterministes ; la sérialisation est canonique afin que les requêtes sauvegardées se comparent nettement d’une version à l’autre."
+  },
+  "stack": {
+    "eyebrow": "05 — environnements d’exécution",
+    "title": "Une requête, plusieurs moteurs",
+    "kicker": "TugQL constitue la surface de requête portable. Il s’appuie sur une couche d’abstraction de données (DALgo) qui l’adapte au stockage sous-jacent.",
+    "p": "Parce que TugQL formalise le sous-ensemble portable, une requête écrite une fois se comporte de manière identique qu’elle s’exécute sur un dépôt Git (inGitDB), SQLite, PostgreSQL ou Firestore.",
+    "flowAria": "TugQL s’adapte via une couche d’abstraction à divers moteurs de stockage",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "langage de requête portable",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "couche d’abstraction de données"
+  },
+  "implementations": {
+    "eyebrow": "06 — démarrer",
+    "title": "Spécification &amp; implémentations",
+    "kicker": "Le langage est une spécification ouverte accompagnée d’un schéma publié et d’implémentations en Go et TypeScript.",
+    "cards": [
+      {
+        "badge": "spécification · schéma",
+        "title": "tugql/tugql",
+        "desc": "La spécification TugQL, le schéma canonique JSON Schema (draft 2020-12) et les exemples validés. Anciennement DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "implémentation de référence · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "La bibliothèque Go : analyser, valider, résoudre, formater et exécuter des requêtes TugQL avec garanties d’aller-retour sans perte.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Utilisé pour le développement produit",
+    "title": "Explorez et interrogez vos données avec DataTug.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> aide les développeurs à explorer les schémas de bases de données, construire et exécuter des requêtes et interpréter les résultats. L’intégration des contrats de requête avec TugQL et TugQT se poursuit. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">Découvrez les outils développés pour DataTug.</a>"
+  },
+  "closing": {
+    "title": "Enregistrez. Comparez. Exécutez partout.",
+    "p": "TugQL fait de la requête un artefact révisable de premier ordre — lisible par les humains, validé par l’outillage et portable sur tous vos moteurs.",
+    "readSpec": "Lire la spécification",
+    "getLibrary": "Obtenir la bibliothèque Go"
+  },
+  "footer": {
+    "copyright": "© 2026 Contributeurs TugQL",
+    "spec": "Spécification",
+    "goImpl": "Implémentation Go",
+    "example": "Exemple",
+    "mapping": "Correspondance",
+    "tag": "Un langage de requête ouvert et portable (anciennement DTQL). Accueil officiel : <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

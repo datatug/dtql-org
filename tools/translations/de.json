@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — eine portable, menschenlesbare Abfragesprache",
+    "description": "TugQL (ehemals DTQL) ist eine portable, menschenlesbare Abfragesprache. Eine Abfrage läuft unverändert auf Git, SQLite, PostgreSQL und Firestore — mit intuitiver SQL-ähnlicher Textsyntax und verlustfreiem Abfragebaum (TugQT).",
+    "ogDescription": "TugQL: portable, menschenlesbare Abfragesprache und strukturierter Abfragebaum (TugQT) über mehrere Backends. Ehemals DTQL.",
+    "jsonLdDescription": "Eine portable, menschenlesbare Abfragesprache und strukturierter Abfragebaum (TugQT) für Datenbanken und Datenabstraktionsschichten."
+  },
+  "nav": {
+    "why": "Warum",
+    "example": "Beispiel",
+    "mapping": "Zuordnung",
+    "scope": "Umfang",
+    "stack": "Stack",
+    "implementations": "Implementierungen",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Offene Spezifikation · ehemals DTQL",
+    "titleLine1": "Abfragen, die Sie",
+    "titleAccent": "lesen, diffen",
+    "titleLine2": " und vertrauen können.",
+    "lede": "<strong>TugQL</strong> ist eine portable, menschenlesbare Abfragesprache. Sie kombiniert eine saubere SQL-ähnliche Textsyntax mit einer <strong>verlustfreien 1:1</strong>-Darstellung als strukturierter Abfragebaum (<strong>TugQT</strong>), serialisiert in einfachem YAML/JSON. Speichern Sie eine Abfrage, bearbeiten Sie sie von Hand, überprüfen Sie Diffs in der Versionskontrolle und führen Sie sie verlustfrei über verschiedene Backends aus.",
+    "readSpec": "Spezifikation lesen",
+    "seeExample": "Beispiel ansehen",
+    "codeSampleAria": "Ein TugQL-Abfragedokument"
+  },
+  "why": {
+    "eyebrow": "01 — Warum TugQL",
+    "title": "Eine Abfrage sind Daten. Behandeln Sie sie wie Daten.",
+    "kicker": "TugQL macht aus einer Abfrage ein verständliches, diffbares Dokument, das Sie speichern, überprüfen und versionieren können — portabel auf jedem Backend.",
+    "cards": [
+      {
+        "title": "Menschenlesbar",
+        "body": "Intuitive SQL-ähnliche Syntax für Entwickler, plus einfacher YAML/JSON-Abfragebaum (TugQT) für Tools — jeder kann sie inspizieren, verstehen und bearbeiten."
+      },
+      {
+        "title": "Verlustfreier Roundtrip",
+        "body": "Kanonische Transformation rekonstruiert Abfragen strukturell identisch zur Quelle. Nichts wird stillschweigend verworfen oder angenähert."
+      },
+      {
+        "title": "Schemavalidiert",
+        "body": "Veröffentlicht mit vollständiger JSON-Schema-Validierung (Draft 2020-12). Jedes Tool in jeder Sprache kann Abfragestrukturen vor der Ausführung validieren."
+      },
+      {
+        "title": "Diff-freundlich",
+        "body": "Kanonische Formatierung und deterministische Baum-Serialisierung. Gespeicherte Abfragen diffen sauber in Git und lassen sich wie Code reviewen."
+      },
+      {
+        "title": "Portabel durch Design",
+        "body": "TugQL bietet Funktionalität, die über verschiedene Speicher hinweg portabel ist — dieselbe Abfrage läuft ohne Änderung auf Git, SQLite, PostgreSQL oder Firestore."
+      },
+      {
+        "title": "Kein volles SQL",
+        "body": "Eine bewusst fokussierte, wohldefinierte portable Teilmenge. Nicht-portable Konstrukte werden explizit abgewiesen, statt gefährlich fehlübersetzt zu werden."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Beispiel",
+    "title": "Eine Abfrage als TugQL &amp; TugQT",
+    "kicker": "In TugQL-Textsyntax verfassen; als strukturierter TugQT-Abfragebaum speichern oder austauschen.",
+    "p1": "Abfragen werden in <strong>TugQL</strong>-Textsyntax verfasst — lesbar, kompakt und SQL-nah. Darunter erzeugt der Parser <strong>TugQT (Tug Query Tree)</strong>, eine kanonische, maschinenlesbare Repräsentation.",
+    "p2": "Jeder Knoten wird deterministisch zwischen Syntax und Baum abgebildet. Fehlerhafte Eingaben oder Schemaverletzungen liefern präzise Diagnosen.",
+    "noteTitle": "Hinweis zur Namensgebung:",
+    "noteText": "TugQL hieß früher DTQL. Bestehende DTQL-Dokumente und Abfragedateien werden zur Abwärtskompatibilität weiterhin unterstützt.",
+    "codeSampleAria": "Beispiel-TugQT-Abfragebaum"
+  },
+  "mapping": {
+    "eyebrow": "03 — Knoten → TugQT",
+    "title": "Zuordnung",
+    "kicker": "Jeder abgedeckte Abfrageknoten besitzt eine definierte strukturierte Darstellung.",
+    "thNode": "Abfrageknoten",
+    "thRep": "TugQT-Darstellung",
+    "rows": [
+      {
+        "node": "From über eine Quell-Sammlung",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "Spalte",
+        "rep": "Element unter <code>columns:</code> — Ausdruck mit optionalem <code>as:</code>"
+      },
+      {
+        "node": "Vergleich",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "Gruppenbedingung (And)",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "Gruppenbedingung (Or)",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "Sortierausdruck",
+        "rep": "Element unter <code>orderBy:</code> — Ausdruck mit optionalem <code>desc: true</code>"
+      },
+      {
+        "node": "Feldreferenz",
+        "rep": "<code>{ field: &lt;name&gt; }</code>"
+      },
+      {
+        "node": "Konstante",
+        "rep": "<code>{ value: &lt;skalar&gt; }</code>"
+      },
+      {
+        "node": "Array",
+        "rep": "<code>{ values: [ &lt;skalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "Operator",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "Ein Ausdruck setzt <strong>genau eines</strong> von <code>field</code>, <code>value</code> oder <code>values</code>, was eine Feldreferenz, eine Konstante oder ein Array unterscheidet."
+  },
+  "scope": {
+    "eyebrow": "04 — abgedeckte Teilmenge",
+    "title": "Was TugQL abbildet",
+    "kicker": "Einzelsammlungen oder Verknüpfungen, Spaltenauswahl, Filterausdrücke, Sortierung und Paginierung. Alles außerhalb des Umfangs wird abgelehnt — niemals stillschweigend verworfen.",
+    "inScopeTitle": "Im Umfang",
+    "inScopeBody": "Sammlungsquellen · ausgewählte Spalten · Vergleiche und And/Or-Bäume · Sortierung · Limit / Offset · Joins · Parameter. Ausdrücke: Feld, Konstante, Array. Operatoren: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "Außerhalb des Umfangs (abgelehnt)",
+    "outScopeBody": "Unbeschränkte kartesische Joins · herstellerspezifische Dialektsyntax · ungetypte Mutationsoperatoren außerhalb des Schemas. Die Serialisierung bricht ab, statt Semantik zu verlieren.",
+    "losslessTitle": "Verlustfrei &amp; kanonisch",
+    "losslessBody": "<code>resolve(parse(text))</code> erzeugt deterministische Abfragebäume; die Serialisierung ist kanonisch, damit Diffs in Versionskontrollen sauber bleiben."
+  },
+  "stack": {
+    "eyebrow": "05 — wo es läuft",
+    "title": "Eine Abfrage, viele Backends",
+    "kicker": "TugQL ist die portable Abfrageebene. Es verbindet sich mit einer Datenabstraktionsschicht (DALgo), die es an den jeweiligen Speicher anpasst.",
+    "p": "Weil TugQL die portable Teilmenge abbildet, verhält sich eine einmal geschriebene Abfrage identisch — egal ob auf einem Git-Repository (inGitDB), SQLite, PostgreSQL oder Firestore.",
+    "flowAria": "TugQL verbindet sich über eine Abstraktionsschicht mit verschiedenen Speichersystemen",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "portable Abfragesprache",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "Datenabstraktionsschicht"
+  },
+  "implementations": {
+    "eyebrow": "06 — loslegen",
+    "title": "Spezifikation &amp; Implementierungen",
+    "kicker": "Die Sprache ist eine offene Spezifikation mit publiziertem Schema und Implementierungen in Go und TypeScript.",
+    "cards": [
+      {
+        "badge": "Spezifikation · Schema",
+        "title": "tugql/tugql",
+        "desc": "Die TugQL-Spezifikation, das kanonische JSON Schema (Draft 2020-12) und validierte Beispieldokumente. Ehemals DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "Referenzimplementierung · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Die Go-Bibliothek: Parsen, Validieren, Auflösen, Formatieren und Ausführen von TugQL-Abfragen mit verlustfreier Garantie.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Einsatz in der Produktentwicklung",
+    "title": "Daten erkunden und abfragen mit DataTug.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> hilft Entwicklern beim Erkunden von Datenbankschemata, Erstellen und Ausführen von Abfragen und Verstehen der Ergebnisse. Die Arbeit an Abfrageverträgen mit TugQL und TugQT läuft kontinuierlich. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">Erkunden Sie die Werkzeuge hinter DataTug.</a>"
+  },
+  "closing": {
+    "title": "Speichern. Diffen. Überall ausführen.",
+    "p": "TugQL macht eine Abfrage zu einem erstklassigen, überprüfbaren Artefakt — lesbar für Menschen, validiert von Werkzeugen und portabel auf allen Backends.",
+    "readSpec": "Spezifikation lesen",
+    "getLibrary": "Go-Bibliothek holen"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL-Mitwirkende",
+    "spec": "Spezifikation",
+    "goImpl": "Go-Implementierung",
+    "example": "Beispiel",
+    "mapping": "Zuordnung",
+    "tag": "Eine offene, portable Abfragesprache (ehemals DTQL). Offizielle Seite: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

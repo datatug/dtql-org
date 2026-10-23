@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — 이식 가능하고 사람이 읽기 쉬운 쿼리 언어",
+    "description": "TugQL(구 DTQL)은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 직관적인 SQL 유사 텍스트 구문과 스키마 검증을 거친 무손실 쿼리 트리(TugQT)를 통해 단 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 그대로 실행됩니다.",
+    "ogDescription": "TugQL: 여러 백엔드에서 작동하는 이식 가능하고 가독성 높은 쿼리 언어 및 구조화된 쿼리 트리(TugQT). 구 DTQL.",
+    "jsonLdDescription": "데이터베이스 및 데이터 추상화 계층을 위한 이식 가능하고 사람이 읽기 쉬운 쿼리 언어 및 구조화된 쿼리 트리(TugQT)."
+  },
+  "nav": {
+    "why": "특징",
+    "example": "예제",
+    "mapping": "매핑",
+    "scope": "범위",
+    "stack": "스택",
+    "implementations": "구현체",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "오픈 사양 · 구 DTQL",
+    "titleLine1": "직접 읽고,",
+    "titleAccent": "비교하고,",
+    "titleLine2": " 신뢰할 수 있는 쿼리.",
+    "lede": "<strong>TugQL</strong>은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 깔끔한 SQL 유사 텍스트 구문과 일반 YAML/JSON으로 직렬화되는 <strong>1:1 무손실</strong> 구조화 쿼리 트리 표현(<strong>TugQT</strong>)을 결합했습니다. 쿼리를 저장하고, 직접 수정하고, 버전 관리에서 diff를 확인하며, 여러 백엔드에서 손실 없이 실행할 수 있습니다.",
+    "readSpec": "사양 읽기",
+    "seeExample": "예제 보기",
+    "codeSampleAria": "TugQL 쿼리 문서"
+  },
+  "why": {
+    "eyebrow": "01 — 왜 TugQL인가",
+    "title": "쿼리도 데이터입니다. 데이터답게 다루세요.",
+    "kicker": "TugQL은 쿼리를 저장, 검토, 버전 관리할 수 있는 명확하고 diff 확인이 쉬운 문서로 변환합니다. 모든 백엔드에서 이식 가능합니다.",
+    "cards": [
+      {
+        "title": "사람이 읽기 쉬운 형태",
+        "body": "사람을 위한 직관적인 SQL 유사 구문과 도구를 위한 순수 YAML/JSON 쿼리 트리(TugQT)를 제공하여 누구나 검사, 이해, 수정할 수 있습니다."
+      },
+      {
+        "title": "무손실 왕복 변환",
+        "body": "표준 정규화 처리를 통해 원본과 구조적으로 동일한 쿼리를 온전히 복원합니다. 조용히 삭제되거나 왜곡되는 부분이 전혀 없습니다."
+      },
+      {
+        "title": "스키마 검증 지원",
+        "body": "완전한 JSON Schema(draft 2020-12) 검증을 제공합니다. 어떤 언어의 도구든 실행 전 쿼리 구조의 유효성을 검증할 수 있습니다."
+      },
+      {
+        "title": "Diff 친화적 구조",
+        "body": "표준 형식과 결정론적 트리 직렬화를 지원합니다. 저장된 쿼리는 Git에서 깔끔한 diff를 보여주며 일반 코드처럼 리뷰할 수 있습니다."
+      },
+      {
+        "title": "설계부터 고려된 이식성",
+        "body": "여러 백엔드에서 공통으로 지원하는 기능만 선별하여, 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 수정 없이 그대로 실행됩니다."
+      },
+      {
+        "title": "전체 SQL이 아닌 이유",
+        "body": "이식 가능한 핵심 서브셋에만 의도적으로 집중했습니다. 비표준 문법은 무리하게 변환하지 않고 명시적으로 거부합니다."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — 예제",
+    "title": "TugQL 텍스트 및 TugQT 쿼리 트리",
+    "kicker": "TugQL 텍스트 구문으로 작성하고, 구조화된 TugQT 쿼리 트리로 저장하거나 교환하세요.",
+    "p1": "작성자는 읽기 쉽고 간결한 SQL 스타일의 <strong>TugQL</strong> 텍스트 구문으로 쿼리를 작성합니다. 내부적으로 파서는 기계가 읽을 수 있는 표준 표현인 <strong>TugQT(Tug Query Tree)</strong>를 생성합니다.",
+    "p2": "모든 노드는 구문과 트리 간에 결정론적으로 매핑됩니다. 잘못된 입력이나 스키마 위반 시 정확한 소스 위치와 함께 명확한 진단 정보를 반환합니다.",
+    "noteTitle": "명칭 변경 안내:",
+    "noteText": "TugQL은 이전에 DTQL로 알려져 있었습니다. 기존 DTQL 문서 및 쿼리 파일도 하위 호환성을 위해 계속 지원됩니다.",
+    "codeSampleAria": "TugQT 쿼리 트리 예제"
+  },
+  "mapping": {
+    "eyebrow": "03 — 노드 → TugQT",
+    "title": "매핑",
+    "kicker": "지원 범위 내의 각 쿼리 노드는 명확히 정의된 구조화된 표현을 가집니다.",
+    "thNode": "쿼리 노드",
+    "thRep": "TugQT 표현",
+    "rows": [
+      {
+        "node": "루트 컬렉션 대상 From",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "컬럼",
+        "rep": "<code>columns:</code> 하위 항목 — 식 및 선택적 <code>as:</code>"
+      },
+      {
+        "node": "비교",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "그룹 조건 (And)",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "그룹 조건 (Or)",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "정렬 식",
+        "rep": "<code>orderBy:</code> 하위 항목 — 식 및 선택적 <code>desc: true</code>"
+      },
+      {
+        "node": "필드 참조",
+        "rep": "<code>{ field: &lt;name&gt; }</code>"
+      },
+      {
+        "node": "상수",
+        "rep": "<code>{ value: &lt;scalar&gt; }</code>"
+      },
+      {
+        "node": "배열",
+        "rep": "<code>{ values: [ &lt;scalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "연산자",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "식은 <code>field</code>, <code>value</code>, <code>values</code> 중 <strong>정확히 하나</strong>만 설정하여 필드 참조, 상수, 배열을 구분합니다."
+  },
+  "scope": {
+    "eyebrow": "04 — 지원 범위",
+    "title": "TugQL이 표현하는 범위",
+    "kicker": "단일 컬렉션 또는 조인 트리, 선택 컬럼, 필터 식, 정렬 및 페이징. 범위를 벗어난 구문은 명시적으로 거부되며 조용히 누락되지 않습니다.",
+    "inScopeTitle": "지원 범위",
+    "inScopeBody": "컬렉션 소스 · 선택 컬럼 · 비교 및 And/Or 그룹 트리 · 정렬 · limit / offset · 조인 · 파라미터. 식: 필드 참조, 상수, 배열. 연산자: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "범위 외 (거부됨)",
+    "outScopeBody": "제한 없는 카티션 곱 · 데이터베이스 전용 벤더 구문 · 스키마 범위를 벗어난 비타입 수정 연산자. 쿼리 의미가 손실되기 전에 직렬화가 오류를 발생시킵니다.",
+    "losslessTitle": "무손실 및 표준화",
+    "losslessBody": "<code>resolve(parse(text))</code>는 결정론적 쿼리 트리를 생성합니다. 직렬화가 표준화되어 있어 저장된 쿼리가 버전 간에 명확한 diff를 제공합니다."
+  },
+  "stack": {
+    "eyebrow": "05 — 실행 환경",
+    "title": "하나의 쿼리, 다양한 백엔드",
+    "kicker": "TugQL은 이식 가능한 쿼리 인터페이스입니다. 하위 스토리지에 맞게 쿼리를 적응시키는 데이터 추상화 계층(DALgo)과 연결됩니다.",
+    "p": "TugQL은 이식 가능한 서브셋만 표현하므로, 한 번 작성된 쿼리는 Git 저장소(inGitDB), SQLite 파일, PostgreSQL 데이터베이스, Firestore 어디서나 일관되게 동작합니다.",
+    "flowAria": "TugQL은 데이터 추상화 계층을 통해 여러 스토리지 백엔드로 매핑됩니다",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "이식 가능한 쿼리 언어",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "데이터 추상화 계층"
+  },
+  "implementations": {
+    "eyebrow": "06 — 시작하기",
+    "title": "사양 및 구현체",
+    "kicker": "이 언어는 공개된 스키마와 Go 및 TypeScript 구현체를 갖춘 오픈 사양입니다.",
+    "cards": [
+      {
+        "badge": "사양 · 스키마",
+        "title": "tugql/tugql",
+        "desc": "TugQL 사양, 표준 JSON Schema(draft 2020-12) 및 검증된 예제 문서. 구 DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "참조 구현체 · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Go 라이브러리: 무손실 왕복 변환 보장과 함께 TugQL 쿼리를 파싱, 검증, 해석, 포맷 및 실행합니다.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "실제 제품 개발 활용",
+    "title": "DataTug로 데이터를 탐색하고 쿼리하세요.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a>는 개발자가 데이터베이스 스키마를 탐색하고, 쿼리를 작성 및 실행하며, 결과를 분석할 수 있도록 돕습니다. TugQL 및 TugQT 기반 쿼리 계약 연동이 지속적으로 진행 중입니다. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">DataTug의 도구 살펴보기.</a>"
+  },
+  "closing": {
+    "title": "저장하고. 비교하고. 어디서나 실행하세요.",
+    "p": "TugQL은 쿼리를 사람이 읽을 수 있고, 도구로 검증되며, 모든 백엔드에서 동작하는 일급 아티팩트로 만들어줍니다.",
+    "readSpec": "사양 읽기",
+    "getLibrary": "Go 라이브러리 다운로드"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL 기여자 일동",
+    "spec": "사양서",
+    "goImpl": "Go 구현체",
+    "example": "예제",
+    "mapping": "매핑",
+    "tag": "오픈 이식형 쿼리 언어(구 DTQL). 공식 홈페이지: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

@@ -9,11 +9,15 @@ export const langs = [
   { code: 'es', label: 'Español', tag: 'es' },
   { code: 'de', label: 'Deutsch', tag: 'de' },
   { code: 'fr', label: 'Français', tag: 'fr' },
+  { code: 'it', label: 'Italiano', tag: 'it' },
+  { code: 'pl', label: 'Polski', tag: 'pl' },
   { code: 'pt-br', label: 'Português (BR)', tag: 'pt-BR' },
   { code: 'ru', label: 'Русский', tag: 'ru' },
+  { code: 'tr', label: 'Türkçe', tag: 'tr' },
   { code: 'uk', label: 'Українська', tag: 'uk' },
   { code: 'ja', label: '日本語', tag: 'ja' },
   { code: 'zh-cn', label: '中文', tag: 'zh-CN' },
+  { code: 'zh-tw', label: '繁體中文', tag: 'zh-TW' },
   { code: 'ko', label: '한국어', tag: 'ko' },
 ];
 

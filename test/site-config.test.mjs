@@ -33,9 +33,9 @@ describe('tugql.org is served as static assets only', () => {
     }
   });
 
-  it('ships all 10 localized landing pages with metadata and language switchers', async () => {
+  it('ships all 14 localized landing pages with metadata and language switchers', async () => {
     const { langs, localeHref, canonicalUrl } = await import('../tools/languages.mjs');
-    assert.equal(langs.length, 10);
+    assert.equal(langs.length, 14);
 
     const sitemap = readFileSync(resolve(root, 'public/sitemap.xml'), 'utf8');
 

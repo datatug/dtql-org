@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "TugQL — taşınabilir, insan tarafından okunabilir sorgu dili",
+    "description": "TugQL (eski adıyla DTQL), taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar.",
+    "ogDescription": "TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT). Eski adıyla DTQL.",
+    "jsonLdDescription": "Veritabanları ve veri soyutlama katmanları için taşınabilir, insan tarafından okunabilir sorgu dili ve yapılandırılmış sorgu ağacı (TugQT)."
+  },
+  "nav": {
+    "why": "Neden TugQL",
+    "example": "Örnek",
+    "mapping": "Eşleme",
+    "scope": "Kapsam",
+    "stack": "Teknoloji Yığını",
+    "implementations": "Uygulamalar",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Açık şartname · eski adıyla DTQL",
+    "titleLine1": "Kolayca okunan,",
+    "titleAccent": "diff alınan,",
+    "titleLine2": " güvenilir sorgular.",
+    "lede": "<strong>TugQL</strong>, taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Sade, SQL benzeri metin sözdizimini, düz YAML/JSON olarak serileştirilen <strong>1:1 kayıpsız</strong> yapılandırılmış sorgu ağacı (<strong>TugQT</strong>) ile birleştirir. Bir sorguyu kaydedin, elle düzenleyin, versiyon kontrolünde diff alın ve herhangi bir veri kaybı yaşamadan farklı veritabanlarında çalıştırın.",
+    "readSpec": "Şartnameyi oku",
+    "seeExample": "Örneğe göz at",
+    "codeSampleAria": "Bir TugQL sorgu belgesi"
+  },
+  "why": {
+    "eyebrow": "01 — Neden TugQL",
+    "title": "Sorgu bir veridir. Ona veri gibi davranın.",
+    "kicker": "TugQL, bir sorguyu depolayabileceğiniz, inceleyebileceğiniz ve sürümlendirebileceğiniz anlaşılır ve diff alınabilir bir belgeye dönüştürür — her arka uçta taşınabilir.",
+    "cards": [
+      {
+        "title": "İnsan tarafından okunabilir",
+        "body": "Geliştiriciler için sezgisel SQL benzeri yazım sözdizimi ve araçlar için yalın YAML/JSON sorgu ağacı (TugQT) — herkes inceleyebilir, anlayabilir ve düzenleyebilir."
+      },
+      {
+        "title": "Kayıpsız çift yönlü dönüşüm",
+        "body": "Kanonik sadeleştirme işlemi, kaynakla yapısal olarak tamamen aynı sorguları yeniden oluşturur. Hiçbir ifade sessizce atılmaz veya bozulmaz."
+      },
+      {
+        "title": "Şema doğrulamalı",
+        "body": "Tam JSON Schema doğrulaması (draft 2020-12) ile yayınlanmıştır. Her dildeki herhangi bir araç, sorguyu çalıştırmadan önce yapısını doğrulayabilir."
+      },
+      {
+        "title": "Diff dostu",
+        "body": "Kanonik biçimlendirme ve deterministik ağaç serileştirme. Kaydedilen sorgular Git'te temiz diff verir ve standart kod gibi incelenir."
+      },
+      {
+        "title": "Tasarım gereği taşınabilir",
+        "body": "TugQL, farklı veritabanları arasında ortak olan yetenekleri sunar: tek bir sorgu Git, SQLite, PostgreSQL veya Firestore üzerinde değişmeden çalışır."
+      },
+      {
+        "title": "Tam SQL değil",
+        "body": "Bilinçli olarak hedeflenmiş, iyi tanımlanmış taşınabilir bir alt küme. Taşınabilir olmayan yapılar tehlikeli şekilde dönüştürülmek yerine açıkça reddedilir."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Örnek",
+    "title": "TugQL ve TugQT olarak bir sorgu",
+    "kicker": "TugQL metin sözdizimiyle yazın; TugQT yapılandırılmış sorgu ağacı olarak saklayın veya paylaşın.",
+    "p1": "Kullanıcılar sorguları açık, derli toplu ve SQL benzeri <strong>TugQL</strong> metin sözdizimiyle yazar. Arka planda ayrıştırıcı, makine tarafından okunabilen kanonik <strong>TugQT (Tug Query Tree)</strong> temsilini üretir.",
+    "p2": "Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür.",
+    "noteTitle": "İsimlendirme hakkında not:",
+    "noteText": "TugQL daha önce DTQL olarak biliniyordu. Mevcut DTQL belgeleri ve sorgu dosyaları geriye dönük uyumluluk için desteklenmeye devam etmektedir.",
+    "codeSampleAria": "Örnek TugQT sorgu ağacı"
+  },
+  "mapping": {
+    "eyebrow": "03 — düğüm → TugQT",
+    "title": "Eşleme",
+    "kicker": "Kapsamdaki her sorgu düğümünün tanımlanmış yapılandırılmış bir karşılığı vardır.",
+    "thNode": "Sorgu düğümü",
+    "thRep": "TugQT karşılığı",
+    "rows": [
+      { "node": "Kök koleksiyon üzerinde From", "rep": "<code>from: { name, alias? }</code>" },
+      { "node": "Sütun", "rep": "<code>columns:</code> altındaki öğe — ifade ve isteğe bağlı <code>as:</code>" },
+      { "node": "Karşılaştırma", "rep": "<code>{ op, left, right }</code>" },
+      { "node": "Grup koşulu (And)", "rep": "<code>{ and: [ … ] }</code>" },
+      { "node": "Grup koşulu (Or)", "rep": "<code>{ or: [ … ] }</code>" },
+      { "node": "Sıralama ifadesi", "rep": "<code>orderBy:</code> altındaki öğe — ifade ve isteğe bağlı <code>desc: true</code>" },
+      { "node": "Alan başvurusu", "rep": "<code>{ field: &lt;isim&gt; }</code>" },
+      { "node": "Sabit değer", "rep": "<code>{ value: &lt;skaler&gt; }</code>" },
+      { "node": "Dizi", "rep": "<code>{ values: [ &lt;skaler&gt;, … ] }</code>" },
+      { "node": "İşleç", "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>" },
+      { "node": "Limit / Offset", "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>" }
+    ],
+    "caption": "Bir ifade, <code>field</code>, <code>value</code> veya <code>values</code> alanlarından <strong>yalnızca birini</strong> belirterek alan başvurusu, sabit veya dizi ayrımını yapar."
+  },
+  "scope": {
+    "eyebrow": "04 — desteklenen alt küme",
+    "title": "TugQL neleri kapsar",
+    "kicker": "Tekil koleksiyonlar veya birleşimler, seçilen sütunlar, filtreler, sıralama ve sayfalama. Kapsam dışındaki her şey reddedilir — asla sessizce yok sayılmaz.",
+    "inScopeTitle": "Kapsam dahilinde",
+    "inScopeBody": "Koleksiyon kaynakları · seçilen sütunlar · karşılaştırma ve And/Or grupları · sıralama · limit / offset · join birleştirmeleri · parametreler. İfadeler: alan, sabit, dizi. İşleçler: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.`",
+    "outScopeTitle": "Kapsam dışı (reddedilen)",
+    "outScopeBody": "Sınırsız kartezyen çarpımlar · veritabanına özel dialekt sözdizimleri · şema dışı tipsiz veri değiştirme işleçleri. Serileştirme, sorgu anlambilimini kaybetmektense hata verir.",
+    "losslessTitle": "Kayıpsız &amp; kanonik",
+    "losslessBody": "<code>resolve(parse(text))</code> deterministik sorgu ağaçları üretir; serileştirme kanoniktir, bu sayede kayıtlı sorgular sürümler arasında temiz diff verir."
+  },
+  "stack": {
+    "eyebrow": "05 — nerelerde çalışır",
+    "title": "Bir sorgu, çok sayıda arka uç",
+    "kicker": "TugQL, taşınabilir sorgu yüzeyidir. Kendisini alttaki herhangi bir depolama sistemine uyarlayan bir veri soyutlama katmanına (DALgo) bağlanır.",
+    "p": "TugQL taşınabilir alt kümeyi ifade ettiği için, bir kez yazılan bir sorgu Git deposu (inGitDB), SQLite, PostgreSQL veya Firestore üzerinde tamamen aynı şekilde çalışır.",
+    "flowAria": "TugQL, veri soyutlama katmanı aracılığıyla çeşitli depolama sistemlerine eşlenir",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "taşınabilir sorgu dili",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "veri soyutlama katmanı"
+  },
+  "implementations": {
+    "eyebrow": "06 — başlangıç",
+    "title": "Şartname ve uygulamalar",
+    "kicker": "Bu dil, yayınlanmış şeması ve Go ile TypeScript uygulamaları bulunan açık bir şartnamedir.",
+    "cards": [
+      {
+        "badge": "şartname · şema",
+        "title": "tugql/tugql",
+        "desc": "TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler. Eski adıyla DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "referans uygulama · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Go kütüphanesi: kayıpsız dönüşüm garantisiyle TugQL sorgularını ayrıştırma, doğrulama, çözümleme, biçimlendirme ve çalıştırma.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Ürün geliştirmede kullanım",
+    "title": "DataTug ile verileri keşfedin ve sorgulayın.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a>, geliştiricilerin veritabanı şemalarını keşfetmelerine, sorgular oluşturup çalıştırmalarına ve sonuçları analiz etmelerine yardımcı olur. TugQL ve TugQT ile sorgu sözleşmeleri geliştirmeleri devam etmektedir. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">DataTug'ın arkasındaki araçları keşfedin.</a>"
+  },
+  "closing": {
+    "title": "Kaydet. Diff al. Her yerde çalıştır.",
+    "p": "TugQL, bir sorguyu birinci sınıf ve incelenebilir bir yapıya dönüştürür — insanlar tarafından okunabilir, araçlarla doğrulanabilir ve tüm arka uçlarda taşınabilir.",
+    "readSpec": "Şartnameyi oku",
+    "getLibrary": "Go kütüphanesini al"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL katkıda bulunanları",
+    "spec": "Şartname",
+    "goImpl": "Go uygulaması",
+    "example": "Örnek",
+    "mapping": "Eşleme",
+    "tag": "Açık ve taşınabilir bir sorgu dili (eski adıyla DTQL). Resmi adres: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}
