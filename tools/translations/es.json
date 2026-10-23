@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — un lenguaje de consulta portátil y legible por humanos",
-    "description": "TugQL (anteriormente DTQL) es un lenguaje de consulta portátil y legible por humanos. Una consulta se ejecuta sin cambios en Git, SQLite, PostgreSQL y Firestore, con sintaxis limpia tipo SQL y un árbol de consulta sin pérdidas validado por esquema (TugQT).",
-    "ogDescription": "TugQL: lenguaje de consulta portátil y legible con árbol estructurado (TugQT) entre motores. Anteriormente DTQL.",
+    "description": "TugQL es un lenguaje de consulta portátil y legible por humanos. Una consulta se ejecuta sin cambios en Git, SQLite, PostgreSQL y Firestore, con sintaxis limpia tipo SQL y un árbol de consulta sin pérdidas validado por esquema (TugQT).",
+    "ogDescription": "TugQL: lenguaje de consulta portátil y legible con árbol estructurado (TugQT) entre motores.",
     "jsonLdDescription": "Un lenguaje de consulta portátil y legible por humanos con árbol de consulta estructurado (TugQT) para bases de datos y capas de abstracción."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Especificación abierta · anteriormente DTQL",
+    "eyebrow": "Especificación abierta",
     "titleLine1": "Consultas que puedes",
     "titleAccent": "leer, comparar",
     "titleLine2": " y confiar.",
@@ -60,9 +60,9 @@
     "title": "Una consulta en TugQL y TugQT",
     "kicker": "Escribe en sintaxis de texto TugQL; almacena o intercambia como árbol de consulta estructurado TugQT.",
     "p1": "Los autores escriben consultas en la sintaxis de texto de <strong>TugQL</strong> — legible, compacta y similar a SQL. Por debajo, el analizador produce <strong>TugQT (Tug Query Tree)</strong>, una representación canónica y legible por máquinas.",
-    "p2": "Cada nodo se asigna de forma determinista entre la sintaxis y el árbol. Entradas con errores o que violen el esquema devuelven diagnósticos precisos.",
+    "p2": "Cada nodo se asigna de forma determinista entre la sintaxis y el árbol. Entradas con errores o que violen el esquema devuelven diagnósticos precisos. Las consultas en texto admiten comentarios de fin de línea con <code>--</code> y <code>//</code>; la forma YAML usa <code>#</code>.",
     "noteTitle": "Nota sobre el nombre:",
-    "noteText": "TugQL se conocía anteriormente como DTQL. Los documentos y archivos de consulta DTQL existentes siguen siendo compatibles.",
+    "noteText": "TugQL se publicaba antes en dtql.org, que ahora redirige de forma permanente a tugql.org.",
     "codeSampleAria": "Árbol de consulta TugQT de ejemplo"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "especificación · esquema",
         "title": "tugql/tugql",
-        "desc": "La especificación de TugQL, el JSON Schema canónico (draft 2020-12) y documentos de ejemplo validados. Anteriormente DTQL.",
+        "desc": "La especificación de TugQL, el JSON Schema canónico (draft 2020-12) y documentos de ejemplo validados.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "implementación de referencia · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Librería en Go: analiza, valida, resuelve, formatea y ejecuta consultas TugQL con garantías de ida y vuelta sin pérdidas.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Implementación en Go",
     "example": "Ejemplo",
     "mapping": "Mapeo",
-    "tag": "Un lenguaje de consulta abierto y portátil (anteriormente DTQL). Sitio oficial: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "Un lenguaje de consulta abierto y portátil. Sitio oficial: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

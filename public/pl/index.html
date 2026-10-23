@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — przenośny, czytelny dla człowieka język zapytań</title>
-  <meta name="description" content="TugQL (wcześniej DTQL) to przenośny, czytelny dla ludzi język zapytań. Jedno zapytanie działa bez zmian w Git, SQLite, PostgreSQL i Firestore — oferując intuicyjną składnię zbliżoną do SQL oraz bezstratne drzewo zapytań walidowane schematem (TugQT)." />
+  <meta name="description" content="TugQL to przenośny, czytelny dla ludzi język zapytań. Jedno zapytanie działa bez zmian w Git, SQLite, PostgreSQL i Firestore — oferując intuicyjną składnię zbliżoną do SQL oraz bezstratne drzewo zapytań walidowane schematem (TugQT)." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/pl/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — przenośny, czytelny dla człowieka język zapytań" />
-  <meta property="og:description" content="TugQL: przenośny, czytelny język zapytań i ustrukturyzowane drzewo zapytań (TugQT) działające na wielu backendach. Dawniej DTQL." />
+  <meta property="og:description" content="TugQL: przenośny, czytelny język zapytań i ustrukturyzowane drzewo zapytań (TugQT) działające na wielu backendach." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/pl/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "Przenośny, czytelny dla ludzi język zapytań oraz ustrukturyzowane drzewo zapytań (TugQT) dla baz danych i warstw abstrakcji.",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        Otwarta specyfikacja · wcześniej DTQL
+        Otwarta specyfikacja
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">Zobacz przykład</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>Autorzy piszą zapytania w składni tekstowej <strong>TugQL</strong> — czytelnej, zwięzłej i zbliżonej do SQL. Pod spodem parser generuje <strong>TugQT (Tug Query Tree)</strong> — kanoniczną, czytelną maszynowo reprezentację.</p>
-        <p>Każdy węzeł mapuje się deterministycznie między składnią a drzewem. Błędy składni lub naruszenia schematu zwracają precyzyjne komunikaty diagnostyczne ze wskazaniem miejsca w kodzie.</p>
+        <p>Każdy węzeł mapuje się deterministycznie między składnią a drzewem. Błędy składni lub naruszenia schematu zwracają precyzyjne komunikaty diagnostyczne ze wskazaniem miejsca w kodzie. W formie tekstowej komentarze do końca wiersza zaczynają się od <code>--</code> lub <code>//</code>; w formie YAML używa się <code>#</code>.</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>Uwaga dotycząca nazwy:</strong> TugQL był wcześniej znany jako DTQL. Istniejące dokumenty i pliki zapytań DTQL są nadal w pełni obsługiwane dla zachowania wstecznej kompatybilności.</span>
+          <span><strong>Uwaga dotycząca nazwy:</strong> TugQL był wcześniej publikowany pod adresem dtql.org, który teraz trwale przekierowuje na tugql.org.</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">specyfikacja · schemat</span>
         <h3>tugql/tugql</h3>
-        <p>Specyfikacja TugQL, kanoniczny JSON Schema (draft 2020-12) oraz zweryfikowane przykładowe dokumenty. Dawniej DTQL.</p>
+        <p>Specyfikacja TugQL, kanoniczny JSON Schema (draft 2020-12) oraz zweryfikowane przykładowe dokumenty.</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">implementacja referencyjna · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Biblioteka w Go: parsowanie, walidacja, rozwiązywanie, formatowanie i wykonywanie zapytań TugQL z gwarancją bezstratności.</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQL czyni zapytanie pierwszorzędnym, weryfikowalnym artefaktem — czytelnym dla ludzi, walidowanym przez narzędzia i przenośnym między silnikami bazodanowymi.</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Przeczytaj specyfikację</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Pobierz bibliotekę Go</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Pobierz bibliotekę Go</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">Specyfikacja</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Implementacja w Go</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Implementacja w Go</a></li>
       <li><a href="#example">Przykład</a></li>
       <li><a href="#mapping">Mapowanie</a></li>
     </ul>
-    <span class="AppFooter-tag">Otwarty, przenośny język zapytań (dawniej DTQL). Oficjalna strona: <a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">Otwarty, przenośny język zapytań. Oficjalna strona: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — 便携、易于人类阅读的查询语言",
-    "description": "TugQL（原名 DTQL）是一种便携、易于人类阅读的查询语言。同一查询无需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上运行——兼具直观的类 SQL 文本语法与经模式验证的无损查询树（TugQT）。",
-    "ogDescription": "TugQL：跨后端的便携、易读查询语言与结构化查询树（TugQT）。原名 DTQL。",
+    "description": "TugQL是一种便携、易于人类阅读的查询语言。同一查询无需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上运行——兼具直观的类 SQL 文本语法与经模式验证的无损查询树（TugQT）。",
+    "ogDescription": "TugQL：跨后端的便携、易读查询语言与结构化查询树（TugQT）。",
     "jsonLdDescription": "适用于数据库和数据抽象层的便携、易于人类阅读的查询语言及结构化查询树（TugQT）。"
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "开放规范 · 原名 DTQL",
+    "eyebrow": "开放规范",
     "titleLine1": "可阅读、",
     "titleAccent": "可比对、",
     "titleLine2": "可信赖的查询。",
@@ -60,9 +60,9 @@
     "title": "TugQL 文本语法与 TugQT 树",
     "kicker": "使用 TugQL 文本语法编写；以 TugQT 结构化查询树格式存储或传输。",
     "p1": "开发者使用 <strong>TugQL</strong> 文本语法编写查询——清晰、紧凑且类似 SQL。在底层，解析器生成 <strong>TugQT（Tug Query Tree）</strong>，这是一种规范的机器可读表示形式。",
-    "p2": "每个节点在文本语法和树结构之间都有确定性的双向映射。语法错误或模式违规将返回包含精确源码位置的诊断信息。",
+    "p2": "每个节点在文本语法和树结构之间都有确定性的双向映射。语法错误或模式违规将返回包含精确源码位置的诊断信息。 文本形式支持以 <code>--</code> 和 <code>//</code> 开头的行尾注释；YAML 形式使用 <code>#</code>。",
     "noteTitle": "关于命名的说明：",
-    "noteText": "TugQL 原名 DTQL。现有的 DTQL 文档和查询文件将继续获得向后兼容支持。",
+    "noteText": "TugQL 此前发布于 dtql.org，该域名现已永久重定向到 tugql.org。",
     "codeSampleAria": "TugQT 查询树示例"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "规范 · Schema",
         "title": "tugql/tugql",
-        "desc": "TugQL 规范文档、标准 JSON Schema（draft 2020-12）以及经验证的示例文件。原名 DTQL。",
+        "desc": "TugQL 规范文档、标准 JSON Schema（draft 2020-12）以及经验证的示例文件。",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "参考实现 · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Go 语言库：提供解析、验证、求解、格式化以及执行 TugQL 查询的能力，具备无损双向转换保证。",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Go 语言实现",
     "example": "示例",
     "mapping": "映射",
-    "tag": "开放、便携的查询语言（原名 DTQL）。权威主页：<a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "开放、便携的查询语言。权威主页：<a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — переносимый, человекочитаемый язык запросов</title>
-  <meta name="description" content="TugQL (ранее DTQL) — переносимый, человекочитаемый язык запросов. Один и тот же запрос выполняется без изменений в Git, SQLite, PostgreSQL и Firestore — с интуитивным SQL-подобным синтаксисом и деревом запросов без потерь (TugQT)." />
+  <meta name="description" content="TugQL — переносимый, человекочитаемый язык запросов. Один и тот же запрос выполняется без изменений в Git, SQLite, PostgreSQL и Firestore — с интуитивным SQL-подобным синтаксисом и деревом запросов без потерь (TugQT)." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/ru/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — переносимый, человекочитаемый язык запросов" />
-  <meta property="og:description" content="TugQL: переносимый человекочитаемый язык запросов и структурированное дерево запросов (TugQT) для различных баз данных. Ранее DTQL." />
+  <meta property="og:description" content="TugQL: переносимый человекочитаемый язык запросов и структурированное дерево запросов (TugQT) для различных баз данных." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/ru/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "Переносимый, понятный человеку язык запросов и структурированное дерево запросов (TugQT) для баз данных и слоев абстракции данных.",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        Открытая спецификация · ранее DTQL
+        Открытая спецификация
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">Смотреть пример</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>Разработчики составляют запросы в текстовом синтаксисе <strong>TugQL</strong> — наглядном, компактном и близком к SQL. Внутри парсер формирует <strong>TugQT (Tug Query Tree)</strong> — каноническое машиночитаемое представление.</p>
-        <p>Каждый узел однозначно сопоставляется между синтаксисом и деревом. Ошибки ввода или нарушения схемы возвращают четкую диагностику с точными координатами в тексте.</p>
+        <p>Каждый узел однозначно сопоставляется между синтаксисом и деревом. Ошибки ввода или нарушения схемы возвращают четкую диагностику с точными координатами в тексте. В текстовой форме комментарии до конца строки начинаются с <code>--</code> или <code>//</code>; в форме YAML используется <code>#</code>.</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>О переименовании:</strong> Ранее TugQL назывался DTQL. Существующие документы и файлы запросов DTQL продолжают поддерживаться для обратной совместимости.</span>
+          <span><strong>О переименовании:</strong> Ранее TugQL публиковался на dtql.org; теперь этот домен постоянно перенаправляет на tugql.org.</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">спецификация · схема</span>
         <h3>tugql/tugql</h3>
-        <p>Спецификация TugQL, каноническая JSON Schema (draft 2020-12) и проверенные примеры документов. Ранее DTQL.</p>
+        <p>Спецификация TugQL, каноническая JSON Schema (draft 2020-12) и проверенные примеры документов.</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">эталонная реализация · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Библиотека на Go: парсинг, валидация, резолвинг, форматирование и выполнение запросов TugQL с гарантией обратимости без потерь.</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQL превращает запрос в первоклассный артефакт — понятный человеку, валидируемый инструментами и переносимый между любыми хранилищами.</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Читать спецификацию</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Скачать библиотеку для Go</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Скачать библиотеку для Go</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">Спецификация</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Реализация на Go</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Реализация на Go</a></li>
       <li><a href="#example">Пример</a></li>
       <li><a href="#mapping">Сопоставление</a></li>
     </ul>
-    <span class="AppFooter-tag">Открытый переносимый язык запросов (ранее DTQL). Канонический сайт: <a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">Открытый переносимый язык запросов. Канонический сайт: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

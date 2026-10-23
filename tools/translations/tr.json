@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — taşınabilir, insan tarafından okunabilir sorgu dili",
-    "description": "TugQL (eski adıyla DTQL), taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar.",
-    "ogDescription": "TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT). Eski adıyla DTQL.",
+    "description": "TugQL, taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar.",
+    "ogDescription": "TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT).",
     "jsonLdDescription": "Veritabanları ve veri soyutlama katmanları için taşınabilir, insan tarafından okunabilir sorgu dili ve yapılandırılmış sorgu ağacı (TugQT)."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Açık şartname · eski adıyla DTQL",
+    "eyebrow": "Açık şartname",
     "titleLine1": "Kolayca okunan,",
     "titleAccent": "diff alınan,",
     "titleLine2": " güvenilir sorgular.",
@@ -60,9 +60,9 @@
     "title": "TugQL ve TugQT olarak bir sorgu",
     "kicker": "TugQL metin sözdizimiyle yazın; TugQT yapılandırılmış sorgu ağacı olarak saklayın veya paylaşın.",
     "p1": "Kullanıcılar sorguları açık, derli toplu ve SQL benzeri <strong>TugQL</strong> metin sözdizimiyle yazar. Arka planda ayrıştırıcı, makine tarafından okunabilen kanonik <strong>TugQT (Tug Query Tree)</strong> temsilini üretir.",
-    "p2": "Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür.",
+    "p2": "Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür. Metin biçiminde satır sonu yorumları <code>--</code> ve <code>//</code> ile yazılır; YAML biçiminde <code>#</code> kullanılır.",
     "noteTitle": "İsimlendirme hakkında not:",
-    "noteText": "TugQL daha önce DTQL olarak biliniyordu. Mevcut DTQL belgeleri ve sorgu dosyaları geriye dönük uyumluluk için desteklenmeye devam etmektedir.",
+    "noteText": "TugQL daha önce dtql.org adresinde yayımlanıyordu; bu alan adı artık kalıcı olarak tugql.org adresine yönlendiriliyor.",
     "codeSampleAria": "Örnek TugQT sorgu ağacı"
   },
   "mapping": {
@@ -116,16 +116,16 @@
       {
         "badge": "şartname · şema",
         "title": "tugql/tugql",
-        "desc": "TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler. Eski adıyla DTQL.",
+        "desc": "TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "referans uygulama · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Go kütüphanesi: kayıpsız dönüşüm garantisiyle TugQL sorgularını ayrıştırma, doğrulama, çözümleme, biçimlendirme ve çalıştırma.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -146,6 +146,6 @@
     "goImpl": "Go uygulaması",
     "example": "Örnek",
     "mapping": "Eşleme",
-    "tag": "Açık ve taşınabilir bir sorgu dili (eski adıyla DTQL). Resmi adres: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "Açık ve taşınabilir bir sorgu dili. Resmi adres: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

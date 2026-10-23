@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — taşınabilir, insan tarafından okunabilir sorgu dili</title>
-  <meta name="description" content="TugQL (eski adıyla DTQL), taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar." />
+  <meta name="description" content="TugQL, taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/tr/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — taşınabilir, insan tarafından okunabilir sorgu dili" />
-  <meta property="og:description" content="TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT). Eski adıyla DTQL." />
+  <meta property="og:description" content="TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/tr/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "Veritabanları ve veri soyutlama katmanları için taşınabilir, insan tarafından okunabilir sorgu dili ve yapılandırılmış sorgu ağacı (TugQT).",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        Açık şartname · eski adıyla DTQL
+        Açık şartname
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">Örneğe göz at</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>Kullanıcılar sorguları açık, derli toplu ve SQL benzeri <strong>TugQL</strong> metin sözdizimiyle yazar. Arka planda ayrıştırıcı, makine tarafından okunabilen kanonik <strong>TugQT (Tug Query Tree)</strong> temsilini üretir.</p>
-        <p>Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür.</p>
+        <p>Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür. Metin biçiminde satır sonu yorumları <code>--</code> ve <code>//</code> ile yazılır; YAML biçiminde <code>#</code> kullanılır.</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>İsimlendirme hakkında not:</strong> TugQL daha önce DTQL olarak biliniyordu. Mevcut DTQL belgeleri ve sorgu dosyaları geriye dönük uyumluluk için desteklenmeye devam etmektedir.</span>
+          <span><strong>İsimlendirme hakkında not:</strong> TugQL daha önce dtql.org adresinde yayımlanıyordu; bu alan adı artık kalıcı olarak tugql.org adresine yönlendiriliyor.</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">şartname · şema</span>
         <h3>tugql/tugql</h3>
-        <p>TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler. Eski adıyla DTQL.</p>
+        <p>TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler.</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">referans uygulama · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Go kütüphanesi: kayıpsız dönüşüm garantisiyle TugQL sorgularını ayrıştırma, doğrulama, çözümleme, biçimlendirme ve çalıştırma.</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQL, bir sorguyu birinci sınıf ve incelenebilir bir yapıya dönüştürür — insanlar tarafından okunabilir, araçlarla doğrulanabilir ve tüm arka uçlarda taşınabilir.</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Şartnameyi oku</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go kütüphanesini al</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go kütüphanesini al</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">Şartname</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go uygulaması</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go uygulaması</a></li>
       <li><a href="#example">Örnek</a></li>
       <li><a href="#mapping">Eşleme</a></li>
     </ul>
-    <span class="AppFooter-tag">Açık ve taşınabilir bir sorgu dili (eski adıyla DTQL). Resmi adres: <a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">Açık ve taşınabilir bir sorgu dili. Resmi adres: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

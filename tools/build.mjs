@@ -88,7 +88,6 @@ ${alternateLinks}
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "${t.meta.jsonLdDescription}",
     "applicationCategory": "DeveloperApplication",
@@ -178,7 +177,7 @@ ${langSwitcherOptions}
         </a>
         <a class="btn btn-default" href="#example">${t.hero.seeExample}</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -390,7 +389,7 @@ ${implCards}
     <p>${t.closing.p}</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">${t.closing.readSpec}</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">${t.closing.getLibrary}</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">${t.closing.getLibrary}</a>
     </div>
   </div>
 </section>
@@ -412,7 +411,7 @@ ${footerLangsList}
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">${t.footer.spec}</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">${t.footer.goImpl}</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">${t.footer.goImpl}</a></li>
       <li><a href="#example">${t.footer.example}</a></li>
       <li><a href="#mapping">${t.footer.mapping}</a></li>
     </ul>

@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — eine portable, menschenlesbare Abfragesprache",
-    "description": "TugQL (ehemals DTQL) ist eine portable, menschenlesbare Abfragesprache. Eine Abfrage läuft unverändert auf Git, SQLite, PostgreSQL und Firestore — mit intuitiver SQL-ähnlicher Textsyntax und verlustfreiem Abfragebaum (TugQT).",
-    "ogDescription": "TugQL: portable, menschenlesbare Abfragesprache und strukturierter Abfragebaum (TugQT) über mehrere Backends. Ehemals DTQL.",
+    "description": "TugQL ist eine portable, menschenlesbare Abfragesprache. Eine Abfrage läuft unverändert auf Git, SQLite, PostgreSQL und Firestore — mit intuitiver SQL-ähnlicher Textsyntax und verlustfreiem Abfragebaum (TugQT).",
+    "ogDescription": "TugQL: portable, menschenlesbare Abfragesprache und strukturierter Abfragebaum (TugQT) über mehrere Backends.",
     "jsonLdDescription": "Eine portable, menschenlesbare Abfragesprache und strukturierter Abfragebaum (TugQT) für Datenbanken und Datenabstraktionsschichten."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Offene Spezifikation · ehemals DTQL",
+    "eyebrow": "Offene Spezifikation",
     "titleLine1": "Abfragen, die Sie",
     "titleAccent": "lesen, diffen",
     "titleLine2": " und vertrauen können.",
@@ -60,9 +60,9 @@
     "title": "Eine Abfrage als TugQL &amp; TugQT",
     "kicker": "In TugQL-Textsyntax verfassen; als strukturierter TugQT-Abfragebaum speichern oder austauschen.",
     "p1": "Abfragen werden in <strong>TugQL</strong>-Textsyntax verfasst — lesbar, kompakt und SQL-nah. Darunter erzeugt der Parser <strong>TugQT (Tug Query Tree)</strong>, eine kanonische, maschinenlesbare Repräsentation.",
-    "p2": "Jeder Knoten wird deterministisch zwischen Syntax und Baum abgebildet. Fehlerhafte Eingaben oder Schemaverletzungen liefern präzise Diagnosen.",
+    "p2": "Jeder Knoten wird deterministisch zwischen Syntax und Baum abgebildet. Fehlerhafte Eingaben oder Schemaverletzungen liefern präzise Diagnosen. Textabfragen unterstützen Zeilenkommentare mit <code>--</code> und <code>//</code>; die YAML-Form verwendet <code>#</code>.",
     "noteTitle": "Hinweis zur Namensgebung:",
-    "noteText": "TugQL hieß früher DTQL. Bestehende DTQL-Dokumente und Abfragedateien werden zur Abwärtskompatibilität weiterhin unterstützt.",
+    "noteText": "TugQL wurde früher unter dtql.org veröffentlicht; diese Domain leitet jetzt dauerhaft auf tugql.org weiter.",
     "codeSampleAria": "Beispiel-TugQT-Abfragebaum"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "Spezifikation · Schema",
         "title": "tugql/tugql",
-        "desc": "Die TugQL-Spezifikation, das kanonische JSON Schema (Draft 2020-12) und validierte Beispieldokumente. Ehemals DTQL.",
+        "desc": "Die TugQL-Spezifikation, das kanonische JSON Schema (Draft 2020-12) und validierte Beispieldokumente.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "Referenzimplementierung · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Die Go-Bibliothek: Parsen, Validieren, Auflösen, Formatieren und Ausführen von TugQL-Abfragen mit verlustfreier Garantie.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Go-Implementierung",
     "example": "Beispiel",
     "mapping": "Zuordnung",
-    "tag": "Eine offene, portable Abfragesprache (ehemals DTQL). Offizielle Seite: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "Eine offene, portable Abfragesprache. Offizielle Seite: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

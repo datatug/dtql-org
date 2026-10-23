@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — a portable, human-readable query language",
-    "description": "TugQL (formerly DTQL) is a portable, human-readable query language. One query runs unchanged across Git, SQLite, PostgreSQL and Firestore — featuring an intuitive SQL-like text syntax and a lossless, schema-validated query tree (TugQT).",
-    "ogDescription": "TugQL: portable, human-readable query language and structured query tree (TugQT) across backends. Formerly known as DTQL.",
+    "description": "TugQL is a portable, human-readable query language. One query runs unchanged across Git, SQLite, PostgreSQL and Firestore — featuring an intuitive SQL-like text syntax and a lossless, schema-validated query tree (TugQT).",
+    "ogDescription": "TugQL: portable, human-readable query language and structured query tree (TugQT) across backends.",
     "jsonLdDescription": "A portable, human-readable query language and structured query tree (TugQT) for databases and data abstraction layers."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Open specification · formerly DTQL",
+    "eyebrow": "Open specification",
     "titleLine1": "Queries you can",
     "titleAccent": "read, diff,",
     "titleLine2": " and trust.",
@@ -60,9 +60,9 @@
     "title": "A query as TugQL &amp; TugQT",
     "kicker": "Author in TugQL text syntax; persist or exchange as a TugQT structured query tree.",
     "p1": "Authors write queries in <strong>TugQL</strong> text syntax — readable, compact, and SQL-like. Underneath, the parser produces <strong>TugQT (Tug Query Tree)</strong>, a canonical, machine-readable representation.",
-    "p2": "Every node maps deterministically between syntax and tree. Malformed input or schema violations return actionable diagnostics with precise source spans.",
+    "p2": "Every node maps deterministically between syntax and tree. Malformed input or schema violations return actionable diagnostics with precise source spans. Text queries take <code>--</code> and <code>//</code> end-of-line comments; the YAML form uses <code>#</code>.",
     "noteTitle": "Note on naming:",
-    "noteText": "TugQL was formerly known as DTQL. Existing DTQL documents and query files remain supported for backwards compatibility.",
+    "noteText": "TugQL was previously published at dtql.org, which now redirects permanently to tugql.org.",
     "codeSampleAria": "Example TugQT query tree"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "specification · schema",
         "title": "tugql/tugql",
-        "desc": "The TugQL specification, the canonical JSON Schema (draft 2020-12), and validated example documents. Formerly known as DTQL.",
+        "desc": "The TugQL specification, the canonical JSON Schema (draft 2020-12), and validated example documents.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "reference implementation · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "The Go library: parse, validate, resolve, format, and execute TugQL queries with lossless round-trip guarantees.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Go implementation",
     "example": "Example",
     "mapping": "Mapping",
-    "tag": "An open, portable query language (formerly DTQL). Canonical home: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "An open, portable query language. Canonical home: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }
