@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TugQL — taşınabilir, insan tarafından okunabilir sorgu dili</title>
+  <meta name="description" content="TugQL (eski adıyla DTQL), taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Tek bir sorgu Git, SQLite, PostgreSQL ve Firestore üzerinde değişmeden çalışır — sezgisel SQL benzeri metin sözdizimi ve şema doğrulamalı kayıpsız sorgu ağacı (TugQT) sunar." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://tugql.org/tr/" />
+  <link rel="alternate" hreflang="en" href="https://tugql.org/" />
+  <link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+  <link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+  <link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+  <link rel="alternate" hreflang="it" href="https://tugql.org/it/" />
+  <link rel="alternate" hreflang="pl" href="https://tugql.org/pl/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+  <link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+  <link rel="alternate" hreflang="tr" href="https://tugql.org/tr/" />
+  <link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+  <link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://tugql.org/zh-tw/" />
+  <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+  <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  <meta property="og:title" content="TugQL — taşınabilir, insan tarafından okunabilir sorgu dili" />
+  <meta property="og:description" content="TugQL: birden fazla veritabanında çalışan taşınabilir, insan dostu sorgu dili ve yapılandırılmış sorgu ağacı (TugQT). Eski adıyla DTQL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tugql.org/tr/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TugQL",
+    "alternateName": "DTQL",
+    "url": "https://tugql.org",
+    "description": "Veritabanları ve veri soyutlama katmanları için taşınabilir, insan tarafından okunabilir sorgu dili ve yapılandırılmış sorgu ağacı (TugQT).",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform"
+  }
+  </script>
+</head>
+<body>
+
+<!-- ============================ APP HEADER ============================ -->
+<header class="AppHeader" role="banner">
+  <div class="AppHeader-inner">
+    <a class="AppHeader-brand" href="#top" aria-label="TugQL home">
+      <span class="AppHeader-brand-mark" aria-hidden="true">{}</span>
+      <span class="AppHeader-brand-word">TugQL</span>
+    </a>
+
+    <nav class="AppHeader-context" aria-label="Context">
+      <span class="AppHeader-context-slash" aria-hidden="true">/</span>
+      <a class="AppHeader-context-item" href="https://github.com/tugql/tugql" rel="noopener">
+        tugql/tugql
+      </a>
+    </nav>
+
+    <nav class="AppHeader-nav" aria-label="Primary">
+      <a href="#why">Neden TugQL</a>
+      <a href="#example">Örnek</a>
+      <a href="#mapping">Eşleme</a>
+      <a href="#scope">Kapsam</a>
+      <a href="#stack">Teknoloji Yığını</a>
+      <a href="#implementations">Uygulamalar</a>
+    </nav>
+
+    <div class="AppHeader-actions">
+      <a class="btn btn-default btn-sm" href="https://github.com/tugql/tugql" rel="noopener">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+        <span>Star</span>
+      </a>
+
+      <!-- Language dropdown -->
+      <div class="lang-switcher">
+        <button
+          type="button"
+          class="lang-switcher__trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          lang="tr"
+        >
+          <span>Türkçe</span>
+          <svg class="lang-switcher__caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="lang-switcher__menu" role="menu" aria-label="Language">
+        <li role="none"><a href="/" hreflang="en" lang="en" role="menuitem" class="lang-switcher__item">English</a></li>
+        <li role="none"><a href="/es/" hreflang="es" lang="es" role="menuitem" class="lang-switcher__item">Español</a></li>
+        <li role="none"><a href="/de/" hreflang="de" lang="de" role="menuitem" class="lang-switcher__item">Deutsch</a></li>
+        <li role="none"><a href="/fr/" hreflang="fr" lang="fr" role="menuitem" class="lang-switcher__item">Français</a></li>
+        <li role="none"><a href="/it/" hreflang="it" lang="it" role="menuitem" class="lang-switcher__item">Italiano</a></li>
+        <li role="none"><a href="/pl/" hreflang="pl" lang="pl" role="menuitem" class="lang-switcher__item">Polski</a></li>
+        <li role="none"><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" role="menuitem" class="lang-switcher__item">Português (BR)</a></li>
+        <li role="none"><a href="/ru/" hreflang="ru" lang="ru" role="menuitem" class="lang-switcher__item">Русский</a></li>
+        <li role="none"><a href="/tr/" hreflang="tr" lang="tr" role="menuitem" class="lang-switcher__item is-active" aria-current="page">Türkçe</a></li>
+        <li role="none"><a href="/uk/" hreflang="uk" lang="uk" role="menuitem" class="lang-switcher__item">Українська</a></li>
+        <li role="none"><a href="/ja/" hreflang="ja" lang="ja" role="menuitem" class="lang-switcher__item">日本語</a></li>
+        <li role="none"><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" role="menuitem" class="lang-switcher__item">中文</a></li>
+        <li role="none"><a href="/zh-tw/" hreflang="zh-TW" lang="zh-TW" role="menuitem" class="lang-switcher__item">繁體中文</a></li>
+        <li role="none"><a href="/ko/" hreflang="ko" lang="ko" role="menuitem" class="lang-switcher__item">한국어</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
+        Açık şartname · eski adıyla DTQL
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-line">Kolayca okunan,</span>
+        <span class="hero-line"><span class="hero-accent">diff alınan,</span> güvenilir sorgular.</span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>TugQL</strong>, taşınabilir ve insan tarafından okunabilir bir sorgu dilidir. Sade, SQL benzeri metin sözdizimini, düz YAML/JSON olarak serileştirilen <strong>1:1 kayıpsız</strong> yapılandırılmış sorgu ağacı (<strong>TugQT</strong>) ile birleştirir. Bir sorguyu kaydedin, elle düzenleyin, versiyon kontrolünde diff alın ve herhangi bir veri kaybı yaşamadan farklı veritabanlarında çalıştırın.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">
+          <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75V1.75Z"/></svg>
+          Şartnameyi oku
+        </a>
+        <a class="btn btn-default" href="#example">Örneğe göz at</a>
+        <code class="hero-install" tabindex="0">
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+        </code>
+      </div>
+    </div>
+
+    <!-- Hero code sample -->
+    <div class="codeblock" role="figure" aria-label="Bir TugQL sorgu belgesi">
+      <div class="codeblock-head">
+        <span class="codeblock-dot" style="background:#ff5f57"></span>
+        <span class="codeblock-dot" style="background:#febc2e"></span>
+        <span class="codeblock-dot" style="background:#28c840"></span>
+        <span class="codeblock-name">query.tugql</span>
+        <span class="codeblock-lang">TugQL</span>
+      </div>
+<pre><code><span class="pl-k">from</span> users <span class="pl-k">as</span> u
+<span class="pl-k">select</span>
+  u.name,
+  u.age <span class="pl-k">as</span> years
+<span class="pl-k">where</span>
+  u.age &gt;= <span class="pl-c1">18</span>
+  <span class="pl-k">and</span> (u.status <span class="pl-k">in</span> (<span class="pl-s">'active'</span>, <span class="pl-s">'pending'</span>) <span class="pl-k">or</span> u.country == <span class="pl-s">'US'</span>)
+<span class="pl-k">order by</span>
+  u.name,
+  u.age <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">10</span>
+<span class="pl-k">offset</span> <span class="pl-c1">20</span></code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section id="why" class="section">
+  <div class="container">
+    <header class="section-head">
+      <span class="section-eyebrow">01 — Neden TugQL</span>
+      <h2 class="section-title">Sorgu bir veridir. Ona veri gibi davranın.</h2>
+      <p class="section-kicker">TugQL, bir sorguyu depolayabileceğiniz, inceleyebileceğiniz ve sürümlendirebileceğiniz anlaşılır ve diff alınabilir bir belgeye dönüştürür — her arka uçta taşınabilir.</p>
+    </header>
+
+    <div class="why-grid">
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z"/></svg>
+        </div>
+        <h3>İnsan tarafından okunabilir</h3>
+        <p>Geliştiriciler için sezgisel SQL benzeri yazım sözdizimi ve araçlar için yalın YAML/JSON sorgu ağacı (TugQT) — herkes inceleyebilir, anlayabilir ve düzenleyebilir.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M1.643 3.143 .427 1.927A.25.25 0 0 0 0 2.104V5.75a.25.25 0 0 0 .25.25h3.646a.25.25 0 0 0 .177-.427L2.715 4.215a6.5 6.5 0 1 1-1.18 4.458.75.75 0 1 0-1.493.154 8.001 8.001 0 1 0 1.6-5.684Z"/></svg>
+        </div>
+        <h3>Kayıpsız çift yönlü dönüşüm</h3>
+        <p>Kanonik sadeleştirme işlemi, kaynakla yapısal olarak tamamen aynı sorguları yeniden oluşturur. Hiçbir ifade sessizce atılmaz veya bozulmaz.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8.533.133a1.75 1.75 0 0 0-1.066 0l-5.25 1.68A1.75 1.75 0 0 0 1 3.48V7c0 1.566.32 3.182 1.303 4.682.983 1.498 2.585 2.813 5.032 3.855a1.7 1.7 0 0 0 1.33 0c2.447-1.042 4.049-2.357 5.032-3.855C14.68 10.182 15 8.566 15 7V3.48a1.75 1.75 0 0 0-1.217-1.667ZM7.92 1.563a.25.25 0 0 1 .16 0l5.25 1.68a.25.25 0 0 1 .17.237V7c0 1.36-.275 2.666-1.057 3.86-.784 1.194-2.121 2.34-4.366 3.297a.2.2 0 0 1-.154 0c-2.245-.957-3.582-2.103-4.366-3.297C2.775 9.666 2.5 8.36 2.5 7V3.48a.25.25 0 0 1 .17-.237Z"/></svg>
+        </div>
+        <h3>Şema doğrulamalı</h3>
+        <p>Tam JSON Schema doğrulaması (draft 2020-12) ile yayınlanmıştır. Her dildeki herhangi bir araç, sorguyu çalıştırmadan önce yapısını doğrulayabilir.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 3.254V3.25v.005a.75.75 0 1 1 0-.005v.004Zm.45 1.9a2.25 2.25 0 1 0-1.95.218v5.256a2.25 2.25 0 1 0 1.5 0V7.123A5.735 5.735 0 0 0 9.25 9h1.378a2.251 2.251 0 1 0 0-1.5H9.25a4.25 4.25 0 0 1-3.8-2.346ZM12.75 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-8.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"/></svg>
+        </div>
+        <h3>Diff dostu</h3>
+        <p>Kanonik biçimlendirme ve deterministik ağaç serileştirme. Kaydedilen sorgular Git'te temiz diff verir ve standart kod gibi incelenir.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"/></svg>
+        </div>
+        <h3>Tasarım gereği taşınabilir</h3>
+        <p>TugQL, farklı veritabanları arasında ortak olan yetenekleri sunar: tek bir sorgu Git, SQLite, PostgreSQL veya Firestore üzerinde değişmeden çalışır.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></svg>
+        </div>
+        <h3>Tam SQL değil</h3>
+        <p>Bilinçli olarak hedeflenmiş, iyi tanımlanmış taşınabilir bir alt küme. Taşınabilir olmayan yapılar tehlikeli şekilde dönüştürülmek yerine açıkça reddedilir.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXAMPLE ============================ -->
+<section class="section section-subtle" id="example">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">02 — Örnek</span>
+      <h2 class="section-title">TugQL ve TugQT olarak bir sorgu</h2>
+      <p class="section-kicker">TugQL metin sözdizimiyle yazın; TugQT yapılandırılmış sorgu ağacı olarak saklayın veya paylaşın.</p>
+    </div>
+    <div class="iface-grid">
+      <div class="iface-prose">
+        <p>Kullanıcılar sorguları açık, derli toplu ve SQL benzeri <strong>TugQL</strong> metin sözdizimiyle yazar. Arka planda ayrıştırıcı, makine tarafından okunabilen kanonik <strong>TugQT (Tug Query Tree)</strong> temsilini üretir.</p>
+        <p>Her düğüm sözdizimi ile ağaç arasında deterministik olarak eşlenir. Hatalı girişler veya şema ihlalleri, kaynak metindeki tam konumu belirten açıklayıcı tanılama mesajları döndürür.</p>
+        <div class="Flash" role="note">
+          <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
+          <span><strong>İsimlendirme hakkında not:</strong> TugQL daha önce DTQL olarak biliniyordu. Mevcut DTQL belgeleri ve sorgu dosyaları geriye dönük uyumluluk için desteklenmeye devam etmektedir.</span>
+        </div>
+      </div>
+
+      <div class="codeblock" role="figure" aria-label="Örnek TugQT sorgu ağacı">
+        <div class="codeblock-head">
+          <span class="codeblock-dot" style="background:#ff5f57"></span>
+          <span class="codeblock-dot" style="background:#febc2e"></span>
+          <span class="codeblock-dot" style="background:#28c840"></span>
+          <span class="codeblock-name">users.tugqt.yaml</span>
+          <span class="codeblock-lang">YAML</span>
+        </div>
+<pre><code><span class="pl-en">from</span>:
+  <span class="pl-en">name</span>: users
+<span class="pl-en">columns</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">as</span>: years
+<span class="pl-en">where</span>:
+  <span class="pl-en">and</span>:
+    - <span class="pl-en">op</span>: <span class="pl-s">'&gt;='</span>
+      <span class="pl-en">left</span>:
+        <span class="pl-en">field</span>: age
+      <span class="pl-en">right</span>:
+        <span class="pl-en">value</span>: <span class="pl-c1">18</span>
+    - <span class="pl-en">or</span>:
+        - <span class="pl-en">op</span>: In
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: status
+          <span class="pl-en">right</span>:
+            <span class="pl-en">values</span>:
+              - active
+              - pending
+        - <span class="pl-en">op</span>: ==
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: country
+          <span class="pl-en">right</span>:
+            <span class="pl-en">value</span>: US
+<span class="pl-en">orderBy</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">desc</span>: <span class="pl-c1">true</span>
+<span class="pl-en">limit</span>: <span class="pl-c1">10</span>
+<span class="pl-en">offset</span>: <span class="pl-c1">20</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MAPPING ============================ -->
+<section class="section" id="mapping">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">03 — düğüm → TugQT</span>
+      <h2 class="section-title">Eşleme</h2>
+      <p class="section-kicker">Kapsamdaki her sorgu düğümünün tanımlanmış yapılandırılmış bir karşılığı vardır.</p>
+    </div>
+    <div class="tugql-table-wrap Box">
+      <table class="tugql-table">
+        <thead><tr><th>Sorgu düğümü</th><th>TugQT karşılığı</th></tr></thead>
+        <tbody>
+          <tr><td>Kök koleksiyon üzerinde From</td><td><code>from: { name, alias? }</code></td></tr>
+          <tr><td>Sütun</td><td><code>columns:</code> altındaki öğe — ifade ve isteğe bağlı <code>as:</code></td></tr>
+          <tr><td>Karşılaştırma</td><td><code>{ op, left, right }</code></td></tr>
+          <tr><td>Grup koşulu (And)</td><td><code>{ and: [ … ] }</code></td></tr>
+          <tr><td>Grup koşulu (Or)</td><td><code>{ or: [ … ] }</code></td></tr>
+          <tr><td>Sıralama ifadesi</td><td><code>orderBy:</code> altındaki öğe — ifade ve isteğe bağlı <code>desc: true</code></td></tr>
+          <tr><td>Alan başvurusu</td><td><code>{ field: &lt;isim&gt; }</code></td></tr>
+          <tr><td>Sabit değer</td><td><code>{ value: &lt;skaler&gt; }</code></td></tr>
+          <tr><td>Dizi</td><td><code>{ values: [ &lt;skaler&gt;, … ] }</code></td></tr>
+          <tr><td>İşleç</td><td><code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
+          <tr><td>Limit / Offset</td><td><code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px;color:var(--fg-muted)">Bir ifade, <code>field</code>, <code>value</code> veya <code>values</code> alanlarından <strong>yalnızca birini</strong> belirterek alan başvurusu, sabit veya dizi ayrımını yapar.</p>
+  </div>
+</section>
+
+<!-- ============================ SCOPE ============================ -->
+<section class="section section-subtle" id="scope">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">04 — desteklenen alt küme</span>
+      <h2 class="section-title">TugQL neleri kapsar</h2>
+      <p class="section-kicker">Tekil koleksiyonlar veya birleşimler, seçilen sütunlar, filtreler, sıralama ve sayfalama. Kapsam dışındaki her şey reddedilir — asla sessizce yok sayılmaz.</p>
+    </div>
+    <div class="why-grid">
+      <div class="Box why-card">
+        <h3>Kapsam dahilinde</h3>
+        <p>Koleksiyon kaynakları · seçilen sütunlar · karşılaştırma ve And/Or grupları · sıralama · limit / offset · join birleştirmeleri · parametreler. İfadeler: alan, sabit, dizi. İşleçler: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.`</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Kapsam dışı (reddedilen)</h3>
+        <p>Sınırsız kartezyen çarpımlar · veritabanına özel dialekt sözdizimleri · şema dışı tipsiz veri değiştirme işleçleri. Serileştirme, sorgu anlambilimini kaybetmektense hata verir.</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Kayıpsız &amp; kanonik</h3>
+        <p><code>resolve(parse(text))</code> deterministik sorgu ağaçları üretir; serileştirme kanoniktir, bu sayede kayıtlı sorgular sürümler arasında temiz diff verir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STACK ============================ -->
+<section class="section" id="stack">
+  <div class="container">
+    <div class="iface-grid">
+      <div class="section-head" style="margin:0">
+        <span class="section-eyebrow">05 — nerelerde çalışır</span>
+        <h2 class="section-title">Bir sorgu, çok sayıda arka uç</h2>
+        <p class="section-kicker">TugQL, taşınabilir sorgu yüzeyidir. Kendisini alttaki herhangi bir depolama sistemine uyarlayan bir veri soyutlama katmanına (DALgo) bağlanır.</p>
+        <p style="margin-top:16px;color:var(--fg-muted)">TugQL taşınabilir alt kümeyi ifade ettiği için, bir kez yazılan bir sorgu Git deposu (inGitDB), SQLite, PostgreSQL veya Firestore üzerinde tamamen aynı şekilde çalışır.</p>
+      </div>
+
+      <div class="flow" aria-label="TugQL, veri soyutlama katmanı aracılığıyla çeşitli depolama sistemlerine eşlenir">
+        <div class="flow-node flow-node-accent"><strong>TugQL</strong><span>taşınabilir sorgu dili</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-node"><strong>DALgo</strong><span>veri soyutlama katmanı</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-backends">
+          <span>inGitDB</span>
+          <span>SQLite</span>
+          <span>PostgreSQL</span>
+          <span>Firestore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IMPLEMENTATIONS ============================ -->
+<section class="section section-subtle" id="implementations">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">06 — başlangıç</span>
+      <h2 class="section-title">Şartname ve uygulamalar</h2>
+      <p class="section-kicker">Bu dil, yayınlanmış şeması ve Go ile TypeScript uygulamaları bulunan açık bir şartnamedir.</p>
+    </div>
+    <ul class="adapter-grid" role="list">
+      <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
+        <span class="adapter-kind">şartname · şema</span>
+        <h3>tugql/tugql</h3>
+        <p>TugQL şartnamesi, kanonik JSON Schema (draft 2020-12) ve doğrulanmış örnek belgeler. Eski adıyla DTQL.</p>
+        <span class="adapter-meta">github.com/tugql/tugql</span>
+      </a></li>
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+        <span class="adapter-kind">referans uygulama · Go</span>
+        <h3>dal-go/dalgo/dtql</h3>
+        <p>Go kütüphanesi: kayıpsız dönüşüm garantisiyle TugQL sorgularını ayrıştırma, doğrulama, çözümleme, biçimlendirme ve çalıştırma.</p>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CLOSING ============================ -->
+<section class="section section-subtle" id="datatug-development">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Ürün geliştirmede kullanım</span>
+      <h2 class="section-title">DataTug ile verileri keşfedin ve sorgulayın.</h2>
+      <p class="section-kicker"><a href="https://datatug.app">DataTug</a>, geliştiricilerin veritabanı şemalarını keşfetmelerine, sorgular oluşturup çalıştırmalarına ve sonuçları analiz etmelerine yardımcı olur. TugQL ve TugQT ile sorgu sözleşmeleri geliştirmeleri devam etmektedir. <a href="https://datatug.app/en/under-the-hood/tools-we-built/#query">DataTug'ın arkasındaki araçları keşfedin.</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section closing">
+  <div class="container closing-inner">
+    <h2>Kaydet. Diff al. Her yerde çalıştır.</h2>
+    <p>TugQL, bir sorguyu birinci sınıf ve incelenebilir bir yapıya dönüştürür — insanlar tarafından okunabilir, araçlarla doğrulanabilir ve tüm arka uçlarda taşınabilir.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Şartnameyi oku</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go kütüphanesini al</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ LANGUAGE SWITCHER PANEL ============================ -->
+<nav class="footer-langs" aria-label="Language">
+  <div class="footer-langs__inner">
+    <ul class="footer-langs__list">
+        <li><a href="/" hreflang="en" lang="en" class="footer-langs__tab">English</a></li>
+        <li><a href="/es/" hreflang="es" lang="es" class="footer-langs__tab">Español</a></li>
+        <li><a href="/de/" hreflang="de" lang="de" class="footer-langs__tab">Deutsch</a></li>
+        <li><a href="/fr/" hreflang="fr" lang="fr" class="footer-langs__tab">Français</a></li>
+        <li><a href="/it/" hreflang="it" lang="it" class="footer-langs__tab">Italiano</a></li>
+        <li><a href="/pl/" hreflang="pl" lang="pl" class="footer-langs__tab">Polski</a></li>
+        <li><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" class="footer-langs__tab">Português (BR)</a></li>
+        <li><a href="/ru/" hreflang="ru" lang="ru" class="footer-langs__tab">Русский</a></li>
+        <li><a href="/tr/" hreflang="tr" lang="tr" class="footer-langs__tab is-active" aria-current="page">Türkçe</a></li>
+        <li><a href="/uk/" hreflang="uk" lang="uk" class="footer-langs__tab">Українська</a></li>
+        <li><a href="/ja/" hreflang="ja" lang="ja" class="footer-langs__tab">日本語</a></li>
+        <li><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" class="footer-langs__tab">中文</a></li>
+        <li><a href="/zh-tw/" hreflang="zh-TW" lang="zh-TW" class="footer-langs__tab">繁體中文</a></li>
+        <li><a href="/ko/" hreflang="ko" lang="ko" class="footer-langs__tab">한국어</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="AppFooter">
+  <div class="container AppFooter-inner">
+    <ul role="list">
+      <li>&copy; <span id="year">2026</span> TugQL contributors</li>
+      <li><a href="https://github.com/tugql/tugql" rel="noopener">Şartname</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go uygulaması</a></li>
+      <li><a href="#example">Örnek</a></li>
+      <li><a href="#mapping">Eşleme</a></li>
+    </ul>
+    <span class="AppFooter-tag">Açık ve taşınabilir bir sorgu dili (eski adıyla DTQL). Resmi adres: <a href="https://tugql.org">tugql.org</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Accessibility and behavior for the header language dropdown
+  document.querySelectorAll('.lang-switcher').forEach((switcher) => {
+    const trigger = switcher.querySelector('.lang-switcher__trigger');
+    if (!trigger) return;
+    const sync = (open) => trigger.setAttribute('aria-expanded', String(open));
+    switcher.addEventListener('mouseenter', () => sync(true));
+    switcher.addEventListener('mouseleave', () => {
+      if (!switcher.contains(document.activeElement)) sync(false);
+    });
+    switcher.addEventListener('focusin', () => sync(true));
+    switcher.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget;
+      if (!next || !switcher.contains(next)) sync(false);
+    });
+    switcher.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sync(false);
+        trigger.focus();
+        setTimeout(() => trigger.blur(), 0);
+      }
+    });
+  });
+</script>
+</body>
+</html>

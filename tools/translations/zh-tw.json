@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "TugQL — 便攜、易於人類閱讀的查詢語言",
+    "description": "TugQL（原名 DTQL）是一種便攜、易於人類閱讀的查詢語言。同一查詢無需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上運行——兼具直觀的類 SQL 文字語法與經架構驗證的無損查詢樹（TugQT）。",
+    "ogDescription": "TugQL：跨後端的便攜、易讀查詢語言與結構化查詢樹（TugQT）。原名 DTQL。",
+    "jsonLdDescription": "適用於資料庫和資料抽象層的便攜、易於人類閱讀的查詢語言及結構化查詢樹（TugQT）。"
+  },
+  "nav": {
+    "why": "優勢",
+    "example": "範例",
+    "mapping": "對應",
+    "scope": "範圍",
+    "stack": "技術堆疊",
+    "implementations": "實作",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "開放規範 · 原名 DTQL",
+    "titleLine1": "可閱讀、",
+    "titleAccent": "可比對、",
+    "titleLine2": "可信賴的查詢。",
+    "lede": "<strong>TugQL</strong> 是一種便攜、易於人類閱讀的查詢語言。它將簡潔的類 SQL 文字語法與以純 YAML/JSON 序列化的 <strong>1:1 無損</strong>結構化查詢樹（<strong>TugQT</strong>）相結合。您可以儲存查詢、手動編輯、在版本控制中比對差異，並在不同的後端無損執行。",
+    "readSpec": "閱讀規範",
+    "seeExample": "查看範例",
+    "codeSampleAria": "TugQL 查詢文件"
+  },
+  "why": {
+    "eyebrow": "01 — 為什麼選擇 TugQL",
+    "title": "查詢即資料。請像對待資料一樣對待它。",
+    "kicker": "TugQL 將查詢轉變為清晰易懂、可比對差異的文件，支援儲存、審查與版本控制——在任何支援的後端之間無縫遷移。",
+    "cards": [
+      {
+        "title": "易於人類閱讀",
+        "body": "面向開發者的直觀類 SQL 編寫語法，以及面向工具鏈的純 YAML/JSON 查詢樹（TugQT）——任何人都可以審查、理解和修改。"
+      },
+      {
+        "title": "無損雙向轉換",
+        "body": "規範的查詢降階能夠重建與原始輸入結構完全相等的查詢。不會有任何內容被靜默捨棄或近似替代。"
+      },
+      {
+        "title": "經架構驗證",
+        "body": "發布了完整的 JSON Schema 驗證（draft 2020-12）。任何語言的任何工具都可以在執行前驗證查詢結構的正確性。"
+      },
+      {
+        "title": "版本控制友善",
+        "body": "規範的格式化與確定性的語法樹序列化。儲存的查詢在 Git 中呈現乾淨清晰的 diff，能像程式碼一樣進行 code review。"
+      },
+      {
+        "title": "天生具備跨平台便攜性",
+        "body": "TugQL 提煉了跨後端通用的核心能力，因此同一個查詢無需修改即可直接運行於 Git、SQLite、PostgreSQL 或 Firestore。"
+      },
+      {
+        "title": "並非全量 SQL",
+        "body": "刻意聚焦於定義明確的便攜式子集。非通用語法會被明確拒絕，而不是進行具備不可預測風險的轉換。"
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — 範例",
+    "title": "TugQL 文字語法與 TugQT 樹",
+    "kicker": "使用 TugQL 文字語法編寫；以 TugQT 結構化查詢樹格式儲存或傳輸。",
+    "p1": "開發者使用 <strong>TugQL</strong> 文字語法編寫查詢——清晰、緊湊且類似 SQL。在底層，解析器產生 <strong>TugQT（Tug Query Tree）</strong>，這是一種規範的機器可讀表示形式。",
+    "p2": "每個節點在文字語法和樹結構之間都有確定性的雙向對應。語法錯誤或架構違規將返回包含精確原始碼位置的診斷訊息。",
+    "noteTitle": "關於命名的說明：",
+    "noteText": "TugQL 原名 DTQL。現有的 DTQL 文件和查詢檔案將繼續獲得回溯相容支援。",
+    "codeSampleAria": "TugQT 查詢樹範例"
+  },
+  "mapping": {
+    "eyebrow": "03 — 節點 → TugQT",
+    "title": "對應規則",
+    "kicker": "支援範圍內的每個查詢節點都有明確定義的結構化表示。",
+    "thNode": "查詢節點",
+    "thRep": "TugQT 表示方式",
+    "rows": [
+      { "node": "根集合的 From 查詢", "rep": "<code>from: { name, alias? }</code>" },
+      { "node": "資料欄定義", "rep": "<code>columns:</code> 下的項目——包含運算式及選用的 <code>as:</code>" },
+      { "node": "比較運算", "rep": "<code>{ op, left, right }</code>" },
+      { "node": "條件組合（And）", "rep": "<code>{ and: [ … ] }</code>" },
+      { "node": "條件組合（Or）", "rep": "<code>{ or: [ … ] }</code>" },
+      { "node": "排序運算式", "rep": "<code>orderBy:</code> 下的項目——包含運算式及選用的 <code>desc: true</code>" },
+      { "node": "欄位參照", "rep": "<code>{ field: &lt;name&gt; }</code>" },
+      { "node": "常數", "rep": "<code>{ value: &lt;scalar&gt; }</code>" },
+      { "node": "陣列", "rep": "<code>{ values: [ &lt;scalar&gt;, … ] }</code>" },
+      { "node": "運算子", "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>" },
+      { "node": "Limit / Offset", "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>" }
+    ],
+    "caption": "運算式只設定 <code>field</code>、<code>value</code> 或 <code>values</code> 中的<strong>恰好一項</strong>，以此區分欄位參照、常數或陣列。"
+  },
+  "scope": {
+    "eyebrow": "04 — 涵蓋子集",
+    "title": "TugQL 支援的特性範圍",
+    "kicker": "單個集合來源或連接樹、選定欄位、篩選運算式、排序和分頁。任何超出範圍的內容都會被明確拒絕——絕不會靜默忽略。",
+    "inScopeTitle": "支援範圍內",
+    "inScopeBody": "集合來源 · 選定欄位 · 比較及 And/Or 樹 · 排序 · limit / offset · 連接 · 參數。運算式：欄位參照、常數、陣列。運算子：<code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>。",
+    "outScopeTitle": "超出範圍（報錯拒絕）",
+    "outScopeBody": "無限制的笛卡兒積 · 廠商專屬的特有 SQL 方言 · 缺乏架構約束的無型別修改運算。序列化時會直接報錯，確保絕不破壞查詢語意。",
+    "losslessTitle": "無損且規範",
+    "losslessBody": "<code>resolve(parse(text))</code> 產生確定性的查詢樹；序列化具有規範性，因此儲存的查詢能夠在不同版本之間清晰呈現 diff。"
+  },
+  "stack": {
+    "eyebrow": "05 — 執行環境",
+    "title": "一次編寫，多端運行",
+    "kicker": "TugQL 是通用的便攜查詢層。它對應到底層資料抽象層（DALgo），後者將其適配到底層的各種儲存引擎中。",
+    "p": "因為 TugQL 僅表達跨平台的通用子集，所以編寫一次的查詢在 Git 存放庫（inGitDB）、嵌入式 SQLite 檔案、PostgreSQL 資料庫或 Firestore 上的行為完全一致。",
+    "flowAria": "TugQL 透過資料抽象層對應到多個儲存後端",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "便攜查詢語言",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "資料抽象層"
+  },
+  "implementations": {
+    "eyebrow": "06 — 快速上手",
+    "title": "規範與實作",
+    "kicker": "該語言是一項開放規範，擁有公開發布的 Schema，以及 Go 和 TypeScript 實作。",
+    "cards": [
+      {
+        "badge": "規範 · Schema",
+        "title": "tugql/tugql",
+        "desc": "TugQL 規範文件、標準 JSON Schema（draft 2020-12）以及經驗證的範例檔案。原名 DTQL。",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "參考實作 · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Go 語言程式庫：提供解析、驗證、求解、格式化以及執行 TugQL 查詢的能力，具備無損雙向轉換保證。",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "應用於真實產品開發",
+    "title": "使用 DataTug 探索並查詢資料。",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> 幫助開發者瀏覽資料庫架構、建構並執行查詢並深入分析結果。其基於 TugQL 和 TugQT 的查詢協議研發正在持續推進。<a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">探索 DataTug 背後的工具。</a>"
+  },
+  "closing": {
+    "title": "儲存它。比對它。隨處運行它。",
+    "p": "TugQL 讓查詢成為一等公民的審查產物——人類可讀、工具可驗證，並且能在多種後端之間無縫移植。",
+    "readSpec": "閱讀規範",
+    "getLibrary": "取得 Go 語言程式庫"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL 貢獻者",
+    "spec": "規範文件",
+    "goImpl": "Go 語言實作",
+    "example": "範例",
+    "mapping": "對應",
+    "tag": "開放、便攜的查詢語言（原名 DTQL）。權威首頁：<a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

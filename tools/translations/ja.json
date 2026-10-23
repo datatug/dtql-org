@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — ポータブルで人間が読みやすいクエリ言語",
+    "description": "TugQL（旧称 DTQL）はポータブルで人間が読みやすいクエリ言語です。Git、SQLite、PostgreSQL、Firestore上でクエリがそのまま動作し、直感的なSQL風構文とスキーマ検証済みのロスレスなクエリツリー（TugQT）を備えています。",
+    "ogDescription": "TugQL: 複数バックエンドに対応するポータブルで可読性の高いクエリ言語と構造化クエリツリー（TugQT）。旧称 DTQL。",
+    "jsonLdDescription": "データベースおよびデータ抽象化レイヤー向けのポータブルで人間が読みやすいクエリ言語および構造化クエリツリー（TugQT）。"
+  },
+  "nav": {
+    "why": "特長",
+    "example": "例",
+    "mapping": "マッピング",
+    "scope": "適用範囲",
+    "stack": "スタック",
+    "implementations": "実装",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "オープン仕様 · 旧称 DTQL",
+    "titleLine1": "読める、",
+    "titleAccent": "差分が取れる、",
+    "titleLine2": "信頼できるクエリ。",
+    "lede": "<strong>TugQL</strong>は、ポータブルで人間が読みやすいクエリ言語です。洗練されたSQL風テキスト構文と、プレーンなYAML/JSONとしてシリアライズ可能な<strong>1:1完全ロスレス</strong>の構造化クエリツリー（<strong>TugQT</strong>）を融合。クエリを保存し、手作業で編集し、バージョン管理で差分を確認し、複数のバックエンドで情報の欠落なく実行できます。",
+    "readSpec": "仕様を読む",
+    "seeExample": "例を見る",
+    "codeSampleAria": "TugQLクエリドキュメント"
+  },
+  "why": {
+    "eyebrow": "01 — TugQLが選ばれる理由",
+    "title": "クエリはデータです。データとして扱いましょう。",
+    "kicker": "TugQLはクエリを、保存・レビュー・バージョン管理が可能な、理解しやすく差分が取れるドキュメントへと変革します。あらゆるバックエンドで動作します。",
+    "cards": [
+      {
+        "title": "高い可読性",
+        "body": "人間にとって直感的なSQL風の記述構文に加え、ツール向けにはプレーンなYAML/JSONクエリツリー（TugQT）を提供。誰でも検証・理解・編集が可能です。"
+      },
+      {
+        "title": "ロスレスな相互変換",
+        "body": "正規化処理により、元のクエリと構造的に同等なクエリを正確に復元。暗黙的に破棄されたり、変形されたりすることはありません。"
+      },
+      {
+        "title": "スキーマ検証済み",
+        "body": "完全なJSON Schema（Draft 2020-12）とともに公開。あらゆる言語のあらゆるツールで、実行前にクエリ構造を検証できます。"
+      },
+      {
+        "title": "差分（Diff）に強い",
+        "body": "正規フォーマットと決定論的なツリーシリアライズ。保存されたクエリはGitで綺麗に差分が表示され、通常のコードと同様にレビューできます。"
+      },
+      {
+        "title": "設計段階からのポータビリティ",
+        "body": "バックエンド間で移植可能な機能に絞り込んでいるため、1つのクエリがGit、SQLite、PostgreSQL、Firestore上でそのまま動作します。"
+      },
+      {
+        "title": "完全なSQLではない理由",
+        "body": "あえてポータブルなサブセットに集中して厳密に定義。非互換な構文は危険に変換せず、明確にエラーとして拒絶します。"
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — 例",
+    "title": "TugQLテキスト構文とTugQTツリー",
+    "kicker": "TugQLテキスト構文で記述し、構造化クエリツリーTugQTとして永続化・交換します。",
+    "p1": "ユーザーは親しみやすく簡潔な<strong>TugQL</strong>テキスト構文でクエリを記述します。パーサーはそれを機械可読な正規表現である<strong>TugQT（Tug Query Tree）</strong>へと変換します。",
+    "p2": "すべてのノードが構文とツリーの間で決定論的に対応します。不正な入力やスキーマ違反は、ソース上の正確な位置を明示した診断メッセージを返します。",
+    "noteTitle": "名称に関する注意:",
+    "noteText": "TugQLは旧称DTQLとして知られていました。既存のDTQLドキュメントやクエリファイルも後方互換性のために継続サポートされます。",
+    "codeSampleAria": "TugQTクエリツリーの例"
+  },
+  "mapping": {
+    "eyebrow": "03 — ノード → TugQT",
+    "title": "マッピング",
+    "kicker": "対象範囲内の各クエリノードには、明確に定義された構造化表現が存在します。",
+    "thNode": "クエリノード",
+    "thRep": "TugQT表現",
+    "rows": [
+      {
+        "node": "ルートコレクションに対するFrom",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "カラム",
+        "rep": "<code>columns:</code> 配下の要素 — 式と任意の <code>as:</code>"
+      },
+      {
+        "node": "比較",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "グループ条件（And）",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "グループ条件（Or）",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "順序式",
+        "rep": "<code>orderBy:</code> 配下の要素 — 式と任意の <code>desc: true</code>"
+      },
+      {
+        "node": "フィールド参照",
+        "rep": "<code>{ field: &lt;name&gt; }</code>"
+      },
+      {
+        "node": "定数",
+        "rep": "<code>{ value: &lt;scalar&gt; }</code>"
+      },
+      {
+        "node": "配列",
+        "rep": "<code>{ values: [ &lt;scalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "演算子",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "式には <code>field</code>、<code>value</code>、<code>values</code> の<strong>いずれか1つだけ</strong>を設定し、フィールド参照、定数、配列を識別します。"
+  },
+  "scope": {
+    "eyebrow": "04 — 対応サブセット",
+    "title": "TugQLがサポートする範囲",
+    "kicker": "単一コレクションまたは結合ツリー、カラム選択、フィルタ式、並び替え、ページネーション。範囲外の構文は拒絶され、勝手に無視されることはありません。",
+    "inScopeTitle": "対象範囲内",
+    "inScopeBody": "コレクションソース · 選択カラム · 比較およびAnd/Orグループツリー · 並び替え · limit / offset · 結合 · パラメータ。式: フィールド参照、定数、配列。演算子: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>。",
+    "outScopeTitle": "対象外（拒絶される構文）",
+    "outScopeBody": "制限のない直積結合 · 特定DB専用のベンダー構文 · スキーマ管理外の非型付け更新演算子。セマンティクスが損なわれる前にシリアライズがエラー終了します。",
+    "losslessTitle": "ロスレス＆正規化",
+    "losslessBody": "<code>resolve(parse(text))</code> は決定論的なクエリツリーを生成します。シリアライズも正規化されているため、保存されたクエリはGitで綺麗に差分比較できます。"
+  },
+  "stack": {
+    "eyebrow": "05 — 動作環境",
+    "title": "1つのクエリ、多彩なバックエンド",
+    "kicker": "TugQLはポータブルなクエリ層です。データ抽象化レイヤー（DALgo）を介して、背後にあるあらゆるストレージへと適合させます。",
+    "p": "TugQLがポータブルなサブセットのみを表現するため、一度記述したクエリはGitリポジトリ（inGitDB）、SQLite、PostgreSQL、Firestoreのいずれに対しても一貫して動作します。",
+    "flowAria": "TugQLはデータ抽象化レイヤーを介して複数のストレージバックエンドにマッピングされます",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "ポータブルクエリ言語",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "データ抽象化レイヤー"
+  },
+  "implementations": {
+    "eyebrow": "06 — はじめの一歩",
+    "title": "仕様と実装",
+    "kicker": "本言語はオープン仕様であり、スキーマが公開され、GoおよびTypeScriptによる実装が提供されています。",
+    "cards": [
+      {
+        "badge": "仕様 · スキーマ",
+        "title": "tugql/tugql",
+        "desc": "TugQL仕様書、正規JSON Schema（Draft 2020-12）、および検証済みサンプルドキュメント。旧称 DTQL。",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "参照実装 · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Go言語ライブラリ: 完全な可逆性を保証しながらTugQLクエリのパース、検証、解決、フォーマット、実行を行います。",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "実際のプロダクト開発での採用",
+    "title": "DataTugでデータを探索し、クエリを実行。",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a>は開発者がデータベーススキーマを探索し、クエリを作成・実行し、結果を理解することを支援します。TugQLおよびTugQTとのクエリ連携は現在も進行中です。<a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">DataTugの基盤ツールを見る。</a>"
+  },
+  "closing": {
+    "title": "保存する。差分を見る。どこでも動かす。",
+    "p": "TugQLはクエリをファーストクラスのレビュー可能な成果物へと進化させます — 人間が読め、ツールで検証され、あらゆるバックエンドで動作します。",
+    "readSpec": "仕様を読む",
+    "getLibrary": "Goライブラリを入手"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL コントリビューター",
+    "spec": "仕様書",
+    "goImpl": "Go実装",
+    "example": "例",
+    "mapping": "マッピング",
+    "tag": "オープンでポータブルなクエリ言語（旧称 DTQL）。公式ホーム: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "TugQL — przenośny, czytelny dla człowieka język zapytań",
+    "description": "TugQL (wcześniej DTQL) to przenośny, czytelny dla ludzi język zapytań. Jedno zapytanie działa bez zmian w Git, SQLite, PostgreSQL i Firestore — oferując intuicyjną składnię zbliżoną do SQL oraz bezstratne drzewo zapytań walidowane schematem (TugQT).",
+    "ogDescription": "TugQL: przenośny, czytelny język zapytań i ustrukturyzowane drzewo zapytań (TugQT) działające na wielu backendach. Dawniej DTQL.",
+    "jsonLdDescription": "Przenośny, czytelny dla ludzi język zapytań oraz ustrukturyzowane drzewo zapytań (TugQT) dla baz danych i warstw abstrakcji."
+  },
+  "nav": {
+    "why": "Dlaczego",
+    "example": "Przykład",
+    "mapping": "Mapowanie",
+    "scope": "Zakres",
+    "stack": "Stos",
+    "implementations": "Implementacje",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Otwarta specyfikacja · wcześniej DTQL",
+    "titleLine1": "Zapytania, które możesz",
+    "titleAccent": "czytać, porównywać",
+    "titleLine2": " i którym możesz ufać.",
+    "lede": "<strong>TugQL</strong> to przenośny, czytelny dla człowieka język zapytań. Łączy przejrzystą, zbliżoną do SQL składnię z <strong>bezstratną reprezentacją 1:1</strong> w postaci ustrukturyzowanego drzewa zapytań (<strong>TugQT</strong>) serializowanego jako czysty YAML/JSON. Zapisz zapytanie, edytuj je ręcznie, porównuj diff w systemie kontroli wersji i wykonuj na różnych backendach bez żadnych strat.",
+    "readSpec": "Przeczytaj specyfikację",
+    "seeExample": "Zobacz przykład",
+    "codeSampleAria": "Dokument zapytania TugQL"
+  },
+  "why": {
+    "eyebrow": "01 — Dlaczego TugQL",
+    "title": "Zapytanie to dane. Traktuj je jak dane.",
+    "kicker": "TugQL zamienia zapytanie w zrozumiały dokument z obsługą diff, który możesz przechowywać, recenzować i wersjonować — przenośny na każdym backendzie.",
+    "cards": [
+      {
+        "title": "Czytelny dla człowieka",
+        "body": "Intuicyjna składnia zbliżona do SQL dla programistów oraz proste drzewo zapytań YAML/JSON (TugQT) dla narzędzi — każdy może je przejrzeć i edytować."
+      },
+      {
+        "title": "Bezstratna konwersja w obie strony",
+        "body": "Kanoniczna normalizacja odtwarza zapytania strukturalnie identyczne ze źródłem. Nic nie jest po cichu pomijane ani zniekształcane."
+      },
+      {
+        "title": "Walidacja schematem",
+        "body": "Publikowane z pełną walidacją JSON Schema (draft 2020-12). Dowolne narzędzie w dowolnym języku może sprawdzić strukturę zapytania przed wykonaniem."
+      },
+      {
+        "title": "Przyjazny dla diffów",
+        "body": "Kanoniczne formatowanie i deterministyczna serializacja drzewa. Zapisane zapytania tworzą czyste diffy w Git i można je recenzować jak kod."
+      },
+      {
+        "title": "Przenośny z założenia",
+        "body": "TugQL udostępnia funkcjonalność wspólną dla różnych silników — to samo zapytanie działa bez zmian w Git, SQLite, PostgreSQL czy Firestore."
+      },
+      {
+        "title": "Świadomie nie pełny SQL",
+        "body": "Celowo zdefiniowany, przenośny podzbiór. Nieprzenośne konstrukcje są jawnie odrzucane, zamiast być ryzykownie tłumaczone."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Przykład",
+    "title": "Zapytanie w postaci TugQL i TugQT",
+    "kicker": "Pisz w składni tekstowej TugQL; przechowuj lub przesyłaj jako ustrukturyzowane drzewo zapytań TugQT.",
+    "p1": "Autorzy piszą zapytania w składni tekstowej <strong>TugQL</strong> — czytelnej, zwięzłej i zbliżonej do SQL. Pod spodem parser generuje <strong>TugQT (Tug Query Tree)</strong> — kanoniczną, czytelną maszynowo reprezentację.",
+    "p2": "Każdy węzeł mapuje się deterministycznie między składnią a drzewem. Błędy składni lub naruszenia schematu zwracają precyzyjne komunikaty diagnostyczne ze wskazaniem miejsca w kodzie.",
+    "noteTitle": "Uwaga dotycząca nazwy:",
+    "noteText": "TugQL był wcześniej znany jako DTQL. Istniejące dokumenty i pliki zapytań DTQL są nadal w pełni obsługiwane dla zachowania wstecznej kompatybilności.",
+    "codeSampleAria": "Przykładowe drzewo zapytań TugQT"
+  },
+  "mapping": {
+    "eyebrow": "03 — węzeł → TugQT",
+    "title": "Mapowanie",
+    "kicker": "Każdy obsługiwany węzeł zapytania ma ściśle zdefiniowaną reprezentację strukturalną.",
+    "thNode": "Węzeł zapytania",
+    "thRep": "Reprezentacja w TugQT",
+    "rows": [
+      { "node": "From po kolekcji głównej", "rep": "<code>from: { name, alias? }</code>" },
+      { "node": "Kolumna", "rep": "element w <code>columns:</code> — wyrażenie z opcjonalnym <code>as:</code>" },
+      { "node": "Porównanie", "rep": "<code>{ op, left, right }</code>" },
+      { "node": "Warunek grupowy (And)", "rep": "<code>{ and: [ … ] }</code>" },
+      { "node": "Warunek grupowy (Or)", "rep": "<code>{ or: [ … ] }</code>" },
+      { "node": "Wyrażenie sortowania", "rep": "element w <code>orderBy:</code> — wyrażenie z opcjonalnym <code>desc: true</code>" },
+      { "node": "Odwołanie do pola", "rep": "<code>{ field: &lt;nazwa&gt; }</code>" },
+      { "node": "Stała", "rep": "<code>{ value: &lt;skalar&gt; }</code>" },
+      { "node": "Tablica", "rep": "<code>{ values: [ &lt;skalar&gt;, … ] }</code>" },
+      { "node": "Operator", "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>" },
+      { "node": "Limit / Offset", "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>" }
+    ],
+    "caption": "Wyrażenie ustawia <strong>dokładnie jedno</strong> z pól: <code>field</code>, <code>value</code> lub <code>values</code>, co odróżnia odwołanie do pola, stałą lub tablicę."
+  },
+  "scope": {
+    "eyebrow": "04 — obsługiwany zakres",
+    "title": "Co obejmuje TugQL",
+    "kicker": "Pojedyncze kolekcje lub złączenia, wybrane kolumny, filtry, sortowanie i stronicowanie. Wszystko poza zakresem jest odrzucane — nigdy po cichu ignorowane.",
+    "inScopeTitle": "W zakresie",
+    "inScopeBody": "Źródła kolekcji · wybrane kolumny · drzewa porównań i grupy And/Or · sortowanie · limit / offset · złączenia · parametry. Wyrażenia: pole, stała, tablica. Operatory: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "Poza zakresem (odrzucone)",
+    "outScopeBody": "Nieograniczone iloczyny kartezjańskie · specyficzna składnia poszczególnych dialektów bazodanowych · nietypowane operatory mutacji poza schematem. Serializacja kończy się błędem, aby nie utracić znaczenia zapytania.",
+    "losslessTitle": "Bezstratny i kanoniczny",
+    "losslessBody": "<code>resolve(parse(text))</code> generuje deterministyczne drzewa zapytań; kanoniczna serializacja sprawia, że zapisane zapytania tworzą czyste diffy między wersjami."
+  },
+  "stack": {
+    "eyebrow": "05 — środowiska uruchomieniowe",
+    "title": "Jedno zapytanie, wiele backendów",
+    "kicker": "TugQL to przenośna warstwa zapytań. Łączy się z warstwą abstrakcji danych (DALgo), która dostosowuje ją do dowolnego magazynu pod spodem.",
+    "p": "Ponieważ TugQL definiuje wspólny, przenośny podzbiór, raz napisane zapytanie działa dokładnie tak samo zarówno w repozytorium Git (inGitDB), jak i w pliku SQLite, bazie PostgreSQL czy Firestore.",
+    "flowAria": "TugQL mapuje się poprzez warstwę abstrakcji danych na różne silniki bazodanowe",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "przenośny język zapytań",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "warstwa abstrakcji danych"
+  },
+  "implementations": {
+    "eyebrow": "06 — jak zacząć",
+    "title": "Specyfikacja i implementacje",
+    "kicker": "Język jest otwartą specyfikacją z opublikowanym schematem oraz implementacjami w Go i TypeScript.",
+    "cards": [
+      {
+        "badge": "specyfikacja · schemat",
+        "title": "tugql/tugql",
+        "desc": "Specyfikacja TugQL, kanoniczny JSON Schema (draft 2020-12) oraz zweryfikowane przykładowe dokumenty. Dawniej DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "implementacja referencyjna · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Biblioteka w Go: parsowanie, walidacja, rozwiązywanie, formatowanie i wykonywanie zapytań TugQL z gwarancją bezstratności.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Wykorzystywane w rozwoju produktów",
+    "title": "Eksploruj i badaj dane z DataTug.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> pomaga programistom badać schematy baz danych, tworzyć i uruchamiać zapytania oraz analizować wyniki. Prace nad integracją kontraktów zapytań z TugQL i TugQT trwają nieustannie. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">Poznaj narzędzia stojące za DataTug.</a>"
+  },
+  "closing": {
+    "title": "Zapisz. Porównaj. Uruchom wszędzie.",
+    "p": "TugQL czyni zapytanie pierwszorzędnym, weryfikowalnym artefaktem — czytelnym dla ludzi, walidowanym przez narzędzia i przenośnym między silnikami bazodanowymi.",
+    "readSpec": "Przeczytaj specyfikację",
+    "getLibrary": "Pobierz bibliotekę Go"
+  },
+  "footer": {
+    "copyright": "© 2026 Współtwórcy TugQL",
+    "spec": "Specyfikacja",
+    "goImpl": "Implementacja w Go",
+    "example": "Przykład",
+    "mapping": "Mapowanie",
+    "tag": "Otwarty, przenośny język zapytań (dawniej DTQL). Oficjalna strona: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

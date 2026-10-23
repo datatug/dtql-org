@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — uma linguagem de consulta portátil e legível por humanos",
+    "description": "TugQL (anteriormente DTQL) é uma linguagem de consulta portátil e legível por humanos. Uma mesma consulta roda inalterada no Git, SQLite, PostgreSQL e Firestore — com sintaxe limpa estilo SQL e árvore de consulta sem perdas validada por esquema (TugQT).",
+    "ogDescription": "TugQL: linguagem de consulta portátil e legível com árvore estruturada (TugQT) entre backends. Antigo DTQL.",
+    "jsonLdDescription": "Uma linguagem de consulta portátil e legível por humanos com árvore de consulta estruturada (TugQT) para bancos de dados e camadas de abstração."
+  },
+  "nav": {
+    "why": "Por que",
+    "example": "Exemplo",
+    "mapping": "Mapeamento",
+    "scope": "Escopo",
+    "stack": "Stack",
+    "implementations": "Implementações",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Especificação aberta · anteriormente DTQL",
+    "titleLine1": "Consultas que você pode",
+    "titleAccent": "ler, comparar",
+    "titleLine2": " e confiar.",
+    "lede": "<strong>TugQL</strong> é uma linguagem de consulta portátil e legível por humanos. Ela combina uma sintaxe de texto limpa semelhante a SQL com uma representação estruturada de árvore de consulta <strong>1:1 e sem perdas</strong> (<strong>TugQT</strong>) serializada como YAML/JSON simples. Salve uma consulta, edite-a manualmente, veja o diff no controle de versão e execute-a entre backends sem perdas.",
+    "readSpec": "Ler a especificação",
+    "seeExample": "Ver um exemplo",
+    "codeSampleAria": "Um documento de consulta TugQL"
+  },
+  "why": {
+    "eyebrow": "01 — Por que TugQL",
+    "title": "Uma consulta é um dado. Trate-a como dado.",
+    "kicker": "TugQL transforma uma consulta em um documento compreensível e versionável que você pode armazenar, revisar e comparar — portátil em qualquer backend.",
+    "cards": [
+      {
+        "title": "Legível por humanos",
+        "body": "Sintaxe intuitiva semelhante a SQL para pessoas, além de árvore de consulta YAML/JSON simples (TugQT) para ferramentas — qualquer um pode inspecionar e editar."
+      },
+      {
+        "title": "Ida e volta sem perdas",
+        "body": "A transformação canônica reconstrói consultas estruturalmente idênticas à origem. Nada é silenciosamente descartado ou aproximado."
+      },
+      {
+        "title": "Validado por esquema",
+        "body": "Publicado com validação completa em JSON Schema (draft 2020-12). Qualquer ferramenta em qualquer linguagem pode validar consultas antes da execução."
+      },
+      {
+        "title": "Ideal para diffs",
+        "body": "Formatação canônica e serialização determinística da árvore. Consultas salvas geram diffs limpos no Git e são revisadas como código."
+      },
+      {
+        "title": "Portátil por design",
+        "body": "TugQL expõe funcionalidades portáteis entre plataformas: a mesma consulta executa sem alterações no Git, SQLite, PostgreSQL ou Firestore."
+      },
+      {
+        "title": "Não é SQL completo",
+        "body": "Um subconjunto portátil deliberadamente focado e bem definido. Recursos não portáteis são rejeitados explicitamente em vez de traduzidos de forma insegura."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Exemplo",
+    "title": "Uma consulta em TugQL e TugQT",
+    "kicker": "Escreva na sintaxe de texto TugQL; armazene ou compartilhe como árvore de consulta estruturada TugQT.",
+    "p1": "Desenvolvedores escrevem consultas na sintaxe de texto do <strong>TugQL</strong> — legível, compacta e parecida com SQL. Por baixo, o parser produz o <strong>TugQT (Tug Query Tree)</strong>, uma representação canônica legível por máquina.",
+    "p2": "Cada nó mapeia deterministicamente entre sintaxe e árvore. Erros de entrada ou violações de esquema retornam diagnósticos com localização precisa no código.",
+    "noteTitle": "Nota sobre a nomenclatura:",
+    "noteText": "TugQL era anteriormente conhecido como DTQL. Documentos e arquivos de consulta DTQL existentes continuam suportados para compatibilidade com versões anteriores.",
+    "codeSampleAria": "Árvore de consulta TugQT de exemplo"
+  },
+  "mapping": {
+    "eyebrow": "03 — nó → TugQT",
+    "title": "Mapeamento",
+    "kicker": "Cada nó de consulta possui uma representação estruturada definida.",
+    "thNode": "Nó de consulta",
+    "thRep": "Representação TugQT",
+    "rows": [
+      {
+        "node": "From sobre uma coleção raiz",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "Coluna",
+        "rep": "item sob <code>columns:</code> — expressão com <code>as:</code> opcional"
+      },
+      {
+        "node": "Comparação",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "Condição em grupo (And)",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "Condição em grupo (Or)",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "Expressão de ordenação",
+        "rep": "item sob <code>orderBy:</code> — expressão com <code>desc: true</code> opcional"
+      },
+      {
+        "node": "Referência a campo",
+        "rep": "<code>{ field: &lt;nome&gt; }</code>"
+      },
+      {
+        "node": "Constante",
+        "rep": "<code>{ value: &lt;escalar&gt; }</code>"
+      },
+      {
+        "node": "Array",
+        "rep": "<code>{ values: [ &lt;escalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "Operador",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "Uma expressão define <strong>exatamente um</strong> entre <code>field</code>, <code>value</code> ou <code>values</code>, identificando uma referência de campo, constante ou array."
+  },
+  "scope": {
+    "eyebrow": "04 — subconjunto coberto",
+    "title": "O que o TugQL representa",
+    "kicker": "Coleções individuais ou unidas, colunas selecionadas, expressões de filtro, ordenação e paginação. Tudo fora de escopo é rejeitado — nunca descartado em silêncio.",
+    "inScopeTitle": "No escopo",
+    "inScopeBody": "Fontes de coleção · colunas selecionadas · comparações e grupos And/Or · ordenação · limit / offset · joins · parâmetros. Expressões: campo, constante, array. Operadores: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "Fora de escopo (rejeitado)",
+    "outScopeBody": "Joins cartesianos ilimitados · sintaxe proprietária específica de banco · operadores de mutação sem tipo fora do esquema. A serialização falha explicitamente para evitar perda semântica.",
+    "losslessTitle": "Sem perdas e canônico",
+    "losslessBody": "<code>resolve(parse(text))</code> produz árvores determinísticas; a serialização é canônica para que consultas salvas mostrem diffs limpos entre versões."
+  },
+  "stack": {
+    "eyebrow": "05 — onde roda",
+    "title": "Uma consulta, muitos backends",
+    "kicker": "O TugQL é a superfície de consulta portátil. Ele se integra a uma camada de abstração de dados (DALgo) que se adapta a qualquer armazenamento subjacente.",
+    "p": "Como o TugQL expressa o subconjunto portátil, uma consulta escrita uma vez se comporta de forma idêntica tanto em um repositório Git (inGitDB), SQLite, PostgreSQL ou Firestore.",
+    "flowAria": "TugQL se mapeia através de uma camada de abstração para diversos bancos de dados",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "linguagem de consulta portátil",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "camada de abstração de dados"
+  },
+  "implementations": {
+    "eyebrow": "06 — comece a usar",
+    "title": "Especificação e implementações",
+    "kicker": "A linguagem é uma especificação aberta com esquema publicado e implementações em Go e TypeScript.",
+    "cards": [
+      {
+        "badge": "especificação · esquema",
+        "title": "tugql/tugql",
+        "desc": "A especificação TugQL, o JSON Schema canônico (draft 2020-12) e documentos de exemplo validados. Anteriormente DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "implementação de referência · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "A biblioteca em Go: faça parse, valide, resolva, formate e execute consultas TugQL com garantias de ida e volta sem perdas.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Usado no desenvolvimento de produtos",
+    "title": "Explore e consulte dados com o DataTug.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> ajuda desenvolvedores a explorar esquemas, criar e executar consultas e entender resultados. O trabalho com contratos de consulta usando TugQL e TugQT é contínuo. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">Conheça as ferramentas por trás do DataTug.</a>"
+  },
+  "closing": {
+    "title": "Salve. Compare. Execute em qualquer lugar.",
+    "p": "O TugQL torna uma consulta um artefato de primeira classe e auditável — legível por pessoas, validado por ferramentas e portátil entre plataformas.",
+    "readSpec": "Ler a especificação",
+    "getLibrary": "Obter a biblioteca Go"
+  },
+  "footer": {
+    "copyright": "© 2026 Colaboradores do TugQL",
+    "spec": "Especificação",
+    "goImpl": "Implementação em Go",
+    "example": "Exemplo",
+    "mapping": "Mapeamento",
+    "tag": "Uma linguagem de consulta aberta e portátil (antigo DTQL). Site canônico: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

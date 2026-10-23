@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — a portable, human-readable query language",
+    "description": "TugQL (formerly DTQL) is a portable, human-readable query language. One query runs unchanged across Git, SQLite, PostgreSQL and Firestore — featuring an intuitive SQL-like text syntax and a lossless, schema-validated query tree (TugQT).",
+    "ogDescription": "TugQL: portable, human-readable query language and structured query tree (TugQT) across backends. Formerly known as DTQL.",
+    "jsonLdDescription": "A portable, human-readable query language and structured query tree (TugQT) for databases and data abstraction layers."
+  },
+  "nav": {
+    "why": "Why",
+    "example": "Example",
+    "mapping": "Mapping",
+    "scope": "Scope",
+    "stack": "Stack",
+    "implementations": "Implementations",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "Open specification · formerly DTQL",
+    "titleLine1": "Queries you can",
+    "titleAccent": "read, diff,",
+    "titleLine2": " and trust.",
+    "lede": "<strong>TugQL</strong> is a portable, human-readable query language. It combines a clean SQL-like text syntax with a <strong>1:1, lossless</strong> structured query tree representation (<strong>TugQT</strong>) serialized as plain YAML/JSON. Save a query, hand-edit it, diff it in version control, and execute it across backends without loss.",
+    "readSpec": "Read the spec",
+    "seeExample": "See an example",
+    "codeSampleAria": "A TugQL query document"
+  },
+  "why": {
+    "eyebrow": "01 — Why TugQL",
+    "title": "A query is data. Treat it like data.",
+    "kicker": "TugQL turns a query into an understandable, diffable document you can store, review, and version — portable across every backend it runs on.",
+    "cards": [
+      {
+        "title": "Human-readable",
+        "body": "Intuitive SQL-like authoring syntax for people, plus plain YAML/JSON query tree (TugQT) for tooling — anyone can inspect it, understand it, and edit it."
+      },
+      {
+        "title": "Lossless round-trip",
+        "body": "Canonical query lowering reconstructs queries structurally equal to the source. Nothing is silently dropped, mangled, or approximated."
+      },
+      {
+        "title": "Schema-validated",
+        "body": "Published with full JSON Schema validation (draft 2020-12). Any tool, in any language, can validate a query structure before execution."
+      },
+      {
+        "title": "Diff-friendly",
+        "body": "Canonical formatting and deterministic tree serialization. Saved queries diff cleanly in Git and review like standard code."
+      },
+      {
+        "title": "Portable by design",
+        "body": "TugQL exposes functionality that is portable across backends, so one query runs unchanged across Git, SQLite, PostgreSQL, or Firestore."
+      },
+      {
+        "title": "Not full SQL",
+        "body": "A deliberately focused, well-defined portable subset. Unportable constructs are rejected explicitly rather than translated dangerously."
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — Example",
+    "title": "A query as TugQL &amp; TugQT",
+    "kicker": "Author in TugQL text syntax; persist or exchange as a TugQT structured query tree.",
+    "p1": "Authors write queries in <strong>TugQL</strong> text syntax — readable, compact, and SQL-like. Underneath, the parser produces <strong>TugQT (Tug Query Tree)</strong>, a canonical, machine-readable representation.",
+    "p2": "Every node maps deterministically between syntax and tree. Malformed input or schema violations return actionable diagnostics with precise source spans.",
+    "noteTitle": "Note on naming:",
+    "noteText": "TugQL was formerly known as DTQL. Existing DTQL documents and query files remain supported for backwards compatibility.",
+    "codeSampleAria": "Example TugQT query tree"
+  },
+  "mapping": {
+    "eyebrow": "03 — node → TugQT",
+    "title": "Mapping",
+    "kicker": "Each in-scope query node has a defined structured representation.",
+    "thNode": "Query node",
+    "thRep": "TugQT representation",
+    "rows": [
+      {
+        "node": "From over a root collection",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "Column",
+        "rep": "item under <code>columns:</code> — an expression plus optional <code>as:</code>"
+      },
+      {
+        "node": "Comparison",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "Group condition (And)",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "Group condition (Or)",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "Order expression",
+        "rep": "item under <code>orderBy:</code> — an expression plus optional <code>desc: true</code>"
+      },
+      {
+        "node": "Field reference",
+        "rep": "<code>{ field: &lt;name&gt; }</code>"
+      },
+      {
+        "node": "Constant",
+        "rep": "<code>{ value: &lt;scalar&gt; }</code>"
+      },
+      {
+        "node": "Array",
+        "rep": "<code>{ values: [ &lt;scalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "Operator",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "An expression sets <strong>exactly one</strong> of <code>field</code>, <code>value</code> or <code>values</code>, which discriminates a field reference, a constant, or an array."
+  },
+  "scope": {
+    "eyebrow": "04 — covered subset",
+    "title": "What TugQL represents",
+    "kicker": "Single source collections or joined trees, selected columns, filter expressions, ordering, and paging. Anything out of scope is rejected — never silently dropped.",
+    "inScopeTitle": "In scope",
+    "inScopeBody": "Collection sources · selected columns · comparison and And/Or group trees · ordering · limit / offset · joins · parameters. Expressions: field reference, constant, array. Operators: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.",
+    "outScopeTitle": "Out of scope (rejected)",
+    "outScopeBody": "Unbounded cartesian joins · arbitrary dialect-specific vendor syntax · untyped mutation operators outside schema authority. Serialization errors out — it never emits a document that loses query semantics.",
+    "losslessTitle": "Lossless &amp; canonical",
+    "losslessBody": "<code>resolve(parse(text))</code> produces deterministic query trees; serialization is canonical, so saved queries diff cleanly across versions."
+  },
+  "stack": {
+    "eyebrow": "05 — where it runs",
+    "title": "One query, many backends",
+    "kicker": "TugQL is the portable query surface. It maps onto a data abstraction layer (DALgo) that adapts it to whatever storage sits underneath.",
+    "p": "Because TugQL expresses the portable subset, a query written once behaves consistently whether resolving against a Git repository (inGitDB), an embedded SQLite file, a PostgreSQL database, or Firestore.",
+    "flowAria": "TugQL maps through a data abstraction layer to several storage backends",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "portable query language",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "data abstraction layer"
+  },
+  "implementations": {
+    "eyebrow": "06 — get started",
+    "title": "Specification &amp; implementations",
+    "kicker": "The language is an open specification with a published schema and implementations in Go and TypeScript.",
+    "cards": [
+      {
+        "badge": "specification · schema",
+        "title": "tugql/tugql",
+        "desc": "The TugQL specification, the canonical JSON Schema (draft 2020-12), and validated example documents. Formerly known as DTQL.",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "reference implementation · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "The Go library: parse, validate, resolve, format, and execute TugQL queries with lossless round-trip guarantees.",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "Used in product development",
+    "title": "Explore data and query it with DataTug.",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> helps developers explore database schemas, build and run queries, and understand results. Its work on query contracts with TugQL and TugQT is ongoing. <a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">Explore the tools behind DataTug.</a>"
+  },
+  "closing": {
+    "title": "Save it. Diff it. Run it anywhere.",
+    "p": "TugQL makes a query a first-class, reviewable artifact — readable by people, validated by tooling, and portable across the backends it runs on.",
+    "readSpec": "Read the spec",
+    "getLibrary": "Get the Go library"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL contributors",
+    "spec": "Specification",
+    "goImpl": "Go implementation",
+    "example": "Example",
+    "mapping": "Mapping",
+    "tag": "An open, portable query language (formerly DTQL). Canonical home: <a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}

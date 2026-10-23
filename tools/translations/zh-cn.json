@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "TugQL — 便携、易于人类阅读的查询语言",
+    "description": "TugQL（原名 DTQL）是一种便携、易于人类阅读的查询语言。同一查询无需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上运行——兼具直观的类 SQL 文本语法与经模式验证的无损查询树（TugQT）。",
+    "ogDescription": "TugQL：跨后端的便携、易读查询语言与结构化查询树（TugQT）。原名 DTQL。",
+    "jsonLdDescription": "适用于数据库和数据抽象层的便携、易于人类阅读的查询语言及结构化查询树（TugQT）。"
+  },
+  "nav": {
+    "why": "优势",
+    "example": "示例",
+    "mapping": "映射",
+    "scope": "范围",
+    "stack": "技术栈",
+    "implementations": "实现",
+    "star": "Star"
+  },
+  "hero": {
+    "eyebrow": "开放规范 · 原名 DTQL",
+    "titleLine1": "可阅读、",
+    "titleAccent": "可比对、",
+    "titleLine2": "可信赖的查询。",
+    "lede": "<strong>TugQL</strong> 是一种便携、易于人类阅读的查询语言。它将简洁的类 SQL 文本语法与以普通 YAML/JSON 序列化的 <strong>1:1 无损</strong>结构化查询树（<strong>TugQT</strong>）相结合。您可以保存查询、手工编辑、在版本控制中比对差异，并在不同的后端无损执行。",
+    "readSpec": "阅读规范",
+    "seeExample": "查看示例",
+    "codeSampleAria": "TugQL 查询文档"
+  },
+  "why": {
+    "eyebrow": "01 — 为什么选择 TugQL",
+    "title": "查询即数据。请像对待数据一样对待它。",
+    "kicker": "TugQL 将查询转变为清晰明了、可对比差异的文档，支持存储、审查与版本控制——在任何支持的后端之间无缝迁移。",
+    "cards": [
+      {
+        "title": "易于人类阅读",
+        "body": "面向开发者的直观类 SQL 编写语法，以及面向工具链的纯 YAML/JSON 查询树（TugQT）——任何人都可以审查、理解和修改。"
+      },
+      {
+        "title": "无损往返转换",
+        "body": "规范的查询降阶能够重建与原始输入结构完全等价的查询。不会有任何内容被悄悄丢弃或近似替代。"
+      },
+      {
+        "title": "经模式验证",
+        "body": "发布了完整的 JSON Schema 校验（draft 2020-12）。任何语言的任何工具都可以在执行前验证查询结构的正确性。"
+      },
+      {
+        "title": "版本控制友好",
+        "body": "规范的格式化与确定性的语法树序列化。保存的查询在 Git 中呈现干净清晰的 diff，能像代码一样进行 code review。"
+      },
+      {
+        "title": "天生具备跨平台便携性",
+        "body": "TugQL 提炼了跨后端通用的核心能力，因此同一个查询无需更改即可直接运行于 Git、SQLite、PostgreSQL 或 Firestore。"
+      },
+      {
+        "title": "并非全量 SQL",
+        "body": "刻意聚焦于定义明确的便携式子集。非通用语法会被明确拒绝，而不是进行具有不可预知风险的转换。"
+      }
+    ]
+  },
+  "example": {
+    "eyebrow": "02 — 示例",
+    "title": "TugQL 文本语法与 TugQT 树",
+    "kicker": "使用 TugQL 文本语法编写；以 TugQT 结构化查询树格式存储或传输。",
+    "p1": "开发者使用 <strong>TugQL</strong> 文本语法编写查询——清晰、紧凑且类似 SQL。在底层，解析器生成 <strong>TugQT（Tug Query Tree）</strong>，这是一种规范的机器可读表示形式。",
+    "p2": "每个节点在文本语法和树结构之间都有确定性的双向映射。语法错误或模式违规将返回包含精确源码位置的诊断信息。",
+    "noteTitle": "关于命名的说明：",
+    "noteText": "TugQL 原名 DTQL。现有的 DTQL 文档和查询文件将继续获得向后兼容支持。",
+    "codeSampleAria": "TugQT 查询树示例"
+  },
+  "mapping": {
+    "eyebrow": "03 — 节点 → TugQT",
+    "title": "映射规则",
+    "kicker": "支持范围内的每个查询节点都有明确定义的结构化表示。",
+    "thNode": "查询节点",
+    "thRep": "TugQT 表示方式",
+    "rows": [
+      {
+        "node": "根集合的 From 查询",
+        "rep": "<code>from: { name, alias? }</code>"
+      },
+      {
+        "node": "列定义",
+        "rep": "<code>columns:</code> 下的项——包含表达式及可选的 <code>as:</code>"
+      },
+      {
+        "node": "比较操作",
+        "rep": "<code>{ op, left, right }</code>"
+      },
+      {
+        "node": "条件组合（And）",
+        "rep": "<code>{ and: [ … ] }</code>"
+      },
+      {
+        "node": "条件组合（Or）",
+        "rep": "<code>{ or: [ … ] }</code>"
+      },
+      {
+        "node": "排序表达式",
+        "rep": "<code>orderBy:</code> 下的项——包含表达式及可选的 <code>desc: true</code>"
+      },
+      {
+        "node": "字段引用",
+        "rep": "<code>{ field: &lt;name&gt; }</code>"
+      },
+      {
+        "node": "常量",
+        "rep": "<code>{ value: &lt;scalar&gt; }</code>"
+      },
+      {
+        "node": "数组",
+        "rep": "<code>{ values: [ &lt;scalar&gt;, … ] }</code>"
+      },
+      {
+        "node": "运算符",
+        "rep": "<code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>"
+      },
+      {
+        "node": "Limit / Offset",
+        "rep": "<code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code>"
+      }
+    ],
+    "caption": "表达式只设置 <code>field</code>、<code>value</code> 或 <code>values</code> 中的<strong>恰好一项</strong>，以此区分字段引用、常量或数组。"
+  },
+  "scope": {
+    "eyebrow": "04 — 覆盖子集",
+    "title": "TugQL 支持的特性范围",
+    "kicker": "单个集合来源或连接树、选定列、过滤表达式、排序和分页。任何超出范围的内容都会被明确拒绝——绝不会悄悄丢弃。",
+    "inScopeTitle": "支持范围内",
+    "inScopeBody": "集合源 · 选定列 · 比较及 And/Or 树 · 排序 · limit / offset · 连接 · 参数。表达式：字段引用、常量、数组。运算符：<code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>。",
+    "outScopeTitle": "超出范围（报错拒绝）",
+    "outScopeBody": "无约束的笛卡尔积 · 厂商特定的私有 SQL 方言 · 缺乏模式约束的无类型修改操作。序列化时会直接报错，确保绝不破坏查询语义。",
+    "losslessTitle": "无损且规范",
+    "losslessBody": "<code>resolve(parse(text))</code> 生成确定性的查询树；序列化具有规范性，因此保存的查询能够在不同版本之间清晰呈现 diff。"
+  },
+  "stack": {
+    "eyebrow": "05 — 运行环境",
+    "title": "一次编写，多端运行",
+    "kicker": "TugQL 是通用的便携查询层。它映射到底层数据抽象层（DALgo），后者将其适配到底层的各种存储引擎中。",
+    "p": "因为 TugQL 仅表达跨平台的通用子集，所以编写一次的查询在 Git 仓库（inGitDB）、嵌入式 SQLite 文件、PostgreSQL 数据库或 Firestore 上的行为完全一致。",
+    "flowAria": "TugQL 通过数据抽象层映射到多个存储后端",
+    "tugqlLabel": "TugQL",
+    "tugqlSub": "便携查询语言",
+    "dalgoLabel": "DALgo",
+    "dalgoSub": "数据抽象层"
+  },
+  "implementations": {
+    "eyebrow": "06 — 快速上手",
+    "title": "规范与实现",
+    "kicker": "该语言是一项开放规范，拥有公开发布的 Schema，以及 Go 和 TypeScript 实现。",
+    "cards": [
+      {
+        "badge": "规范 · Schema",
+        "title": "tugql/tugql",
+        "desc": "TugQL 规范文档、标准 JSON Schema（draft 2020-12）以及经验证的示例文件。原名 DTQL。",
+        "meta": "github.com/tugql/tugql",
+        "url": "https://github.com/tugql/tugql"
+      },
+      {
+        "badge": "参考实现 · Go",
+        "title": "dal-go/dalgo/dtql",
+        "desc": "Go 语言库：提供解析、验证、求解、格式化以及执行 TugQL 查询的能力，具备无损双向转换保证。",
+        "meta": "go get github.com/dal-go/dalgo/dtql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+      }
+    ]
+  },
+  "datatug": {
+    "eyebrow": "应用于真实产品开发",
+    "title": "使用 DataTug 探索并查询数据。",
+    "kicker": "<a href=\"https://datatug.app\">DataTug</a> 帮助开发者浏览数据库模式、构建并运行查询并深入分析结果。其基于 TugQL 和 TugQT 的查询协议研发正在持续推进。<a href=\"https://datatug.app/en/under-the-hood/tools-we-built/#query\">探索 DataTug 背后的工具。</a>"
+  },
+  "closing": {
+    "title": "保存它。比对它。随处运行它。",
+    "p": "TugQL 让查询成为一等公民的审查产物——人类可读、工具可验证，并且能在多种后端之间无缝移植。",
+    "readSpec": "阅读规范",
+    "getLibrary": "获取 Go 语言库"
+  },
+  "footer": {
+    "copyright": "© 2026 TugQL 贡献者",
+    "spec": "规范文档",
+    "goImpl": "Go 语言实现",
+    "example": "示例",
+    "mapping": "映射",
+    "tag": "开放、便携的查询语言（原名 DTQL）。权威主页：<a href=\"https://tugql.org\">tugql.org</a>"
+  }
+}
