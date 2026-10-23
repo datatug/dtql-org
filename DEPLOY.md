@@ -13,7 +13,7 @@ free static assets and never count against the Workers request quota. It deploys
 ## Files
 
 ```
-dtql-org/
+tugql-org/
 ├── public/            ← static assets served to the browser
 │   ├── index.html     ← canonical landing page with schema.org JSON-LD and canonical tag
 │   ├── styles.css

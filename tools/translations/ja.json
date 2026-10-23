@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — ポータブルで人間が読みやすいクエリ言語",
-    "description": "TugQL（旧称 DTQL）はポータブルで人間が読みやすいクエリ言語です。Git、SQLite、PostgreSQL、Firestore上でクエリがそのまま動作し、直感的なSQL風構文とスキーマ検証済みのロスレスなクエリツリー（TugQT）を備えています。",
-    "ogDescription": "TugQL: 複数バックエンドに対応するポータブルで可読性の高いクエリ言語と構造化クエリツリー（TugQT）。旧称 DTQL。",
+    "description": "TugQLはポータブルで人間が読みやすいクエリ言語です。Git、SQLite、PostgreSQL、Firestore上でクエリがそのまま動作し、直感的なSQL風構文とスキーマ検証済みのロスレスなクエリツリー（TugQT）を備えています。",
+    "ogDescription": "TugQL: 複数バックエンドに対応するポータブルで可読性の高いクエリ言語と構造化クエリツリー（TugQT）。",
     "jsonLdDescription": "データベースおよびデータ抽象化レイヤー向けのポータブルで人間が読みやすいクエリ言語および構造化クエリツリー（TugQT）。"
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "オープン仕様 · 旧称 DTQL",
+    "eyebrow": "オープン仕様",
     "titleLine1": "読める、",
     "titleAccent": "差分が取れる、",
     "titleLine2": "信頼できるクエリ。",
@@ -60,9 +60,9 @@
     "title": "TugQLテキスト構文とTugQTツリー",
     "kicker": "TugQLテキスト構文で記述し、構造化クエリツリーTugQTとして永続化・交換します。",
     "p1": "ユーザーは親しみやすく簡潔な<strong>TugQL</strong>テキスト構文でクエリを記述します。パーサーはそれを機械可読な正規表現である<strong>TugQT（Tug Query Tree）</strong>へと変換します。",
-    "p2": "すべてのノードが構文とツリーの間で決定論的に対応します。不正な入力やスキーマ違反は、ソース上の正確な位置を明示した診断メッセージを返します。",
+    "p2": "すべてのノードが構文とツリーの間で決定論的に対応します。不正な入力やスキーマ違反は、ソース上の正確な位置を明示した診断メッセージを返します。 テキスト形式では <code>--</code> と <code>//</code> が行末コメントになり、YAML 形式では <code>#</code> を使います。",
     "noteTitle": "名称に関する注意:",
-    "noteText": "TugQLは旧称DTQLとして知られていました。既存のDTQLドキュメントやクエリファイルも後方互換性のために継続サポートされます。",
+    "noteText": "TugQLは以前 dtql.org で公開されていました。現在は tugql.org に恒久的にリダイレクトされます。",
     "codeSampleAria": "TugQTクエリツリーの例"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "仕様 · スキーマ",
         "title": "tugql/tugql",
-        "desc": "TugQL仕様書、正規JSON Schema（Draft 2020-12）、および検証済みサンプルドキュメント。旧称 DTQL。",
+        "desc": "TugQL仕様書、正規JSON Schema（Draft 2020-12）、および検証済みサンプルドキュメント。",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "参照実装 · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Go言語ライブラリ: 完全な可逆性を保証しながらTugQLクエリのパース、検証、解決、フォーマット、実行を行います。",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Go実装",
     "example": "例",
     "mapping": "マッピング",
-    "tag": "オープンでポータブルなクエリ言語（旧称 DTQL）。公式ホーム: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "オープンでポータブルなクエリ言語。公式ホーム: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

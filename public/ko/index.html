@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — 이식 가능하고 사람이 읽기 쉬운 쿼리 언어</title>
-  <meta name="description" content="TugQL(구 DTQL)은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 직관적인 SQL 유사 텍스트 구문과 스키마 검증을 거친 무손실 쿼리 트리(TugQT)를 통해 단 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 그대로 실행됩니다." />
+  <meta name="description" content="TugQL은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 직관적인 SQL 유사 텍스트 구문과 스키마 검증을 거친 무손실 쿼리 트리(TugQT)를 통해 단 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 그대로 실행됩니다." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — 이식 가능하고 사람이 읽기 쉬운 쿼리 언어" />
-  <meta property="og:description" content="TugQL: 여러 백엔드에서 작동하는 이식 가능하고 가독성 높은 쿼리 언어 및 구조화된 쿼리 트리(TugQT). 구 DTQL." />
+  <meta property="og:description" content="TugQL: 여러 백엔드에서 작동하는 이식 가능하고 가독성 높은 쿼리 언어 및 구조화된 쿼리 트리(TugQT)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/ko/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "데이터베이스 및 데이터 추상화 계층을 위한 이식 가능하고 사람이 읽기 쉬운 쿼리 언어 및 구조화된 쿼리 트리(TugQT).",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        오픈 사양 · 구 DTQL
+        오픈 사양
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">예제 보기</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>작성자는 읽기 쉽고 간결한 SQL 스타일의 <strong>TugQL</strong> 텍스트 구문으로 쿼리를 작성합니다. 내부적으로 파서는 기계가 읽을 수 있는 표준 표현인 <strong>TugQT(Tug Query Tree)</strong>를 생성합니다.</p>
-        <p>모든 노드는 구문과 트리 간에 결정론적으로 매핑됩니다. 잘못된 입력이나 스키마 위반 시 정확한 소스 위치와 함께 명확한 진단 정보를 반환합니다.</p>
+        <p>모든 노드는 구문과 트리 간에 결정론적으로 매핑됩니다. 잘못된 입력이나 스키마 위반 시 정확한 소스 위치와 함께 명확한 진단 정보를 반환합니다. 텍스트 형식에서는 <code>--</code>와 <code>//</code>가 줄 끝 주석이며, YAML 형식에서는 <code>#</code>을 사용합니다.</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>명칭 변경 안내:</strong> TugQL은 이전에 DTQL로 알려져 있었습니다. 기존 DTQL 문서 및 쿼리 파일도 하위 호환성을 위해 계속 지원됩니다.</span>
+          <span><strong>명칭 변경 안내:</strong> TugQL은 이전에 dtql.org에서 게시되었으며, 현재 dtql.org는 tugql.org로 영구 리디렉션됩니다.</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">사양 · 스키마</span>
         <h3>tugql/tugql</h3>
-        <p>TugQL 사양, 표준 JSON Schema(draft 2020-12) 및 검증된 예제 문서. 구 DTQL.</p>
+        <p>TugQL 사양, 표준 JSON Schema(draft 2020-12) 및 검증된 예제 문서.</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">참조 구현체 · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Go 라이브러리: 무손실 왕복 변환 보장과 함께 TugQL 쿼리를 파싱, 검증, 해석, 포맷 및 실행합니다.</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQL은 쿼리를 사람이 읽을 수 있고, 도구로 검증되며, 모든 백엔드에서 동작하는 일급 아티팩트로 만들어줍니다.</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">사양 읽기</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go 라이브러리 다운로드</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go 라이브러리 다운로드</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">사양서</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go 구현체</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go 구현체</a></li>
       <li><a href="#example">예제</a></li>
       <li><a href="#mapping">매핑</a></li>
     </ul>
-    <span class="AppFooter-tag">오픈 이식형 쿼리 언어(구 DTQL). 공식 홈페이지: <a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">오픈 이식형 쿼리 언어. 공식 홈페이지: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

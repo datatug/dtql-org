@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — 便携、易于人类阅读的查询语言</title>
-  <meta name="description" content="TugQL（原名 DTQL）是一种便携、易于人类阅读的查询语言。同一查询无需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上运行——兼具直观的类 SQL 文本语法与经模式验证的无损查询树（TugQT）。" />
+  <meta name="description" content="TugQL是一种便携、易于人类阅读的查询语言。同一查询无需修改即可在 Git、SQLite、PostgreSQL 和 Firestore 上运行——兼具直观的类 SQL 文本语法与经模式验证的无损查询树（TugQT）。" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/zh-cn/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — 便携、易于人类阅读的查询语言" />
-  <meta property="og:description" content="TugQL：跨后端的便携、易读查询语言与结构化查询树（TugQT）。原名 DTQL。" />
+  <meta property="og:description" content="TugQL：跨后端的便携、易读查询语言与结构化查询树（TugQT）。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/zh-cn/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "适用于数据库和数据抽象层的便携、易于人类阅读的查询语言及结构化查询树（TugQT）。",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        开放规范 · 原名 DTQL
+        开放规范
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">查看示例</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>开发者使用 <strong>TugQL</strong> 文本语法编写查询——清晰、紧凑且类似 SQL。在底层，解析器生成 <strong>TugQT（Tug Query Tree）</strong>，这是一种规范的机器可读表示形式。</p>
-        <p>每个节点在文本语法和树结构之间都有确定性的双向映射。语法错误或模式违规将返回包含精确源码位置的诊断信息。</p>
+        <p>每个节点在文本语法和树结构之间都有确定性的双向映射。语法错误或模式违规将返回包含精确源码位置的诊断信息。 文本形式支持以 <code>--</code> 和 <code>//</code> 开头的行尾注释；YAML 形式使用 <code>#</code>。</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>关于命名的说明：</strong> TugQL 原名 DTQL。现有的 DTQL 文档和查询文件将继续获得向后兼容支持。</span>
+          <span><strong>关于命名的说明：</strong> TugQL 此前发布于 dtql.org，该域名现已永久重定向到 tugql.org。</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">规范 · Schema</span>
         <h3>tugql/tugql</h3>
-        <p>TugQL 规范文档、标准 JSON Schema（draft 2020-12）以及经验证的示例文件。原名 DTQL。</p>
+        <p>TugQL 规范文档、标准 JSON Schema（draft 2020-12）以及经验证的示例文件。</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">参考实现 · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Go 语言库：提供解析、验证、求解、格式化以及执行 TugQL 查询的能力，具备无损双向转换保证。</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQL 让查询成为一等公民的审查产物——人类可读、工具可验证，并且能在多种后端之间无缝移植。</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">阅读规范</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">获取 Go 语言库</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">获取 Go 语言库</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">规范文档</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go 语言实现</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go 语言实现</a></li>
       <li><a href="#example">示例</a></li>
       <li><a href="#mapping">映射</a></li>
     </ul>
-    <span class="AppFooter-tag">开放、便携的查询语言（原名 DTQL）。权威主页：<a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">开放、便携的查询语言。权威主页：<a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

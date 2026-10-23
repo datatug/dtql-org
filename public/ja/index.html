@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TugQL — ポータブルで人間が読みやすいクエリ言語</title>
-  <meta name="description" content="TugQL（旧称 DTQL）はポータブルで人間が読みやすいクエリ言語です。Git、SQLite、PostgreSQL、Firestore上でクエリがそのまま動作し、直感的なSQL風構文とスキーマ検証済みのロスレスなクエリツリー（TugQT）を備えています。" />
+  <meta name="description" content="TugQLはポータブルで人間が読みやすいクエリ言語です。Git、SQLite、PostgreSQL、Firestore上でクエリがそのまま動作し、直感的なSQL風構文とスキーマ検証済みのロスレスなクエリツリー（TugQT）を備えています。" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://tugql.org/ja/" />
   <link rel="alternate" hreflang="en" href="https://tugql.org/" />
@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   <meta property="og:title" content="TugQL — ポータブルで人間が読みやすいクエリ言語" />
-  <meta property="og:description" content="TugQL: 複数バックエンドに対応するポータブルで可読性の高いクエリ言語と構造化クエリツリー（TugQT）。旧称 DTQL。" />
+  <meta property="og:description" content="TugQL: 複数バックエンドに対応するポータブルで可読性の高いクエリ言語と構造化クエリツリー（TugQT）。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tugql.org/ja/" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
@@ -33,7 +33,6 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "TugQL",
-    "alternateName": "DTQL",
     "url": "https://tugql.org",
     "description": "データベースおよびデータ抽象化レイヤー向けのポータブルで人間が読みやすいクエリ言語および構造化クエリツリー（TugQT）。",
     "applicationCategory": "DeveloperApplication",
@@ -117,7 +116,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
-        オープン仕様 · 旧称 DTQL
+        オープン仕様
       </div>
 
       <h1 class="hero-title">
@@ -136,7 +135,7 @@
         </a>
         <a class="btn btn-default" href="#example">例を見る</a>
         <code class="hero-install" tabindex="0">
-          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/tugql
         </code>
       </div>
     </div>
@@ -239,10 +238,10 @@
     <div class="iface-grid">
       <div class="iface-prose">
         <p>ユーザーは親しみやすく簡潔な<strong>TugQL</strong>テキスト構文でクエリを記述します。パーサーはそれを機械可読な正規表現である<strong>TugQT（Tug Query Tree）</strong>へと変換します。</p>
-        <p>すべてのノードが構文とツリーの間で決定論的に対応します。不正な入力やスキーマ違反は、ソース上の正確な位置を明示した診断メッセージを返します。</p>
+        <p>すべてのノードが構文とツリーの間で決定論的に対応します。不正な入力やスキーマ違反は、ソース上の正確な位置を明示した診断メッセージを返します。 テキスト形式では <code>--</code> と <code>//</code> が行末コメントになり、YAML 形式では <code>#</code> を使います。</p>
         <div class="Flash" role="note">
           <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
-          <span><strong>名称に関する注意:</strong> TugQLは旧称DTQLとして知られていました。既存のDTQLドキュメントやクエリファイルも後方互換性のために継続サポートされます。</span>
+          <span><strong>名称に関する注意:</strong> TugQLは以前 dtql.org で公開されていました。現在は tugql.org に恒久的にリダイレクトされます。</span>
         </div>
       </div>
 
@@ -385,14 +384,14 @@
       <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
         <span class="adapter-kind">仕様 · スキーマ</span>
         <h3>tugql/tugql</h3>
-        <p>TugQL仕様書、正規JSON Schema（Draft 2020-12）、および検証済みサンプルドキュメント。旧称 DTQL。</p>
+        <p>TugQL仕様書、正規JSON Schema（Draft 2020-12）、および検証済みサンプルドキュメント。</p>
         <span class="adapter-meta">github.com/tugql/tugql</span>
       </a></li>
-      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">
         <span class="adapter-kind">参照実装 · Go</span>
-        <h3>dal-go/dalgo/dtql</h3>
+        <h3>dal-go/dalgo/tugql</h3>
         <p>Go言語ライブラリ: 完全な可逆性を保証しながらTugQLクエリのパース、検証、解決、フォーマット、実行を行います。</p>
-        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/tugql</span>
       </a></li>
     </ul>
   </div>
@@ -415,7 +414,7 @@
     <p>TugQLはクエリをファーストクラスのレビュー可能な成果物へと進化させます — 人間が読め、ツールで検証され、あらゆるバックエンドで動作します。</p>
     <div class="closing-cta">
       <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">仕様を読む</a>
-      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Goライブラリを入手</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Goライブラリを入手</a>
     </div>
   </div>
 </section>
@@ -450,11 +449,11 @@
     <ul role="list">
       <li>&copy; <span id="year">2026</span> TugQL contributors</li>
       <li><a href="https://github.com/tugql/tugql" rel="noopener">仕様書</a></li>
-      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Go実装</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/tugql" rel="noopener">Go実装</a></li>
       <li><a href="#example">例</a></li>
       <li><a href="#mapping">マッピング</a></li>
     </ul>
-    <span class="AppFooter-tag">オープンでポータブルなクエリ言語（旧称 DTQL）。公式ホーム: <a href="https://tugql.org">tugql.org</a></span>
+    <span class="AppFooter-tag">オープンでポータブルなクエリ言語。公式ホーム: <a href="https://tugql.org">tugql.org</a></span>
   </div>
 </footer>
 

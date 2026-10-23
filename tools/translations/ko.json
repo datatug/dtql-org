@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — 이식 가능하고 사람이 읽기 쉬운 쿼리 언어",
-    "description": "TugQL(구 DTQL)은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 직관적인 SQL 유사 텍스트 구문과 스키마 검증을 거친 무손실 쿼리 트리(TugQT)를 통해 단 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 그대로 실행됩니다.",
-    "ogDescription": "TugQL: 여러 백엔드에서 작동하는 이식 가능하고 가독성 높은 쿼리 언어 및 구조화된 쿼리 트리(TugQT). 구 DTQL.",
+    "description": "TugQL은 이식 가능하고 사람이 읽기 쉬운 쿼리 언어입니다. 직관적인 SQL 유사 텍스트 구문과 스키마 검증을 거친 무손실 쿼리 트리(TugQT)를 통해 단 하나의 쿼리가 Git, SQLite, PostgreSQL, Firestore에서 그대로 실행됩니다.",
+    "ogDescription": "TugQL: 여러 백엔드에서 작동하는 이식 가능하고 가독성 높은 쿼리 언어 및 구조화된 쿼리 트리(TugQT).",
     "jsonLdDescription": "데이터베이스 및 데이터 추상화 계층을 위한 이식 가능하고 사람이 읽기 쉬운 쿼리 언어 및 구조화된 쿼리 트리(TugQT)."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "오픈 사양 · 구 DTQL",
+    "eyebrow": "오픈 사양",
     "titleLine1": "직접 읽고,",
     "titleAccent": "비교하고,",
     "titleLine2": " 신뢰할 수 있는 쿼리.",
@@ -60,9 +60,9 @@
     "title": "TugQL 텍스트 및 TugQT 쿼리 트리",
     "kicker": "TugQL 텍스트 구문으로 작성하고, 구조화된 TugQT 쿼리 트리로 저장하거나 교환하세요.",
     "p1": "작성자는 읽기 쉽고 간결한 SQL 스타일의 <strong>TugQL</strong> 텍스트 구문으로 쿼리를 작성합니다. 내부적으로 파서는 기계가 읽을 수 있는 표준 표현인 <strong>TugQT(Tug Query Tree)</strong>를 생성합니다.",
-    "p2": "모든 노드는 구문과 트리 간에 결정론적으로 매핑됩니다. 잘못된 입력이나 스키마 위반 시 정확한 소스 위치와 함께 명확한 진단 정보를 반환합니다.",
+    "p2": "모든 노드는 구문과 트리 간에 결정론적으로 매핑됩니다. 잘못된 입력이나 스키마 위반 시 정확한 소스 위치와 함께 명확한 진단 정보를 반환합니다. 텍스트 형식에서는 <code>--</code>와 <code>//</code>가 줄 끝 주석이며, YAML 형식에서는 <code>#</code>을 사용합니다.",
     "noteTitle": "명칭 변경 안내:",
-    "noteText": "TugQL은 이전에 DTQL로 알려져 있었습니다. 기존 DTQL 문서 및 쿼리 파일도 하위 호환성을 위해 계속 지원됩니다.",
+    "noteText": "TugQL은 이전에 dtql.org에서 게시되었으며, 현재 dtql.org는 tugql.org로 영구 리디렉션됩니다.",
     "codeSampleAria": "TugQT 쿼리 트리 예제"
   },
   "mapping": {
@@ -149,16 +149,16 @@
       {
         "badge": "사양 · 스키마",
         "title": "tugql/tugql",
-        "desc": "TugQL 사양, 표준 JSON Schema(draft 2020-12) 및 검증된 예제 문서. 구 DTQL.",
+        "desc": "TugQL 사양, 표준 JSON Schema(draft 2020-12) 및 검증된 예제 문서.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "참조 구현체 · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Go 라이브러리: 무손실 왕복 변환 보장과 함께 TugQL 쿼리를 파싱, 검증, 해석, 포맷 및 실행합니다.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -179,6 +179,6 @@
     "goImpl": "Go 구현체",
     "example": "예제",
     "mapping": "매핑",
-    "tag": "오픈 이식형 쿼리 언어(구 DTQL). 공식 홈페이지: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "오픈 이식형 쿼리 언어. 공식 홈페이지: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

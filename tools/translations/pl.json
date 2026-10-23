@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — przenośny, czytelny dla człowieka język zapytań",
-    "description": "TugQL (wcześniej DTQL) to przenośny, czytelny dla ludzi język zapytań. Jedno zapytanie działa bez zmian w Git, SQLite, PostgreSQL i Firestore — oferując intuicyjną składnię zbliżoną do SQL oraz bezstratne drzewo zapytań walidowane schematem (TugQT).",
-    "ogDescription": "TugQL: przenośny, czytelny język zapytań i ustrukturyzowane drzewo zapytań (TugQT) działające na wielu backendach. Dawniej DTQL.",
+    "description": "TugQL to przenośny, czytelny dla ludzi język zapytań. Jedno zapytanie działa bez zmian w Git, SQLite, PostgreSQL i Firestore — oferując intuicyjną składnię zbliżoną do SQL oraz bezstratne drzewo zapytań walidowane schematem (TugQT).",
+    "ogDescription": "TugQL: przenośny, czytelny język zapytań i ustrukturyzowane drzewo zapytań (TugQT) działające na wielu backendach.",
     "jsonLdDescription": "Przenośny, czytelny dla ludzi język zapytań oraz ustrukturyzowane drzewo zapytań (TugQT) dla baz danych i warstw abstrakcji."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Otwarta specyfikacja · wcześniej DTQL",
+    "eyebrow": "Otwarta specyfikacja",
     "titleLine1": "Zapytania, które możesz",
     "titleAccent": "czytać, porównywać",
     "titleLine2": " i którym możesz ufać.",
@@ -60,9 +60,9 @@
     "title": "Zapytanie w postaci TugQL i TugQT",
     "kicker": "Pisz w składni tekstowej TugQL; przechowuj lub przesyłaj jako ustrukturyzowane drzewo zapytań TugQT.",
     "p1": "Autorzy piszą zapytania w składni tekstowej <strong>TugQL</strong> — czytelnej, zwięzłej i zbliżonej do SQL. Pod spodem parser generuje <strong>TugQT (Tug Query Tree)</strong> — kanoniczną, czytelną maszynowo reprezentację.",
-    "p2": "Każdy węzeł mapuje się deterministycznie między składnią a drzewem. Błędy składni lub naruszenia schematu zwracają precyzyjne komunikaty diagnostyczne ze wskazaniem miejsca w kodzie.",
+    "p2": "Każdy węzeł mapuje się deterministycznie między składnią a drzewem. Błędy składni lub naruszenia schematu zwracają precyzyjne komunikaty diagnostyczne ze wskazaniem miejsca w kodzie. W formie tekstowej komentarze do końca wiersza zaczynają się od <code>--</code> lub <code>//</code>; w formie YAML używa się <code>#</code>.",
     "noteTitle": "Uwaga dotycząca nazwy:",
-    "noteText": "TugQL był wcześniej znany jako DTQL. Istniejące dokumenty i pliki zapytań DTQL są nadal w pełni obsługiwane dla zachowania wstecznej kompatybilności.",
+    "noteText": "TugQL był wcześniej publikowany pod adresem dtql.org, który teraz trwale przekierowuje na tugql.org.",
     "codeSampleAria": "Przykładowe drzewo zapytań TugQT"
   },
   "mapping": {
@@ -116,16 +116,16 @@
       {
         "badge": "specyfikacja · schemat",
         "title": "tugql/tugql",
-        "desc": "Specyfikacja TugQL, kanoniczny JSON Schema (draft 2020-12) oraz zweryfikowane przykładowe dokumenty. Dawniej DTQL.",
+        "desc": "Specyfikacja TugQL, kanoniczny JSON Schema (draft 2020-12) oraz zweryfikowane przykładowe dokumenty.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "implementacja referencyjna · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "Biblioteka w Go: parsowanie, walidacja, rozwiązywanie, formatowanie i wykonywanie zapytań TugQL z gwarancją bezstratności.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -146,6 +146,6 @@
     "goImpl": "Implementacja w Go",
     "example": "Przykład",
     "mapping": "Mapowanie",
-    "tag": "Otwarty, przenośny język zapytań (dawniej DTQL). Oficjalna strona: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "Otwarty, przenośny język zapytań. Oficjalna strona: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }

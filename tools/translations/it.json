@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "TugQL — un linguaggio di query portabile e leggibile dall'uomo",
-    "description": "TugQL (precedentemente DTQL) è un linguaggio di query portabile e leggibile dall'uomo. Una query viene eseguita invariata su Git, SQLite, PostgreSQL e Firestore — con una sintassi intuitiva simile a SQL e un albero di query lossless validato da schema (TugQT).",
-    "ogDescription": "TugQL: linguaggio di query portabile e albero di query strutturato (TugQT) compatibile con molteplici backend. In precedenza noto come DTQL.",
+    "description": "TugQL è un linguaggio di query portabile e leggibile dall'uomo. Una query viene eseguita invariata su Git, SQLite, PostgreSQL e Firestore — con una sintassi intuitiva simile a SQL e un albero di query lossless validato da schema (TugQT).",
+    "ogDescription": "TugQL: linguaggio di query portabile e albero di query strutturato (TugQT) compatibile con molteplici backend.",
     "jsonLdDescription": "Un linguaggio di query portabile e albero di query strutturato (TugQT) per database e livelli di astrazione dati."
   },
   "nav": {
@@ -15,7 +15,7 @@
     "star": "Star"
   },
   "hero": {
-    "eyebrow": "Specifica aperta · precedentemente DTQL",
+    "eyebrow": "Specifica aperta",
     "titleLine1": "Query facili da",
     "titleAccent": "leggere, confrontare",
     "titleLine2": " e affidabili.",
@@ -60,9 +60,9 @@
     "title": "Una query in formato TugQL &amp; TugQT",
     "kicker": "Scrivi con la sintassi di testo TugQL; conserva o scambia sotto forma di albero strutturato TugQT.",
     "p1": "Gli sviluppatori compongono le query nella sintassi di testo <strong>TugQL</strong> — leggibile, compatta e simile a SQL. Sotto il cofano, il parser genera <strong>TugQT (Tug Query Tree)</strong>, una rappresentazione canonica leggibile dalla macchina.",
-    "p2": "Ogni nodo si mappa in modo deterministico tra sintassi e albero. Errori di sintassi o violazioni di schema restituiscono diagnostiche dettagliate con l'indicazione precisa del testo sorgente.",
+    "p2": "Ogni nodo si mappa in modo deterministico tra sintassi e albero. Errori di sintassi o violazioni di schema restituiscono diagnostiche dettagliate con l'indicazione precisa del testo sorgente. Le query in forma testuale accettano commenti a fine riga con <code>--</code> e <code>//</code>; la forma YAML usa <code>#</code>.",
     "noteTitle": "Nota sul nome:",
-    "noteText": "TugQL era precedentemente noto come DTQL. I documenti e i file di query DTQL esistenti restano supportati per retrocompatibilità.",
+    "noteText": "TugQL era pubblicato in precedenza su dtql.org, che ora reindirizza in modo permanente a tugql.org.",
     "codeSampleAria": "Esempio di albero di query TugQT"
   },
   "mapping": {
@@ -116,16 +116,16 @@
       {
         "badge": "specifica · schema",
         "title": "tugql/tugql",
-        "desc": "La specifica TugQL, il JSON Schema canonico (draft 2020-12) e documenti di esempio validati. Precedentemente DTQL.",
+        "desc": "La specifica TugQL, il JSON Schema canonico (draft 2020-12) e documenti di esempio validati.",
         "meta": "github.com/tugql/tugql",
         "url": "https://github.com/tugql/tugql"
       },
       {
         "badge": "implementazione di riferimento · Go",
-        "title": "dal-go/dalgo/dtql",
+        "title": "dal-go/dalgo/tugql",
         "desc": "La libreria Go: parsing, validazione, risoluzione, formattazione ed esecuzione di query TugQL con garanzie lossless.",
-        "meta": "go get github.com/dal-go/dalgo/dtql",
-        "url": "https://github.com/dal-go/dalgo/tree/main/dtql"
+        "meta": "go get github.com/dal-go/dalgo/tugql",
+        "url": "https://github.com/dal-go/dalgo/tree/main/tugql"
       }
     ]
   },
@@ -146,6 +146,6 @@
     "goImpl": "Implementazione Go",
     "example": "Esempio",
     "mapping": "Mappatura",
-    "tag": "Un linguaggio di query aperto e portabile (precedentemente DTQL). Sito ufficiale: <a href=\"https://tugql.org\">tugql.org</a>"
+    "tag": "Un linguaggio di query aperto e portabile. Sito ufficiale: <a href=\"https://tugql.org\">tugql.org</a>"
   }
 }
