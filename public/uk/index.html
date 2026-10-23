@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TugQL — портативна, людиночитана мова запитів</title>
+  <meta name="description" content="TugQL (раніше DTQL) — портативна, людиночитана мова запитів. Один і той самий запит виконується без змін у Git, SQLite, PostgreSQL та Firestore — з інтуїтивним SQL-подібним синтаксисом і деревом запитів без втрат (TugQT)." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://tugql.org/uk/" />
+  <link rel="alternate" hreflang="en" href="https://tugql.org/" />
+  <link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+  <link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+  <link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+  <link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+  <link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+  <link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+  <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+  <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  <meta property="og:title" content="TugQL — портативна, людиночитана мова запитів" />
+  <meta property="og:description" content="TugQL: портативна людиночитана мова запитів та структуроване дерево запитів (TugQT) для різних баз даних. Раніше DTQL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tugql.org/uk/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TugQL",
+    "alternateName": "DTQL",
+    "url": "https://tugql.org",
+    "description": "Портативна, зрозуміла людині мова запитів та структуроване дерево запитів (TugQT) для баз даних і шарів абстракції.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform"
+  }
+  </script>
+</head>
+<body>
+
+<!-- ============================ APP HEADER ============================ -->
+<header class="AppHeader" role="banner">
+  <div class="AppHeader-inner">
+    <a class="AppHeader-brand" href="#top" aria-label="TugQL home">
+      <span class="AppHeader-brand-mark" aria-hidden="true">{}</span>
+      <span class="AppHeader-brand-word">TugQL</span>
+    </a>
+
+    <nav class="AppHeader-context" aria-label="Context">
+      <span class="AppHeader-context-slash" aria-hidden="true">/</span>
+      <a class="AppHeader-context-item" href="https://github.com/tugql/tugql" rel="noopener">
+        tugql/tugql
+      </a>
+    </nav>
+
+    <nav class="AppHeader-nav" aria-label="Primary">
+      <a href="#why">Чому TugQL</a>
+      <a href="#example">Приклад</a>
+      <a href="#mapping">Відповідність</a>
+      <a href="#scope">Можливості</a>
+      <a href="#stack">Стек</a>
+      <a href="#implementations">Реалізації</a>
+    </nav>
+
+    <div class="AppHeader-actions">
+      <a class="btn btn-default btn-sm" href="https://github.com/tugql/tugql" rel="noopener">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+        <span>Star</span>
+      </a>
+
+      <!-- Language dropdown -->
+      <div class="lang-switcher">
+        <button
+          type="button"
+          class="lang-switcher__trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          lang="uk"
+        >
+          <span>Українська</span>
+          <svg class="lang-switcher__caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="lang-switcher__menu" role="menu" aria-label="Language">
+        <li role="none"><a href="/" hreflang="en" lang="en" role="menuitem" class="lang-switcher__item">English</a></li>
+        <li role="none"><a href="/es/" hreflang="es" lang="es" role="menuitem" class="lang-switcher__item">Español</a></li>
+        <li role="none"><a href="/de/" hreflang="de" lang="de" role="menuitem" class="lang-switcher__item">Deutsch</a></li>
+        <li role="none"><a href="/fr/" hreflang="fr" lang="fr" role="menuitem" class="lang-switcher__item">Français</a></li>
+        <li role="none"><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" role="menuitem" class="lang-switcher__item">Português (BR)</a></li>
+        <li role="none"><a href="/ru/" hreflang="ru" lang="ru" role="menuitem" class="lang-switcher__item">Русский</a></li>
+        <li role="none"><a href="/uk/" hreflang="uk" lang="uk" role="menuitem" class="lang-switcher__item is-active" aria-current="page">Українська</a></li>
+        <li role="none"><a href="/ja/" hreflang="ja" lang="ja" role="menuitem" class="lang-switcher__item">日本語</a></li>
+        <li role="none"><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" role="menuitem" class="lang-switcher__item">中文</a></li>
+        <li role="none"><a href="/ko/" hreflang="ko" lang="ko" role="menuitem" class="lang-switcher__item">한국어</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
+        Відкрита специфікація · раніше DTQL
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-line">Запити, які можна</span>
+        <span class="hero-line"><span class="hero-accent">читати, порівнювати</span> і довіряти.</span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>TugQL</strong> — портативна, людиночитана мова запитів. Вона поєднує чистий SQL-подібний синтаксис із <strong>еквівалентним представленням 1:1 без втрат</strong> у вигляді структурованого дерева запитів (<strong>TugQT</strong>), серіалізованого у звичайний YAML/JSON. Зберігайте запит, редагуйте вручну, переглядайте diff у системі контролю версій та виконуйте на різних бекендах без втрат.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">
+          <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75V1.75Z"/></svg>
+          Читати специфікацію
+        </a>
+        <a class="btn btn-default" href="#example">Переглянути приклад</a>
+        <code class="hero-install" tabindex="0">
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+        </code>
+      </div>
+    </div>
+
+    <!-- Hero code sample -->
+    <div class="codeblock" role="figure" aria-label="Документ запиту TugQL">
+      <div class="codeblock-head">
+        <span class="codeblock-dot" style="background:#ff5f57"></span>
+        <span class="codeblock-dot" style="background:#febc2e"></span>
+        <span class="codeblock-dot" style="background:#28c840"></span>
+        <span class="codeblock-name">query.tugql</span>
+        <span class="codeblock-lang">TugQL</span>
+      </div>
+<pre><code><span class="pl-k">from</span> users <span class="pl-k">as</span> u
+<span class="pl-k">select</span>
+  u.name,
+  u.age <span class="pl-k">as</span> years
+<span class="pl-k">where</span>
+  u.age &gt;= <span class="pl-c1">18</span>
+  <span class="pl-k">and</span> (u.status <span class="pl-k">in</span> (<span class="pl-s">'active'</span>, <span class="pl-s">'pending'</span>) <span class="pl-k">or</span> u.country == <span class="pl-s">'US'</span>)
+<span class="pl-k">order by</span>
+  u.name,
+  u.age <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">10</span>
+<span class="pl-k">offset</span> <span class="pl-c1">20</span></code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section id="why" class="section">
+  <div class="container">
+    <header class="section-head">
+      <span class="section-eyebrow">01 — Чому TugQL</span>
+      <h2 class="section-title">Запит — це дані. Працюйте з ним як з даними.</h2>
+      <p class="section-kicker">TugQL перетворює запит на зрозумілий документ із підтримкою diff, який можна зберігати, рецензувати та версіонувати — портативний на будь-якому бекенді.</p>
+    </header>
+
+    <div class="why-grid">
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z"/></svg>
+        </div>
+        <h3>Зрозумілий людині</h3>
+        <p>Інтуїтивний SQL-подібний синтаксис для людей плюс просте дерево запиту YAML/JSON (TugQT) для інструментів — кожен може перевірити та відредагувати.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M1.643 3.143 .427 1.927A.25.25 0 0 0 0 2.104V5.75a.25.25 0 0 0 .25.25h3.646a.25.25 0 0 0 .177-.427L2.715 4.215a6.5 6.5 0 1 1-1.18 4.458.75.75 0 1 0-1.493.154 8.001 8.001 0 1 0 1.6-5.684Z"/></svg>
+        </div>
+        <h3>Перетворення без втрат</h3>
+        <p>Канонічна нормалізація відтворює запити, структурно ідентичні вихідним. Жодна деталь не втрачається і не спотворюється непомітно.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8.533.133a1.75 1.75 0 0 0-1.066 0l-5.25 1.68A1.75 1.75 0 0 0 1 3.48V7c0 1.566.32 3.182 1.303 4.682.983 1.498 2.585 2.813 5.032 3.855a1.7 1.7 0 0 0 1.33 0c2.447-1.042 4.049-2.357 5.032-3.855C14.68 10.182 15 8.566 15 7V3.48a1.75 1.75 0 0 0-1.217-1.667ZM7.92 1.563a.25.25 0 0 1 .16 0l5.25 1.68a.25.25 0 0 1 .17.237V7c0 1.36-.275 2.666-1.057 3.86-.784 1.194-2.121 2.34-4.366 3.297a.2.2 0 0 1-.154 0c-2.245-.957-3.582-2.103-4.366-3.297C2.775 9.666 2.5 8.36 2.5 7V3.48a.25.25 0 0 1 .17-.237Z"/></svg>
+        </div>
+        <h3>Валідований за схемою</h3>
+        <p>Опубліковано з повною валідацією через JSON Schema (draft 2020-12). Будь-який інструмент будь-якою мовою може перевірити структуру запиту.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 3.254V3.25v.005a.75.75 0 1 1 0-.005v.004Zm.45 1.9a2.25 2.25 0 1 0-1.95.218v5.256a2.25 2.25 0 1 0 1.5 0V7.123A5.735 5.735 0 0 0 9.25 9h1.378a2.251 2.251 0 1 0 0-1.5H9.25a4.25 4.25 0 0 1-3.8-2.346ZM12.75 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-8.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"/></svg>
+        </div>
+        <h3>Зручний для diff у Git</h3>
+        <p>Канонічне форматування та детермінована серіалізація. Збережені запити дають чистий diff у Git і перевіряються як звичайний код.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"/></svg>
+        </div>
+        <h3>Портативний за задумом</h3>
+        <p>TugQL надає функціональність, універсальну між різними сховищами: запит без змін працює у Git, SQLite, PostgreSQL або Firestore.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></svg>
+        </div>
+        <h3>Не повний SQL</h3>
+        <p>Свідомо сфокусована, чітко окреслена портативна підмножина. Непереносні конструкції відхиляються явно, а не транслюються з ризиками.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXAMPLE ============================ -->
+<section class="section section-subtle" id="example">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">02 — Приклад</span>
+      <h2 class="section-title">Запит у вигляді TugQL та TugQT</h2>
+      <p class="section-kicker">Створюйте у текстовому синтаксисі TugQL; зберігайте чи передавайте як структуроване дерево TugQT.</p>
+    </div>
+    <div class="iface-grid">
+      <div class="iface-prose">
+        <p>Розробники пишуть запити в текстовому синтаксисі <strong>TugQL</strong> — наочному, компактному та схожому на SQL. Усередині парсер створює <strong>TugQT (Tug Query Tree)</strong> — канонічне машиночитане представлення.</p>
+        <p>Кожен вузол детерміновано співвідноситься між синтаксисом і деревом. Помилки введення або порушення схеми повертають точну діагностику з вказівкою місця в тексті.</p>
+        <div class="Flash" role="note">
+          <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
+          <span><strong>Щодо назви:</strong> Раніше TugQL мав назву DTQL. Наявні документи та файли запитів DTQL продовжують підтримуватися для зворотної сумісності.</span>
+        </div>
+      </div>
+
+      <div class="codeblock" role="figure" aria-label="Приклад дерева запитів TugQT">
+        <div class="codeblock-head">
+          <span class="codeblock-dot" style="background:#ff5f57"></span>
+          <span class="codeblock-dot" style="background:#febc2e"></span>
+          <span class="codeblock-dot" style="background:#28c840"></span>
+          <span class="codeblock-name">users.tugqt.yaml</span>
+          <span class="codeblock-lang">YAML</span>
+        </div>
+<pre><code><span class="pl-en">from</span>:
+  <span class="pl-en">name</span>: users
+<span class="pl-en">columns</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">as</span>: years
+<span class="pl-en">where</span>:
+  <span class="pl-en">and</span>:
+    - <span class="pl-en">op</span>: <span class="pl-s">'&gt;='</span>
+      <span class="pl-en">left</span>:
+        <span class="pl-en">field</span>: age
+      <span class="pl-en">right</span>:
+        <span class="pl-en">value</span>: <span class="pl-c1">18</span>
+    - <span class="pl-en">or</span>:
+        - <span class="pl-en">op</span>: In
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: status
+          <span class="pl-en">right</span>:
+            <span class="pl-en">values</span>:
+              - active
+              - pending
+        - <span class="pl-en">op</span>: ==
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: country
+          <span class="pl-en">right</span>:
+            <span class="pl-en">value</span>: US
+<span class="pl-en">orderBy</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">desc</span>: <span class="pl-c1">true</span>
+<span class="pl-en">limit</span>: <span class="pl-c1">10</span>
+<span class="pl-en">offset</span>: <span class="pl-c1">20</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MAPPING ============================ -->
+<section class="section" id="mapping">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">03 — вузол → TugQT</span>
+      <h2 class="section-title">Відповідність</h2>
+      <p class="section-kicker">Кожен підтримуваний вузол запиту має чітко визначене структуроване представлення.</p>
+    </div>
+    <div class="tugql-table-wrap Box">
+      <table class="tugql-table">
+        <thead><tr><th>Вузол запиту</th><th>Представлення в TugQT</th></tr></thead>
+        <tbody>
+          <tr><td>From по кореневій колекції</td><td><code>from: { name, alias? }</code></td></tr>
+          <tr><td>Колонка</td><td>елемент у <code>columns:</code> — вираз із необов’язковим <code>as:</code></td></tr>
+          <tr><td>Порівняння</td><td><code>{ op, left, right }</code></td></tr>
+          <tr><td>Групова умова (And)</td><td><code>{ and: [ … ] }</code></td></tr>
+          <tr><td>Групова умова (Or)</td><td><code>{ or: [ … ] }</code></td></tr>
+          <tr><td>Вираз сортування</td><td>елемент у <code>orderBy:</code> — вираз із необов’язковим <code>desc: true</code></td></tr>
+          <tr><td>Посилання на поле</td><td><code>{ field: &lt;name&gt; }</code></td></tr>
+          <tr><td>Константа</td><td><code>{ value: &lt;скаляр&gt; }</code></td></tr>
+          <tr><td>Масив</td><td><code>{ values: [ &lt;скаляр&gt;, … ] }</code></td></tr>
+          <tr><td>Оператор</td><td><code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
+          <tr><td>Limit / Offset</td><td><code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px;color:var(--fg-muted)">Вираз встановлює <strong>рівно одне</strong> з полів: <code>field</code>, <code>value</code> або <code>values</code>, що розрізняє посилання на поле, константу або масив.</p>
+  </div>
+</section>
+
+<!-- ============================ SCOPE ============================ -->
+<section class="section section-subtle" id="scope">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">04 — підтримувана підмножина</span>
+      <h2 class="section-title">Що охоплює TugQL</h2>
+      <p class="section-kicker">Колекції та об’єднання, вибір колонок, фільтрація, сортування та пагінація. Усе за межами відхиляється — і ніколи не ігнорується мовчки.</p>
+    </div>
+    <div class="why-grid">
+      <div class="Box why-card">
+        <h3>Підтримується</h3>
+        <p>Джерела колекцій · вибрані колонки · порівняння та дерева And/Or · сортування · limit / offset · joins · параметри. Вирази: поле, константа, масив. Оператори: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Поза межами (помилка)</h3>
+        <p>Необмежені декартові добутки · діалектний синтаксис окремих СКБД · нетипізовані оператори модифікації поза схемою. Серіалізація завершується помилкою, щоб не втратити семантику запиту.</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Без втрат і канонічно</h3>
+        <p><code>resolve(parse(text))</code> генерує детерміновані дерева; серіалізація канонічна, тому збережені запити дають чистий diff при порівнянні версій.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STACK ============================ -->
+<section class="section" id="stack">
+  <div class="container">
+    <div class="iface-grid">
+      <div class="section-head" style="margin:0">
+        <span class="section-eyebrow">05 — де виконується</span>
+        <h2 class="section-title">Один запит, багато бекендів</h2>
+        <p class="section-kicker">TugQL — це портативний інтерфейс запитів. Він спирається на шар абстракції даних (DALgo), що адаптує його до будь-якого сховища.</p>
+        <p style="margin-top:16px;color:var(--fg-muted)">Оскільки TugQL визначає портативну підмножину, одного разу написаний запит поводиться однаково як над Git-репозиторієм (inGitDB), так і в SQLite, PostgreSQL або Firestore.</p>
+      </div>
+
+      <div class="flow" aria-label="TugQL проєктується через шар абстракції даних на декілька цільових сховищ">
+        <div class="flow-node flow-node-accent"><strong>TugQL</strong><span>портативна мова запитів</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-node"><strong>DALgo</strong><span>шар абстракції даних</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-backends">
+          <span>inGitDB</span>
+          <span>SQLite</span>
+          <span>PostgreSQL</span>
+          <span>Firestore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IMPLEMENTATIONS ============================ -->
+<section class="section section-subtle" id="implementations">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">06 — початок роботи</span>
+      <h2 class="section-title">Специфікація та реалізації</h2>
+      <p class="section-kicker">Мова є відкритою специфікацією з опублікованою схемою та реалізаціями мовами Go і TypeScript.</p>
+    </div>
+    <ul class="adapter-grid" role="list">
+      <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
+        <span class="adapter-kind">специфікація · схема</span>
+        <h3>tugql/tugql</h3>
+        <p>Специфікація TugQL, канонічна JSON Schema (draft 2020-12) та перевірені приклади документів. Раніше DTQL.</p>
+        <span class="adapter-meta">github.com/tugql/tugql</span>
+      </a></li>
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+        <span class="adapter-kind">еталонна реалізація · Go</span>
+        <h3>dal-go/dalgo/dtql</h3>
+        <p>Бібліотека для Go: парсинг, валідація, резолвінг, форматування та виконання запитів TugQL з гарантією оборотності без втрат.</p>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CLOSING ============================ -->
+<section class="section section-subtle" id="datatug-development">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Використовується у розробці продуктів</span>
+      <h2 class="section-title">Досліджуйте та запитуйте дані разом із DataTug.</h2>
+      <p class="section-kicker"><a href="https://datatug.app">DataTug</a> допомагає розробникам досліджувати схеми баз даних, створювати та виконувати запити й розуміти результати. Робота над контрактами запитів TugQL та TugQT активно триває. <a href="https://datatug.app/en/under-the-hood/tools-we-built/#query">Дізнайтеся більше про інструменти DataTug.</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section closing">
+  <div class="container closing-inner">
+    <h2>Зберігайте. Порівнюйте. Виконуйте будь-де.</h2>
+    <p>TugQL робить запит повноцінним артефактом — зрозумілим для людей, валідованим інструментами та портативним для будь-яких баз даних.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Читати специфікацію</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Отримати бібліотеку для Go</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ LANGUAGE SWITCHER PANEL ============================ -->
+<nav class="footer-langs" aria-label="Language">
+  <div class="footer-langs__inner">
+    <ul class="footer-langs__list">
+        <li><a href="/" hreflang="en" lang="en" class="footer-langs__tab">English</a></li>
+        <li><a href="/es/" hreflang="es" lang="es" class="footer-langs__tab">Español</a></li>
+        <li><a href="/de/" hreflang="de" lang="de" class="footer-langs__tab">Deutsch</a></li>
+        <li><a href="/fr/" hreflang="fr" lang="fr" class="footer-langs__tab">Français</a></li>
+        <li><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" class="footer-langs__tab">Português (BR)</a></li>
+        <li><a href="/ru/" hreflang="ru" lang="ru" class="footer-langs__tab">Русский</a></li>
+        <li><a href="/uk/" hreflang="uk" lang="uk" class="footer-langs__tab is-active" aria-current="page">Українська</a></li>
+        <li><a href="/ja/" hreflang="ja" lang="ja" class="footer-langs__tab">日本語</a></li>
+        <li><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" class="footer-langs__tab">中文</a></li>
+        <li><a href="/ko/" hreflang="ko" lang="ko" class="footer-langs__tab">한국어</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="AppFooter">
+  <div class="container AppFooter-inner">
+    <ul role="list">
+      <li>&copy; <span id="year">2026</span> TugQL contributors</li>
+      <li><a href="https://github.com/tugql/tugql" rel="noopener">Специфікація</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Реалізація на Go</a></li>
+      <li><a href="#example">Приклад</a></li>
+      <li><a href="#mapping">Відповідність</a></li>
+    </ul>
+    <span class="AppFooter-tag">Відкрита портативна мова запитів (раніше DTQL). Офіційний сайт: <a href="https://tugql.org">tugql.org</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Accessibility and behavior for the header language dropdown
+  document.querySelectorAll('.lang-switcher').forEach((switcher) => {
+    const trigger = switcher.querySelector('.lang-switcher__trigger');
+    if (!trigger) return;
+    const sync = (open) => trigger.setAttribute('aria-expanded', String(open));
+    switcher.addEventListener('mouseenter', () => sync(true));
+    switcher.addEventListener('mouseleave', () => {
+      if (!switcher.contains(document.activeElement)) sync(false);
+    });
+    switcher.addEventListener('focusin', () => sync(true));
+    switcher.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget;
+      if (!next || !switcher.contains(next)) sync(false);
+    });
+    switcher.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sync(false);
+        trigger.focus();
+        setTimeout(() => trigger.blur(), 0);
+      }
+    });
+  });
+</script>
+</body>
+</html>
