@@ -8,6 +8,7 @@ on:
       - 'wrangler.jsonc'
       - 'public/**'
       - 'test/**'
+      - 'tools/**'
       - 'package.json'
   pull_request:
     paths:
@@ -15,6 +16,7 @@ on:
       - 'wrangler.jsonc'
       - 'public/**'
       - 'test/**'
+      - 'tools/**'
       - 'package.json'
   workflow_dispatch:
 
@@ -40,6 +42,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '24.20.0'
+      - name: Build site assets
+        run: npm run build
       - name: Test assets-only site config
         run: npm test
       - name: Validate assets-only deployment without publishing

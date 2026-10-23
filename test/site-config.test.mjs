@@ -32,4 +32,41 @@ describe('tugql.org is served as static assets only', () => {
       assert.ok(existsSync(resolve(root, 'public', f)), `missing public/${f}`);
     }
   });
+
+  it('ships all 10 localized landing pages with metadata and language switchers', async () => {
+    const { langs, localeHref, canonicalUrl } = await import('../tools/languages.mjs');
+    assert.equal(langs.length, 10);
+
+    const sitemap = readFileSync(resolve(root, 'public/sitemap.xml'), 'utf8');
+
+    for (const lang of langs) {
+      const pageRelPath = lang.code === 'en' ? 'public/index.html' : `public/${lang.code}/index.html`;
+      const fullPath = resolve(root, pageRelPath);
+      assert.ok(existsSync(fullPath), `missing ${pageRelPath}`);
+
+      const html = readFileSync(fullPath, 'utf8');
+
+      // html lang and canonical
+      assert.match(html, new RegExp(`<html lang="${lang.tag}">`), `${lang.code} missing correct html lang`);
+      assert.match(html, new RegExp(`<link rel="canonical" href="${canonicalUrl(lang.code)}" />`), `${lang.code} missing canonical`);
+
+      // hreflang alternates
+      for (const l of langs) {
+        assert.match(
+          html,
+          new RegExp(`<link rel="alternate" hreflang="${l.tag}" href="${canonicalUrl(l.code)}" />`),
+          `${lang.code} missing hreflang alternate for ${l.code}`
+        );
+      }
+      assert.match(html, /<link rel="alternate" hreflang="x-default" href="https:\/\/tugql\.org\/" \/>/);
+
+      // language switcher in header and footer
+      assert.match(html, /class="lang-switcher"/, `${lang.code} missing .lang-switcher`);
+      assert.match(html, /class="footer-langs"/, `${lang.code} missing .footer-langs`);
+      assert.ok(html.includes(`<span>${lang.label}</span>`), `${lang.code} trigger missing native label`);
+
+      // sitemap entry
+      assert.ok(sitemap.includes(`<loc>${canonicalUrl(lang.code)}</loc>`), `sitemap missing ${lang.code}`);
+    }
+  });
 });

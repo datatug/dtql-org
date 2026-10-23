@@ -1,9 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tugql.org/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/es/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/de/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/fr/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/pt-br/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/ru/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/uk/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/ja/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/zh-cn/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  </url>
+  <url>
+    <loc>https://tugql.org/ko/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tugql.org/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
   </url>
 </urlset>

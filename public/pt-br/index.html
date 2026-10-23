@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TugQL — uma linguagem de consulta portátil e legível por humanos</title>
+  <meta name="description" content="TugQL (anteriormente DTQL) é uma linguagem de consulta portátil e legível por humanos. Uma mesma consulta roda inalterada no Git, SQLite, PostgreSQL e Firestore — com sintaxe limpa estilo SQL e árvore de consulta sem perdas validada por esquema (TugQT)." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://tugql.org/pt-br/" />
+  <link rel="alternate" hreflang="en" href="https://tugql.org/" />
+  <link rel="alternate" hreflang="es" href="https://tugql.org/es/" />
+  <link rel="alternate" hreflang="de" href="https://tugql.org/de/" />
+  <link rel="alternate" hreflang="fr" href="https://tugql.org/fr/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://tugql.org/pt-br/" />
+  <link rel="alternate" hreflang="ru" href="https://tugql.org/ru/" />
+  <link rel="alternate" hreflang="uk" href="https://tugql.org/uk/" />
+  <link rel="alternate" hreflang="ja" href="https://tugql.org/ja/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://tugql.org/zh-cn/" />
+  <link rel="alternate" hreflang="ko" href="https://tugql.org/ko/" />
+  <link rel="alternate" hreflang="x-default" href="https://tugql.org/" />
+  <meta property="og:title" content="TugQL — uma linguagem de consulta portátil e legível por humanos" />
+  <meta property="og:description" content="TugQL: linguagem de consulta portátil e legível com árvore estruturada (TugQT) entre backends. Antigo DTQL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tugql.org/pt-br/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230d1117'/><text x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-monospace,monospace' font-size='22' font-weight='800' fill='%232f81f7'>{}</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TugQL",
+    "alternateName": "DTQL",
+    "url": "https://tugql.org",
+    "description": "Uma linguagem de consulta portátil e legível por humanos com árvore de consulta estruturada (TugQT) para bancos de dados e camadas de abstração.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform"
+  }
+  </script>
+</head>
+<body>
+
+<!-- ============================ APP HEADER ============================ -->
+<header class="AppHeader" role="banner">
+  <div class="AppHeader-inner">
+    <a class="AppHeader-brand" href="#top" aria-label="TugQL home">
+      <span class="AppHeader-brand-mark" aria-hidden="true">{}</span>
+      <span class="AppHeader-brand-word">TugQL</span>
+    </a>
+
+    <nav class="AppHeader-context" aria-label="Context">
+      <span class="AppHeader-context-slash" aria-hidden="true">/</span>
+      <a class="AppHeader-context-item" href="https://github.com/tugql/tugql" rel="noopener">
+        tugql/tugql
+      </a>
+    </nav>
+
+    <nav class="AppHeader-nav" aria-label="Primary">
+      <a href="#why">Por que</a>
+      <a href="#example">Exemplo</a>
+      <a href="#mapping">Mapeamento</a>
+      <a href="#scope">Escopo</a>
+      <a href="#stack">Stack</a>
+      <a href="#implementations">Implementações</a>
+    </nav>
+
+    <div class="AppHeader-actions">
+      <a class="btn btn-default btn-sm" href="https://github.com/tugql/tugql" rel="noopener">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+        <span>Star</span>
+      </a>
+
+      <!-- Language dropdown -->
+      <div class="lang-switcher">
+        <button
+          type="button"
+          class="lang-switcher__trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          lang="pt-BR"
+        >
+          <span>Português (BR)</span>
+          <svg class="lang-switcher__caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="lang-switcher__menu" role="menu" aria-label="Language">
+        <li role="none"><a href="/" hreflang="en" lang="en" role="menuitem" class="lang-switcher__item">English</a></li>
+        <li role="none"><a href="/es/" hreflang="es" lang="es" role="menuitem" class="lang-switcher__item">Español</a></li>
+        <li role="none"><a href="/de/" hreflang="de" lang="de" role="menuitem" class="lang-switcher__item">Deutsch</a></li>
+        <li role="none"><a href="/fr/" hreflang="fr" lang="fr" role="menuitem" class="lang-switcher__item">Français</a></li>
+        <li role="none"><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" role="menuitem" class="lang-switcher__item is-active" aria-current="page">Português (BR)</a></li>
+        <li role="none"><a href="/ru/" hreflang="ru" lang="ru" role="menuitem" class="lang-switcher__item">Русский</a></li>
+        <li role="none"><a href="/uk/" hreflang="uk" lang="uk" role="menuitem" class="lang-switcher__item">Українська</a></li>
+        <li role="none"><a href="/ja/" hreflang="ja" lang="ja" role="menuitem" class="lang-switcher__item">日本語</a></li>
+        <li role="none"><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" role="menuitem" class="lang-switcher__item">中文</a></li>
+        <li role="none"><a href="/ko/" hreflang="ko" lang="ko" role="menuitem" class="lang-switcher__item">한국어</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm9.22 3.72a.75.75 0 0 0 0 1.06L10.69 8 9.22 9.47a.75.75 0 1 0 1.06 1.06l2-2a.75.75 0 0 0 0-1.06l-2-2a.75.75 0 0 0-1.06 0M6.78 6.53a.75.75 0 0 0-1.06-1.06l-2 2a.75.75 0 0 0 0 1.06l2 2a.75.75 0 1 0 1.06-1.06L5.31 8Z"/></svg>
+        Especificação aberta · anteriormente DTQL
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-line">Consultas que você pode</span>
+        <span class="hero-line"><span class="hero-accent">ler, comparar</span> e confiar.</span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>TugQL</strong> é uma linguagem de consulta portátil e legível por humanos. Ela combina uma sintaxe de texto limpa semelhante a SQL com uma representação estruturada de árvore de consulta <strong>1:1 e sem perdas</strong> (<strong>TugQT</strong>) serializada como YAML/JSON simples. Salve uma consulta, edite-a manualmente, veja o diff no controle de versão e execute-a entre backends sem perdas.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">
+          <svg class="octicon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75V1.75Z"/></svg>
+          Ler a especificação
+        </a>
+        <a class="btn btn-default" href="#example">Ver um exemplo</a>
+        <code class="hero-install" tabindex="0">
+          <span class="hero-install-prompt">$</span> go get github.com/dal-go/dalgo/dtql
+        </code>
+      </div>
+    </div>
+
+    <!-- Hero code sample -->
+    <div class="codeblock" role="figure" aria-label="Um documento de consulta TugQL">
+      <div class="codeblock-head">
+        <span class="codeblock-dot" style="background:#ff5f57"></span>
+        <span class="codeblock-dot" style="background:#febc2e"></span>
+        <span class="codeblock-dot" style="background:#28c840"></span>
+        <span class="codeblock-name">query.tugql</span>
+        <span class="codeblock-lang">TugQL</span>
+      </div>
+<pre><code><span class="pl-k">from</span> users <span class="pl-k">as</span> u
+<span class="pl-k">select</span>
+  u.name,
+  u.age <span class="pl-k">as</span> years
+<span class="pl-k">where</span>
+  u.age &gt;= <span class="pl-c1">18</span>
+  <span class="pl-k">and</span> (u.status <span class="pl-k">in</span> (<span class="pl-s">'active'</span>, <span class="pl-s">'pending'</span>) <span class="pl-k">or</span> u.country == <span class="pl-s">'US'</span>)
+<span class="pl-k">order by</span>
+  u.name,
+  u.age <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">10</span>
+<span class="pl-k">offset</span> <span class="pl-c1">20</span></code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section id="why" class="section">
+  <div class="container">
+    <header class="section-head">
+      <span class="section-eyebrow">01 — Por que TugQL</span>
+      <h2 class="section-title">Uma consulta é um dado. Trate-a como dado.</h2>
+      <p class="section-kicker">TugQL transforma uma consulta em um documento compreensível e versionável que você pode armazenar, revisar e comparar — portátil em qualquer backend.</p>
+    </header>
+
+    <div class="why-grid">
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z"/></svg>
+        </div>
+        <h3>Legível por humanos</h3>
+        <p>Sintaxe intuitiva semelhante a SQL para pessoas, além de árvore de consulta YAML/JSON simples (TugQT) para ferramentas — qualquer um pode inspecionar e editar.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M1.643 3.143 .427 1.927A.25.25 0 0 0 0 2.104V5.75a.25.25 0 0 0 .25.25h3.646a.25.25 0 0 0 .177-.427L2.715 4.215a6.5 6.5 0 1 1-1.18 4.458.75.75 0 1 0-1.493.154 8.001 8.001 0 1 0 1.6-5.684Z"/></svg>
+        </div>
+        <h3>Ida e volta sem perdas</h3>
+        <p>A transformação canônica reconstrói consultas estruturalmente idênticas à origem. Nada é silenciosamente descartado ou aproximado.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8.533.133a1.75 1.75 0 0 0-1.066 0l-5.25 1.68A1.75 1.75 0 0 0 1 3.48V7c0 1.566.32 3.182 1.303 4.682.983 1.498 2.585 2.813 5.032 3.855a1.7 1.7 0 0 0 1.33 0c2.447-1.042 4.049-2.357 5.032-3.855C14.68 10.182 15 8.566 15 7V3.48a1.75 1.75 0 0 0-1.217-1.667ZM7.92 1.563a.25.25 0 0 1 .16 0l5.25 1.68a.25.25 0 0 1 .17.237V7c0 1.36-.275 2.666-1.057 3.86-.784 1.194-2.121 2.34-4.366 3.297a.2.2 0 0 1-.154 0c-2.245-.957-3.582-2.103-4.366-3.297C2.775 9.666 2.5 8.36 2.5 7V3.48a.25.25 0 0 1 .17-.237Z"/></svg>
+        </div>
+        <h3>Validado por esquema</h3>
+        <p>Publicado com validação completa em JSON Schema (draft 2020-12). Qualquer ferramenta em qualquer linguagem pode validar consultas antes da execução.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 3.254V3.25v.005a.75.75 0 1 1 0-.005v.004Zm.45 1.9a2.25 2.25 0 1 0-1.95.218v5.256a2.25 2.25 0 1 0 1.5 0V7.123A5.735 5.735 0 0 0 9.25 9h1.378a2.251 2.251 0 1 0 0-1.5H9.25a4.25 4.25 0 0 1-3.8-2.346ZM12.75 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-8.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"/></svg>
+        </div>
+        <h3>Ideal para diffs</h3>
+        <p>Formatação canônica e serialização determinística da árvore. Consultas salvas geram diffs limpos no Git e são revisadas como código.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"/></svg>
+        </div>
+        <h3>Portátil por design</h3>
+        <p>TugQL expõe funcionalidades portáteis entre plataformas: a mesma consulta executa sem alterações no Git, SQLite, PostgreSQL ou Firestore.</p>
+      </article>
+
+      <article class="Box why-card">
+        <div class="why-icon">
+          <svg class="octicon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></svg>
+        </div>
+        <h3>Não é SQL completo</h3>
+        <p>Um subconjunto portátil deliberadamente focado e bem definido. Recursos não portáteis são rejeitados explicitamente em vez de traduzidos de forma insegura.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXAMPLE ============================ -->
+<section class="section section-subtle" id="example">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">02 — Exemplo</span>
+      <h2 class="section-title">Uma consulta em TugQL e TugQT</h2>
+      <p class="section-kicker">Escreva na sintaxe de texto TugQL; armazene ou compartilhe como árvore de consulta estruturada TugQT.</p>
+    </div>
+    <div class="iface-grid">
+      <div class="iface-prose">
+        <p>Desenvolvedores escrevem consultas na sintaxe de texto do <strong>TugQL</strong> — legível, compacta e parecida com SQL. Por baixo, o parser produz o <strong>TugQT (Tug Query Tree)</strong>, uma representação canônica legível por máquina.</p>
+        <p>Cada nó mapeia deterministicamente entre sintaxe e árvore. Erros de entrada ou violações de esquema retornam diagnósticos com localização precisa no código.</p>
+        <div class="Flash" role="note">
+          <svg class="octicon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
+          <span><strong>Nota sobre a nomenclatura:</strong> TugQL era anteriormente conhecido como DTQL. Documentos e arquivos de consulta DTQL existentes continuam suportados para compatibilidade com versões anteriores.</span>
+        </div>
+      </div>
+
+      <div class="codeblock" role="figure" aria-label="Árvore de consulta TugQT de exemplo">
+        <div class="codeblock-head">
+          <span class="codeblock-dot" style="background:#ff5f57"></span>
+          <span class="codeblock-dot" style="background:#febc2e"></span>
+          <span class="codeblock-dot" style="background:#28c840"></span>
+          <span class="codeblock-name">users.tugqt.yaml</span>
+          <span class="codeblock-lang">YAML</span>
+        </div>
+<pre><code><span class="pl-en">from</span>:
+  <span class="pl-en">name</span>: users
+<span class="pl-en">columns</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">as</span>: years
+<span class="pl-en">where</span>:
+  <span class="pl-en">and</span>:
+    - <span class="pl-en">op</span>: <span class="pl-s">'&gt;='</span>
+      <span class="pl-en">left</span>:
+        <span class="pl-en">field</span>: age
+      <span class="pl-en">right</span>:
+        <span class="pl-en">value</span>: <span class="pl-c1">18</span>
+    - <span class="pl-en">or</span>:
+        - <span class="pl-en">op</span>: In
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: status
+          <span class="pl-en">right</span>:
+            <span class="pl-en">values</span>:
+              - active
+              - pending
+        - <span class="pl-en">op</span>: ==
+          <span class="pl-en">left</span>:
+            <span class="pl-en">field</span>: country
+          <span class="pl-en">right</span>:
+            <span class="pl-en">value</span>: US
+<span class="pl-en">orderBy</span>:
+  - <span class="pl-en">field</span>: name
+  - <span class="pl-en">field</span>: age
+    <span class="pl-en">desc</span>: <span class="pl-c1">true</span>
+<span class="pl-en">limit</span>: <span class="pl-c1">10</span>
+<span class="pl-en">offset</span>: <span class="pl-c1">20</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MAPPING ============================ -->
+<section class="section" id="mapping">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">03 — nó → TugQT</span>
+      <h2 class="section-title">Mapeamento</h2>
+      <p class="section-kicker">Cada nó de consulta possui uma representação estruturada definida.</p>
+    </div>
+    <div class="tugql-table-wrap Box">
+      <table class="tugql-table">
+        <thead><tr><th>Nó de consulta</th><th>Representação TugQT</th></tr></thead>
+        <tbody>
+          <tr><td>From sobre uma coleção raiz</td><td><code>from: { name, alias? }</code></td></tr>
+          <tr><td>Coluna</td><td>item sob <code>columns:</code> — expressão com <code>as:</code> opcional</td></tr>
+          <tr><td>Comparação</td><td><code>{ op, left, right }</code></td></tr>
+          <tr><td>Condição em grupo (And)</td><td><code>{ and: [ … ] }</code></td></tr>
+          <tr><td>Condição em grupo (Or)</td><td><code>{ or: [ … ] }</code></td></tr>
+          <tr><td>Expressão de ordenação</td><td>item sob <code>orderBy:</code> — expressão com <code>desc: true</code> opcional</td></tr>
+          <tr><td>Referência a campo</td><td><code>{ field: &lt;nome&gt; }</code></td></tr>
+          <tr><td>Constante</td><td><code>{ value: &lt;escalar&gt; }</code></td></tr>
+          <tr><td>Array</td><td><code>{ values: [ &lt;escalar&gt;, … ] }</code></td></tr>
+          <tr><td>Operador</td><td><code>==</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
+          <tr><td>Limit / Offset</td><td><code>limit: &lt;int&gt;</code> / <code>offset: &lt;int&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px;color:var(--fg-muted)">Uma expressão define <strong>exatamente um</strong> entre <code>field</code>, <code>value</code> ou <code>values</code>, identificando uma referência de campo, constante ou array.</p>
+  </div>
+</section>
+
+<!-- ============================ SCOPE ============================ -->
+<section class="section section-subtle" id="scope">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">04 — subconjunto coberto</span>
+      <h2 class="section-title">O que o TugQL representa</h2>
+      <p class="section-kicker">Coleções individuais ou unidas, colunas selecionadas, expressões de filtro, ordenação e paginação. Tudo fora de escopo é rejeitado — nunca descartado em silêncio.</p>
+    </div>
+    <div class="why-grid">
+      <div class="Box why-card">
+        <h3>No escopo</h3>
+        <p>Fontes de coleção · colunas selecionadas · comparações e grupos And/Or · ordenação · limit / offset · joins · parâmetros. Expressões: campo, constante, array. Operadores: <code>==</code>, <code>!=</code>, <code>In</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>And</code>, <code>Or</code>.</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Fora de escopo (rejeitado)</h3>
+        <p>Joins cartesianos ilimitados · sintaxe proprietária específica de banco · operadores de mutação sem tipo fora do esquema. A serialização falha explicitamente para evitar perda semântica.</p>
+      </div>
+      <div class="Box why-card">
+        <h3>Sem perdas e canônico</h3>
+        <p><code>resolve(parse(text))</code> produz árvores determinísticas; a serialização é canônica para que consultas salvas mostrem diffs limpos entre versões.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STACK ============================ -->
+<section class="section" id="stack">
+  <div class="container">
+    <div class="iface-grid">
+      <div class="section-head" style="margin:0">
+        <span class="section-eyebrow">05 — onde roda</span>
+        <h2 class="section-title">Uma consulta, muitos backends</h2>
+        <p class="section-kicker">O TugQL é a superfície de consulta portátil. Ele se integra a uma camada de abstração de dados (DALgo) que se adapta a qualquer armazenamento subjacente.</p>
+        <p style="margin-top:16px;color:var(--fg-muted)">Como o TugQL expressa o subconjunto portátil, uma consulta escrita uma vez se comporta de forma idêntica tanto em um repositório Git (inGitDB), SQLite, PostgreSQL ou Firestore.</p>
+      </div>
+
+      <div class="flow" aria-label="TugQL se mapeia através de uma camada de abstração para diversos bancos de dados">
+        <div class="flow-node flow-node-accent"><strong>TugQL</strong><span>linguagem de consulta portátil</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-node"><strong>DALgo</strong><span>camada de abstração de dados</span></div>
+        <div class="flow-arrow" aria-hidden="true">&darr;</div>
+        <div class="flow-backends">
+          <span>inGitDB</span>
+          <span>SQLite</span>
+          <span>PostgreSQL</span>
+          <span>Firestore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IMPLEMENTATIONS ============================ -->
+<section class="section section-subtle" id="implementations">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">06 — comece a usar</span>
+      <h2 class="section-title">Especificação e implementações</h2>
+      <p class="section-kicker">A linguagem é uma especificação aberta com esquema publicado e implementações em Go e TypeScript.</p>
+    </div>
+    <ul class="adapter-grid" role="list">
+      <li><a class="adapter Box adapter-core" href="https://github.com/tugql/tugql" rel="noopener">
+        <span class="adapter-kind">especificação · esquema</span>
+        <h3>tugql/tugql</h3>
+        <p>A especificação TugQL, o JSON Schema canônico (draft 2020-12) e documentos de exemplo validados. Anteriormente DTQL.</p>
+        <span class="adapter-meta">github.com/tugql/tugql</span>
+      </a></li>
+      <li><a class="adapter Box" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">
+        <span class="adapter-kind">implementação de referência · Go</span>
+        <h3>dal-go/dalgo/dtql</h3>
+        <p>A biblioteca em Go: faça parse, valide, resolva, formate e execute consultas TugQL com garantias de ida e volta sem perdas.</p>
+        <span class="adapter-meta">go get github.com/dal-go/dalgo/dtql</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CLOSING ============================ -->
+<section class="section section-subtle" id="datatug-development">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Usado no desenvolvimento de produtos</span>
+      <h2 class="section-title">Explore e consulte dados com o DataTug.</h2>
+      <p class="section-kicker"><a href="https://datatug.app">DataTug</a> ajuda desenvolvedores a explorar esquemas, criar e executar consultas e entender resultados. O trabalho com contratos de consulta usando TugQL e TugQT é contínuo. <a href="https://datatug.app/en/under-the-hood/tools-we-built/#query">Conheça as ferramentas por trás do DataTug.</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section closing">
+  <div class="container closing-inner">
+    <h2>Salve. Compare. Execute em qualquer lugar.</h2>
+    <p>O TugQL torna uma consulta um artefato de primeira classe e auditável — legível por pessoas, validado por ferramentas e portátil entre plataformas.</p>
+    <div class="closing-cta">
+      <a class="btn btn-primary" href="https://github.com/tugql/tugql" rel="noopener">Ler a especificação</a>
+      <a class="btn btn-default" href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Obter a biblioteca Go</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ LANGUAGE SWITCHER PANEL ============================ -->
+<nav class="footer-langs" aria-label="Language">
+  <div class="footer-langs__inner">
+    <ul class="footer-langs__list">
+        <li><a href="/" hreflang="en" lang="en" class="footer-langs__tab">English</a></li>
+        <li><a href="/es/" hreflang="es" lang="es" class="footer-langs__tab">Español</a></li>
+        <li><a href="/de/" hreflang="de" lang="de" class="footer-langs__tab">Deutsch</a></li>
+        <li><a href="/fr/" hreflang="fr" lang="fr" class="footer-langs__tab">Français</a></li>
+        <li><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" class="footer-langs__tab is-active" aria-current="page">Português (BR)</a></li>
+        <li><a href="/ru/" hreflang="ru" lang="ru" class="footer-langs__tab">Русский</a></li>
+        <li><a href="/uk/" hreflang="uk" lang="uk" class="footer-langs__tab">Українська</a></li>
+        <li><a href="/ja/" hreflang="ja" lang="ja" class="footer-langs__tab">日本語</a></li>
+        <li><a href="/zh-cn/" hreflang="zh-CN" lang="zh-CN" class="footer-langs__tab">中文</a></li>
+        <li><a href="/ko/" hreflang="ko" lang="ko" class="footer-langs__tab">한국어</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="AppFooter">
+  <div class="container AppFooter-inner">
+    <ul role="list">
+      <li>&copy; <span id="year">2026</span> TugQL contributors</li>
+      <li><a href="https://github.com/tugql/tugql" rel="noopener">Especificação</a></li>
+      <li><a href="https://github.com/dal-go/dalgo/tree/main/dtql" rel="noopener">Implementação em Go</a></li>
+      <li><a href="#example">Exemplo</a></li>
+      <li><a href="#mapping">Mapeamento</a></li>
+    </ul>
+    <span class="AppFooter-tag">Uma linguagem de consulta aberta e portátil (antigo DTQL). Site canônico: <a href="https://tugql.org">tugql.org</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Accessibility and behavior for the header language dropdown
+  document.querySelectorAll('.lang-switcher').forEach((switcher) => {
+    const trigger = switcher.querySelector('.lang-switcher__trigger');
+    if (!trigger) return;
+    const sync = (open) => trigger.setAttribute('aria-expanded', String(open));
+    switcher.addEventListener('mouseenter', () => sync(true));
+    switcher.addEventListener('mouseleave', () => {
+      if (!switcher.contains(document.activeElement)) sync(false);
+    });
+    switcher.addEventListener('focusin', () => sync(true));
+    switcher.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget;
+      if (!next || !switcher.contains(next)) sync(false);
+    });
+    switcher.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sync(false);
+        trigger.focus();
+        setTimeout(() => trigger.blur(), 0);
+      }
+    });
+  });
+</script>
+</body>
+</html>
